@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakhri Cahyo Diandra | Front-End & UI/UX Developer</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'] 
+                    },
+                    colors: { 
+                        brand: '#111827'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f9fafb;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-brand antialiased selection:bg-brand selection:text-white">
+
+    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-sm font-bold tracking-tight">Fakhri C.D.N</a>
+            <div class="space-x-8 text-sm font-medium text-gray-500 hidden md:flex">
+                <a href="#about" class="hover:text-brand transition-colors">Tentang</a>
+                <a href="#expertise" class="hover:text-brand transition-colors">Keahlian</a>
+                <a href="#work" class="hover:text-brand transition-colors">Karya</a>
+                <a href="#certifications" class="hover:text-brand transition-colors">Sertifikasi</a>
+                <a href="#contact" class="hover:text-brand transition-colors">Kontak</a>
+            </div>
+            <button class="md:hidden text-brand focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <section id="about" class="min-h-screen flex items-center pt-20 relative bg-brand bg-cover bg-center bg-no-repeat" style="background-image: url('setup pertama.png');">
+        <div class="absolute inset-0 bg-brand/85 z-0"></div>
+        <div class="max-w-5xl mx-auto px-6 w-full reveal relative z-10">
+            <p class="text-gray-400 font-medium mb-4 tracking-wide text-sm uppercase">Portofolio Profesional</p>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-6 text-white">
+                Merancang pengalaman <br class="hidden md:block" />
+                <span class="text-gray-400">digital yang bermakna.</span>
+            </h1>
+            <p class="text-lg text-gray-200 max-w-2xl leading-relaxed mb-10">
+                Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna.
+            </p>
+            <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-brand bg-white rounded-full hover:bg-gray-200 transition-colors focus:ring-4 focus:ring-gray-300/50">
+                Mulai Diskusi
+            </a>
+        </div>
+    </section>
+
+    <section id="expertise" class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold tracking-tight mb-12 reveal">Keahlian & Kemampuan</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="reveal border-t border-gray-100 pt-6">
+                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Hard Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-2">Front-End Development</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Membangun arsitektur web yang tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework modern yang efisien.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold mb-2">UI/UX Design</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Merancang wireframe, prototyping, dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa aplikasi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal border-t border-gray-100 pt-6">
+                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Soft Skills</h3>
+                    <ul class="space-y-5">
+                        <li class="flex items-start">
+                            <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Problem Solving</h4>
+                                <p class="text-sm text-gray-500 mt-1">Kemampuan menganalisis masalah kompleks, debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Bekerja Secara Tim</h4>
+                                <p class="text-sm text-gray-500 mt-1">Berkomunikasi secara proaktif dan kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Adaptasi Cepat</h4>
+                                <p class="text-sm text-gray-500 mt-1">Luwes dalam mempelajari teknologi baru, menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika proyek.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-24 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold tracking-tight mb-12 reveal">Karya Terpilih</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <article class="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col overflow-hidden">
+                    <div class="aspect-video w-full overflow-hidden relative border-b border-gray-100 bg-gray-100">
+                        <img src="TechInventory.png" alt="Screenshot TechInventory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                    </div>
+                    
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <h3 class="text-xl font-bold text-gray-900">TechInventory System</h3>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm border border-blue-100">Full-Stack</span>
+                            </div>
+                            <p class="text-gray-600 mb-8 text-sm leading-relaxed">
+                                Sistem manajemen inventaris tingkat lanjut. Membangun fitur peminjaman alat, manajemen stok otomatis, hingga sistem penalti poin bagi pengguna. Mengutamakan integritas data dan kemudahan operasional.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2.5 text-[10px] font-semibold text-gray-500 mt-auto pt-4 border-t border-gray-100/50">
+                            <span class="bg-gray-100 px-2.5 py-1 rounded">Laravel Breeze</span>
+                            <span class="bg-gray-100 px-2.5 py-1 rounded">MySQL</span>
+                            <span class="bg-gray-100 px-2.5 py-1 rounded">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col overflow-hidden">
+                    <div class="aspect-video w-full overflow-hidden relative border-b border-gray-100 bg-[#0a0a0a] flex items-center justify-center">
+                        <img src="RemakeNet.png" alt="Screenshot Streaming App Mobile UI" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                    </div>
+
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <h3 class="text-xl font-bold text-gray-900">Streaming App UI</h3>
+                                <span class="px-3 py-1 bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm border border-red-100">Mobile-First</span>
+                            </div>
+                            <p class="text-gray-600 mb-8 text-sm leading-relaxed">
+                                Merancang ulang antarmuka mobile untuk landing page platform streaming. Berfokus pada implementasi dark theme yang pekat, penataan struktur grid media yang dinamis, dan optimasi kontras warna untuk mengarahkan alur CTA pengguna.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2.5 text-[10px] font-semibold text-gray-500 mt-auto pt-4 border-t border-gray-100/50">
+                            <span class="bg-gray-100 px-2.5 py-1 rounded">UI/UX Design</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold tracking-tight mb-12 reveal">Sertifikasi Profesional</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
+                        <img src="sertif1.jpeg" alt="Sertifikat SIMETRI 2025 UI/UX Design" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                        <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+                    </div>
+                    
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-gray-900 leading-tight">UI/UX Design</h3>
+                                <span class="text-xs font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm ml-4">2025</span>
+                            </div>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                Partisipasi aktif dalam rangkaian acara SIMETRI 2025 dengan tema "Crafting Solution Through Modern UI/UX Design". Berfokus pada pemecahan masalah melalui perancangan antarmuka modern.
+                            </p>
+                        </div>
+                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto">Diterbitkan oleh: Departemen Sistem Informasi ITS</p>
+                    </div>
+                </article>
+
+                <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
+                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
+                        <img src="sertif2.jpeg" alt="Sertifikat Frontend Backend Dasar" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                        <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+                    </div>
+                    
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-gray-900 leading-tight">Dasar Frontend & Backend</h3>
+                                <span class="text-xs font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm ml-4">2025</span>
+                            </div>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                Partisipasi dalam program "Software Development Chapter: Dasar Frontend dan Backend Untuk Pemula" guna memperkuat fundamental pengembangan perangkat lunak secara Full-Stack.
+                            </p>
+                        </div>
+                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto">Diterbitkan oleh: Bali Project Indonesia</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-gray-50 py-24 border-t border-gray-100">
+        <div class="max-w-5xl mx-auto px-6 text-center reveal">
+            <h2 class="text-3xl font-bold tracking-tight mb-6">Mari berkolaborasi.</h2>
+            <p class="text-gray-500 mb-10 max-w-xl mx-auto text-sm leading-relaxed">
+                Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur? Mari terhubung untuk proyek Anda selanjutnya.
+            </p>
+            <a href="mailto:ditofakhri3@gmail.com" class="text-xl md:text-2xl font-medium border-b-2 border-brand pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors">
+                klik untuk menghubungi saya
+            </a>
+            <div class="mt-24 text-xs text-gray-400 font-medium tracking-wide uppercase">
+                &copy; 2026 Fakhri Cahyo Diandra Nandito.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.12
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
