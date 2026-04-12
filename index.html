@@ -1,284 +1,480 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fakhri Cahyo Diandra | Front-End & UI/UX Developer</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { 
-                        sans: ['Inter', 'sans-serif'] 
-                    },
-                    colors: { 
-                        brand: '#111827'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "sans-serif"] },
+            colors: { brand: "#111827" },
+          },
+        },
+      };
     </script>
-    
+
     <style>
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-        }
+      /* LIQUID GLASS THEME */
+      .glass-pill {
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f9fafb;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
-        }
+      #nav-bubble {
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f9fafb; }
+      ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
     </style>
-</head>
-<body class="bg-gray-50 text-brand antialiased selection:bg-brand selection:text-white">
+  </head>
+  <body class="bg-gray-50 text-brand antialiased selection:bg-brand selection:text-white relative">
+    
+    <div class="fixed w-full top-6 z-50 flex flex-col items-center px-6 transition-all duration-300">
+      
+      <div class="max-w-6xl w-full flex items-center justify-between">
+          <a href="#" class="text-white hover:opacity-80 transition-opacity flex items-center drop-shadow-md z-10 text-lg font-bold tracking-tight">
+              Fakhri C.D.N
+          </a>
 
-    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-sm font-bold tracking-tight">Fakhri C.D.N</a>
-            <div class="space-x-8 text-sm font-medium text-gray-500 hidden md:flex">
-                <a href="#about" class="hover:text-brand transition-colors">Tentang</a>
-                <a href="#expertise" class="hover:text-brand transition-colors">Keahlian</a>
-                <a href="#work" class="hover:text-brand transition-colors">Karya</a>
-                <a href="#certifications" class="hover:text-brand transition-colors">Sertifikasi</a>
-                <a href="#contact" class="hover:text-brand transition-colors">Kontak</a>
-            </div>
-            <button class="md:hidden text-brand focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-        </div>
-    </nav>
+          <nav id="main-nav" class="glass-pill rounded-full p-1.5 hidden lg:flex items-center shadow-lg relative right-6">
+              <div id="nav-bubble" class="absolute top-1.5 bottom-1.5 left-1.5 bg-white rounded-full shadow-sm z-0 w-0"></div>
+              
+              <a href="#about" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors" data-i18n="navAbout">Tentang</a>
+              <a href="#expertise" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide" data-i18n="navExpertise">Keahlian</a>
+              <a href="#work" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide" data-i18n="navWork">Karya</a>
+              <a href="#certifications" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide" data-i18n="navCert">Sertifikasi</a>
+              <a href="#contact" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide" data-i18n="navContact">Kontak</a>
+              
+              <div class="lang-toggle-btn relative z-10 flex items-center gap-2 pl-4 pr-3 text-[#1e3a8a] text-sm font-medium cursor-pointer border-l border-[#1e3a8a]/20 ml-1 hover:opacity-70 transition-opacity">
+                  <img src="https://flagcdn.com/w20/id.png" alt="Language" class="lang-flag w-5 h-auto rounded-sm shadow-sm opacity-90">
+                  <span class="lang-text tracking-wide w-[28px] text-center">IDN</span>
+                  <svg class="w-4 h-4 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+              </div>
+          </nav>
+          
+          <button id="mobile-menu-btn" class="lg:hidden text-white drop-shadow-md focus:outline-none z-10">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+      </div>
 
-    <section id="about" class="min-h-screen flex items-center pt-20 relative bg-brand bg-cover bg-center bg-no-repeat" style="background-image: url('setup pertama.png');">
-        <div class="absolute inset-0 bg-brand/85 z-0"></div>
-        <div class="max-w-5xl mx-auto px-6 w-full reveal relative z-10">
-            <p class="text-gray-400 font-medium mb-4 tracking-wide text-sm uppercase">Fakhri Cahyo Diandra Nandito</p>
-            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-6 text-white">
-                Merancang pengalaman <br class="hidden md:block" />
-                <span class="text-gray-400">digital yang bermakna.</span>
-            </h1>
-            <p class="text-lg text-gray-200 max-w-2xl leading-relaxed mb-10">
-                Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna.
-            </p>
-            <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-brand bg-white rounded-full hover:bg-gray-200 transition-colors focus:ring-4 focus:ring-gray-300/50">
-                Mulai Diskusi
-            </a>
-        </div>
+      <div id="mobile-menu" class="lg:hidden w-full max-w-md mt-4 glass-pill rounded-2xl p-4 flex flex-col gap-2 opacity-0 pointer-events-none -translate-y-4 transition-all duration-300 transform shadow-xl origin-top">
+          <a href="#about" class="mobile-link text-[#1e3a8a] font-semibold text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navAbout">Tentang</a>
+          <a href="#expertise" class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navExpertise">Keahlian</a>
+          <a href="#work" class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navWork">Karya</a>
+          <a href="#certifications" class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navCert">Sertifikasi</a>
+          <a href="#contact" class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navContact">Kontak</a>
+          <div class="h-px bg-[#1e3a8a]/10 my-1"></div>
+          <div class="lang-toggle-btn flex justify-center items-center gap-3 text-[#1e3a8a] font-bold py-3 rounded-xl cursor-pointer hover:bg-white/60 transition-colors">
+              <img src="https://flagcdn.com/w20/id.png" alt="Language" class="lang-flag w-6 h-auto rounded-sm shadow-sm">
+              <span class="lang-text tracking-wide">IDN</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+          </div>
+      </div>
+    </div>
+
+    <section id="about" class="scroll-section min-h-screen flex items-center pt-20 relative bg-brand bg-cover bg-center bg-no-repeat" style="background-image: url(&quot;setup pertama.png&quot;)">
+      <div class="absolute inset-0 bg-brand/85 z-0"></div>
+      <div class="max-w-5xl mx-auto px-6 w-full reveal relative z-10">
+        <p class="text-gray-400 font-medium mb-4 tracking-wide text-sm uppercase">Fakhri Cahyo Diandra Nandito</p>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-6 text-white">
+          <span data-i18n="heroTitle1">Merancang pengalaman <br class="hidden md:block" /></span>
+          <span class="text-gray-400" data-i18n="heroTitle2">digital yang bermakna.</span>
+        </h1>
+        <p class="text-lg text-gray-200 max-w-2xl leading-relaxed mb-10" data-i18n="heroDesc">
+          Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna.
+        </p>
+        <a href="#contact" data-i18n="heroBtn" class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-brand bg-white rounded-full hover:bg-gray-200 transition-colors focus:ring-4 focus:ring-gray-300/50">
+          Mulai Diskusi
+        </a>
+      </div>
     </section>
 
-    <section id="expertise" class="py-24 bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold tracking-tight mb-12 reveal">Keahlian & Kemampuan</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="reveal border-t border-gray-100 pt-6">
-                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Hard Skills</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-xl font-semibold mb-2">Front-End Development</h4>
-                            <p class="text-gray-600 text-sm leading-relaxed">Membangun arsitektur web yang tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework modern yang efisien.</p>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-semibold mb-2">UI/UX Design</h4>
-                            <p class="text-gray-600 text-sm leading-relaxed">Merancang wireframe, prototyping, dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa aplikasi.</p>
-                        </div>
-                    </div>
+    <section id="expertise" class="scroll-section py-24 bg-white">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold tracking-tight mb-12 reveal" data-i18n="expTitle">Keahlian & Kemampuan</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="reveal border-t border-gray-100 pt-6">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Hard Skills</h3>
+            <div class="space-y-6">
+              <div>
+                <h4 class="text-xl font-semibold mb-2">Front-End Development</h4>
+                <p class="text-gray-600 text-sm leading-relaxed" data-i18n="expFrontDesc">Membangun arsitektur web yang tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework modern yang efisien.</p>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold mb-2">UI/UX Design</h4>
+                <p class="text-gray-600 text-sm leading-relaxed" data-i18n="expUIDesc">Merancang wireframe, prototyping, dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa aplikasi.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="reveal border-t border-gray-100 pt-6">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Soft Skills</h3>
+            <ul class="space-y-5">
+              <li class="flex items-start">
+                <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+                <div>
+                  <h4 class="font-semibold text-gray-900" data-i18n="expProbTitle">Problem Solving</h4>
+                  <p class="text-sm text-gray-500 mt-1" data-i18n="expProbDesc">Kemampuan menganalisis masalah kompleks, debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.</p>
                 </div>
-
-                <div class="reveal border-t border-gray-100 pt-6">
-                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Soft Skills</h3>
-                    <ul class="space-y-5">
-                        <li class="flex items-start">
-                            <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Problem Solving</h4>
-                                <p class="text-sm text-gray-500 mt-1">Kemampuan menganalisis masalah kompleks, debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Bekerja Secara Tim</h4>
-                                <p class="text-sm text-gray-500 mt-1">Berkomunikasi secara proaktif dan kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Adaptasi Cepat</h4>
-                                <p class="text-sm text-gray-500 mt-1">Luwes dalam mempelajari teknologi baru, menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika proyek.</p>
-                            </div>
-                        </li>
-                    </ul>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+                <div>
+                  <h4 class="font-semibold text-gray-900" data-i18n="expTeamTitle">Bekerja Secara Tim</h4>
+                  <p class="text-sm text-gray-500 mt-1" data-i18n="expTeamDesc">Berkomunikasi secara proaktif dan kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.</p>
                 </div>
-            </div>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+                <div>
+                  <h4 class="font-semibold text-gray-900" data-i18n="expAdaptTitle">Adaptasi Cepat</h4>
+                  <p class="text-sm text-gray-500 mt-1" data-i18n="expAdaptDesc">Luwes dalam mempelajari teknologi baru, menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika proyek.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-    </section>
 
-    <section id="work" class="py-24 bg-gray-50">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold tracking-tight mb-12 reveal">Karya Terpilih</h2>
+        <div class="mt-16 reveal border-t border-gray-100 pt-8">
+          <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6" data-i18n="expToolsTitle">Perangkat Lunak</h3>
+          <div class="flex flex-wrap gap-4">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <article class="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col overflow-hidden">
-                    <div class="aspect-video w-full overflow-hidden relative border-b border-gray-100 bg-gray-100">
-                        <img src="TechInventory.png" alt="Screenshot TechInventory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out">
-                    </div>
-                    
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <h3 class="text-xl font-bold text-gray-900">TechInventory System</h3>
-                                <span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm border border-blue-100">Full-Stack</span>
-                            </div>
-                            <p class="text-gray-600 mb-8 text-sm leading-relaxed">
-                                Sistem manajemen inventaris tingkat lanjut. Membangun fitur peminjaman alat, manajemen stok otomatis, hingga sistem penalti poin bagi pengguna. Mengutamakan integritas data dan kemudahan operasional.
-                            </p>
-                        </div>
-                        <div class="flex flex-wrap gap-2.5 text-[10px] font-semibold text-gray-500 mt-auto pt-4 border-t border-gray-100/50">
-                            <span class="bg-gray-100 px-2.5 py-1 rounded">Laravel Breeze</span>
-                            <span class="bg-gray-100 px-2.5 py-1 rounded">MySQL</span>
-                            <span class="bg-gray-100 px-2.5 py-1 rounded">Tailwind CSS</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col overflow-hidden">
-                    <div class="aspect-video w-full overflow-hidden relative border-b border-gray-100 bg-[#0a0a0a] flex items-center justify-center">
-                        <img src="RemakeNet.png" alt="Screenshot Streaming App Mobile UI" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out">
-                    </div>
-
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-6">
-                                <h3 class="text-xl font-bold text-gray-900">Streaming App UI</h3>
-                                <span class="px-3 py-1 bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm border border-red-100">Mobile-First</span>
-                            </div>
-                            <p class="text-gray-600 mb-8 text-sm leading-relaxed">
-                                Merancang ulang antarmuka mobile untuk landing page platform streaming. Berfokus pada implementasi dark theme yang pekat, penataan struktur grid media yang dinamis, dan optimasi kontras warna untuk mengarahkan alur CTA pengguna.
-                            </p>
-                        </div>
-                        <div class="flex flex-wrap gap-2.5 text-[10px] font-semibold text-gray-500 mt-auto pt-4 border-t border-gray-100/50">
-                            <span class="bg-gray-100 px-2.5 py-1 rounded">UI/UX Design</span>
-                        </div>
-                    </div>
-                </article>
+            <div class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#007ACC] shadow-sm"></span>
+              <span class="text-sm font-semibold text-gray-800 tracking-wide">Visual Studio Code</span>
             </div>
-        </div>
-    </section>
-
-    <section id="certifications" class="py-24 bg-white border-t border-gray-100">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold tracking-tight mb-12 reveal">Sertifikasi Profesional</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-                        <img src="sertif1.jpeg" alt="Sertifikat SIMETRI 2025 UI/UX Design" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out">
-                        <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-                    </div>
-                    
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <h3 class="text-xl font-bold text-gray-900 leading-tight">UI/UX Design</h3>
-                                <span class="text-xs font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm ml-4">2025</span>
-                            </div>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
-                                Partisipasi aktif dalam rangkaian acara SIMETRI 2025 dengan tema "Crafting Solution Through Modern UI/UX Design". Berfokus pada pemecahan masalah melalui perancangan antarmuka modern.
-                            </p>
-                        </div>
-                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto">Diterbitkan oleh: Departemen Sistem Informasi ITS</p>
-                    </div>
-                </article>
-
-                <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-                    <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-                        <img src="sertif2.jpeg" alt="Sertifikat Frontend Backend Dasar" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out">
-                        <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-                    </div>
-                    
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <h3 class="text-xl font-bold text-gray-900 leading-tight">Dasar Frontend & Backend</h3>
-                                <span class="text-xs font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm ml-4">2025</span>
-                            </div>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
-                                Partisipasi dalam program "Software Development Chapter: Dasar Frontend dan Backend Untuk Pemula" guna memperkuat fundamental pengembangan perangkat lunak secara Full-Stack.
-                            </p>
-                        </div>
-                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto">Diterbitkan oleh: Bali Project Indonesia</p>
-                    </div>
-                </article>
+            <div class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#F24E1E] shadow-sm"></span>
+              <span class="text-sm font-semibold text-gray-800 tracking-wide">Figma</span>
             </div>
+            
+            <div class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#00C4CC] shadow-sm"></span>
+              <span class="text-sm font-semibold text-gray-800 tracking-wide">Canva</span>
+            </div>
+
+          </div>
         </div>
+
+      </div>
     </section>
 
-    <footer id="contact" class="bg-gray-50 py-24 border-t border-gray-100">
-        <div class="max-w-5xl mx-auto px-6 text-center reveal">
-            <h2 class="text-3xl font-bold tracking-tight mb-6">Mari berkolaborasi.</h2>
-            <p class="text-gray-500 mb-10 max-w-xl mx-auto text-sm leading-relaxed">
-                Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur? Mari terhubung untuk proyek Anda selanjutnya.
-            </p>
-            <a href="mailto:ditofakhri3@gmail.com" class="text-xl md:text-2xl font-medium border-b-2 border-brand pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors">
-                klik untuk menghubungi saya
-            </a>
-            <div class="mt-24 text-xs text-gray-400 font-medium tracking-wide uppercase">
-                &copy; 2026 Fakhri Cahyo Diandra Nandito.
+    <section id="work" class="scroll-section py-24 bg-gray-50">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold tracking-tight mb-12 reveal" data-i18n="workTitle">Karya Terpilih</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <article class="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col overflow-hidden">
+            <div class="aspect-video w-full overflow-hidden relative border-b border-gray-100 bg-gray-100">
+              <img src="TechInventory.png" alt="Screenshot TechInventory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
             </div>
+            <div class="p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-6">
+                  <h3 class="text-xl font-bold text-gray-900" data-i18n="work1Title">TechInventory System</h3>
+                  <span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm border border-blue-100">Full-Stack</span>
+                </div>
+                <p class="text-gray-600 mb-5 text-sm leading-relaxed" data-i18n="work1Desc">Sistem manajemen inventaris tingkat lanjut. Membangun fitur peminjaman alat, manajemen stok otomatis, hingga sistem penalti poin bagi pengguna.</p>
+                
+                <a href="https://github.com/chikka-creator/TechInventory.git" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-[#1e3a8a] transition-colors mb-6 group/link">
+                  <svg class="w-4 h-4 text-gray-400 group-hover/link:text-[#1e3a8a] transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span data-i18n="workLinkCode">Lihat Repositori</span>
+                </a>
+              </div>
+              <div class="flex flex-wrap gap-2.5 text-[10px] font-semibold text-gray-500 mt-auto pt-4 border-t border-gray-100/50">
+                <span class="bg-gray-100 px-2.5 py-1 rounded">Laravel Breeze</span>
+                <span class="bg-gray-100 px-2.5 py-1 rounded">MySQL</span>
+                <span class="bg-gray-100 px-2.5 py-1 rounded">Tailwind CSS</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col overflow-hidden">
+            <div class="aspect-video w-full overflow-hidden relative border-b border-gray-100 bg-[#0a0a0a] flex items-center justify-center">
+              <img src="RemakeNet.png" alt="Screenshot Streaming App Mobile UI" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
+            </div>
+            <div class="p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-6">
+                  <h3 class="text-xl font-bold text-gray-900" data-i18n="work2Title">Streaming App UI</h3>
+                  <span class="px-3 py-1 bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm border border-red-100">Mobile-First</span>
+                </div>
+                <p class="text-gray-600 mb-5 text-sm leading-relaxed" data-i18n="work2Desc">Merancang ulang antarmuka mobile untuk landing page platform streaming. Berfokus pada implementasi dark theme yang pekat dan penataan struktur grid.</p>
+                
+                <a href="https://www.figma.com/design/rnLD3kSvpWiQDQYp0hYRto/Study-Case-Kel-8?node-id=0-1&t=dwrDat1ogs7I355f-1" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-[#1e3a8a] transition-colors mb-6 group/link">
+                  <svg class="w-4 h-4 text-gray-400 group-hover/link:text-[#1e3a8a] transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span data-i18n="workLinkCode">Lihat Repositori</span>
+                </a>
+              </div>
+              <div class="flex flex-wrap gap-2.5 text-[10px] font-semibold text-gray-500 mt-auto pt-4 border-t border-gray-100/50">
+                <span class="bg-gray-100 px-2.5 py-1 rounded">UI/UX Design</span>
+              </div>
+            </div>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="scroll-section py-24 bg-white border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold tracking-tight mb-12 reveal" data-i18n="certTitle">Sertifikasi Profesional</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
+            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
+              <img src="sertif1.jpeg" alt="Sertifikat SIMETRI 2025 UI/UX Design" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
+              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+            <div class="p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="text-xl font-bold text-gray-900 leading-tight">UI/UX Design</h3>
+                  <span class="text-xs font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm ml-4">2025</span>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6" data-i18n="cert1Desc">Partisipasi aktif dalam rangkaian acara SIMETRI 2025 dengan tema "Crafting Solution Through Modern UI/UX Design".</p>
+              </div>
+              <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert1Pub">Diterbitkan oleh: Departemen Sistem Informasi ITS</p>
+            </div>
+          </article>
+
+          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
+            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
+              <img src="sertif2.jpeg" alt="Sertifikat Frontend Backend Dasar" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
+              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+            <div class="p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="text-xl font-bold text-gray-900 leading-tight" data-i18n="cert2Title">Dasar Frontend & Backend</h3>
+                  <span class="text-xs font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm ml-4">2025</span>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6" data-i18n="cert2Desc">Partisipasi dalam program "Software Development Chapter: Dasar Frontend dan Backend Untuk Pemula".</p>
+              </div>
+              <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert2Pub">Diterbitkan oleh: Bali Project Indonesia</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="scroll-section bg-gray-50 py-24 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-6 text-center reveal">
+        <h2 class="text-3xl font-bold tracking-tight mb-6" data-i18n="contactTitle">Mari berkolaborasi.</h2>
+        <p class="text-gray-500 mb-10 max-w-xl mx-auto text-sm leading-relaxed" data-i18n="contactDesc">
+          Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur? Mari terhubung untuk proyek Anda selanjutnya.
+        </p>
+        <a href="mailto:ditofakhri3@gmail.com" class="text-xl md:text-2xl font-medium border-b-2 border-brand pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors" data-i18n="contactBtn">
+          klik untuk menghubungi saya
+        </a>
+        <div class="mt-24 text-xs text-gray-400 font-medium tracking-wide uppercase" data-i18n="footerText">
+          &copy; 2026 Fakhri Cahyo Diandra Nandito.
+        </div>
+      </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.12
-            };
+      // 1. DATA TRANSLATION DICTIONARY
+      const translations = {
+        id: {
+            navAbout: "Tentang", navExpertise: "Keahlian", navWork: "Karya", navCert: "Sertifikasi", navContact: "Kontak",
+            heroTitle1: "Merancang pengalaman <br class=\"hidden md:block\" />", heroTitle2: "digital yang bermakna.",
+            heroDesc: "Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna.",
+            heroBtn: "Mulai Diskusi", expTitle: "Keahlian & Kemampuan",
+            expFrontDesc: "Membangun arsitektur web yang tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework modern yang efisien.",
+            expUIDesc: "Merancang wireframe, prototyping, dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa aplikasi.",
+            expProbTitle: "Problem Solving", expProbDesc: "Kemampuan menganalisis masalah kompleks, debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.",
+            expTeamTitle: "Bekerja Secara Tim", expTeamDesc: "Berkomunikasi secara proaktif dan kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.",
+            expAdaptTitle: "Adaptasi Cepat", expAdaptDesc: "Luwes dalam mempelajari teknologi baru, menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika proyek.",
+            expToolsTitle: "Perangkat Lunak", // TRANSLASI BARU UNTUK TOOLS
+            workTitle: "Karya Terpilih", work1Title: "TechInventory System",
+            work1Desc: "Sistem manajemen inventaris tingkat lanjut. Membangun fitur peminjaman alat, manajemen stok otomatis, hingga sistem penalti poin bagi pengguna.",
+            work2Title: "Streaming App UI",
+            work2Desc: "Merancang ulang antarmuka mobile untuk landing page platform streaming. Berfokus pada implementasi dark theme yang pekat dan penataan struktur grid.",
+            workLinkCode: "Lihat Repositori",
+            certTitle: "Sertifikasi Profesional", cert2Title: "Dasar Frontend & Backend",
+            cert1Desc: "Partisipasi aktif dalam rangkaian acara SIMETRI 2025 dengan tema \"Crafting Solution Through Modern UI/UX Design\".",
+            cert1Pub: "Diterbitkan oleh: Departemen Sistem Informasi ITS",
+            cert2Desc: "Partisipasi dalam program \"Software Development Chapter: Dasar Frontend dan Backend Untuk Pemula\".",
+            cert2Pub: "Diterbitkan oleh: Bali Project Indonesia",
+            contactTitle: "Mari berkolaborasi.", contactDesc: "Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur? Mari terhubung untuk proyek Anda selanjutnya.",
+            contactBtn: "klik untuk menghubungi saya", footerText: "© 2026 Fakhri Cahyo Diandra Nandito."
+        },
+        en: {
+            navAbout: "About", navExpertise: "Expertise", navWork: "Work", navCert: "Certificates", navContact: "Contact",
+            heroTitle1: "Crafting meaningful <br class=\"hidden md:block\" />", heroTitle2: "digital experiences.",
+            heroDesc: "I am a Front-End Developer and UI/UX Designer. Focused on simplifying complex interfaces into elegant, user-centric solutions.",
+            heroBtn: "Start a Conversation", expTitle: "Skills & Expertise",
+            expFrontDesc: "Building robust, high-performance, and interactive web architectures using Native HTML/CSS/JS to efficient modern framework implementations.",
+            expUIDesc: "Designing wireframes, prototyping, and ensuring visual consistency as well as intuitive navigation flows without sacrificing application performance.",
+            expProbTitle: "Problem Solving", expProbDesc: "Ability to analyze complex problems, precision debugging, and design system logic that solves root causes scalably.",
+            expTeamTitle: "Team Collaboration", expTeamDesc: "Communicating proactively and collaboratively with designers, backend engineers, and stakeholders to align project goals.",
+            expAdaptTitle: "Fast Adaptation", expAdaptDesc: "Flexible in learning new technologies, adapting to design direction changes, and maintaining quality standards amidst project dynamics.",
+            expToolsTitle: "Software & Tools", // TRANSLASI BARU UNTUK TOOLS
+            workTitle: "Selected Works", work1Title: "TechInventory System",
+            work1Desc: "Advanced inventory management system. Building tool borrowing features, automated stock management, to a point penalty system for users.",
+            work2Title: "Streaming App UI",
+            work2Desc: "Redesigning the mobile interface for a streaming platform landing page. Focused on implementing a deep dark theme and dynamic grid structure.",
+            workLinkCode: "View Repository",
+            certTitle: "Professional Certifications", cert2Title: "Basic Frontend & Backend",
+            cert1Desc: "Active participation in the SIMETRI 2025 event series themed \"Crafting Solution Through Modern UI/UX Design\".",
+            cert1Pub: "Issued by: Information Systems Dept, ITS",
+            cert2Desc: "Participation in the \"Software Development Chapter: Basic Frontend and Backend for Beginners\" program.",
+            cert2Pub: "Issued by: Bali Project Indonesia",
+            contactTitle: "Let's collaborate.", contactDesc: "Looking for a developer who understands how to connect design logic with clean, structured code? Let's connect for your next project.",
+            contactBtn: "click to contact me", footerText: "© 2026 Fakhri Cahyo Diandra Nandito."
+        }
+      };
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target); 
+      document.addEventListener("DOMContentLoaded", () => {
+        
+
+        // 2. MOBILE MENU LOGIC
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMobileMenuOpen = false;
+
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            if(isMobileMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            }
+        }
+
+        mobileBtn.addEventListener('click', toggleMobileMenu);
+        mobileLinks.forEach(link => { link.addEventListener('click', toggleMobileMenu); });
+
+
+        // 3. LANGUAGE TOGGLE LOGIC (Desktop & Mobile)
+
+        const langToggles = document.querySelectorAll('.lang-toggle-btn');
+        const langFlags = document.querySelectorAll('.lang-flag');
+        const langTexts = document.querySelectorAll('.lang-text');
+        let currentLang = 'id';
+
+        langToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                currentLang = currentLang === 'id' ? 'en' : 'id';
+                
+                langFlags.forEach(img => img.src = currentLang === 'en' ? 'https://flagcdn.com/w20/us.png' : 'https://flagcdn.com/w20/id.png');
+                langTexts.forEach(span => span.textContent = currentLang === 'en' ? 'ENG' : 'IDN');
+
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations[currentLang][key]) {
+                        if(key === 'heroTitle1') el.innerHTML = translations[currentLang][key];
+                        else el.textContent = translations[currentLang][key];
                     }
                 });
-            }, observerOptions);
 
-            document.querySelectorAll('.reveal').forEach((el) => {
-                observer.observe(el);
+                setTimeout(() => { moveBubble(activeLink); }, 50); // Recalculate bubble width
             });
         });
+
+
+        // 4. ANIMASI REVEAL SCROLL
+
+        const observerOptions = { root: null, rootMargin: "0px", threshold: 0.12 };
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+        document.querySelectorAll(".reveal").forEach((el) => { observer.observe(el); });
+
+
+        // 5. NAVBAR BUBBLE & SCROLLSPY LOGIC
+
+        const nav = document.getElementById('main-nav');
+        const bubble = document.getElementById('nav-bubble');
+        const links = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.scroll-section');
+        let activeLink = links[0];
+
+        function moveBubble(targetLink) {
+            if (!targetLink || window.innerWidth < 1024) return; // Don't move if mobile
+            bubble.style.width = `${targetLink.offsetWidth}px`;
+            bubble.style.left = `${targetLink.offsetLeft}px`;
+        }
+
+        function updateActiveText(targetLink) {
+            links.forEach(link => {
+                link.classList.remove('font-semibold');
+                link.classList.add('font-medium');
+            });
+            targetLink.classList.remove('font-medium');
+            targetLink.classList.add('font-semibold');
+            
+            // Sync active state for mobile links visually
+            mobileLinks.forEach(mLink => {
+                if(mLink.getAttribute('href') === targetLink.getAttribute('href')){
+                    mLink.classList.replace('font-medium', 'font-semibold');
+                } else {
+                    mLink.classList.replace('font-semibold', 'font-medium');
+                }
+            });
+        }
+
+        setTimeout(() => { moveBubble(activeLink); }, 100);
+        window.addEventListener('resize', () => { moveBubble(activeLink); });
+
+        links.forEach(link => { link.addEventListener('mouseenter', function() { moveBubble(this); }); });
+        nav.addEventListener('mouseleave', () => { moveBubble(activeLink); });
+
+        const scrollSpyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    const correspondingLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                    if (correspondingLink) {
+                        activeLink = correspondingLink;
+                        moveBubble(activeLink);
+                        updateActiveText(activeLink);
+                    }
+                }
+            });
+        }, { root: null, rootMargin: '-40% 0px -60% 0px', threshold: 0 });
+
+        sections.forEach(section => { scrollSpyObserver.observe(section); });
+      });
     </script>
-</body>
+  </body>
 </html>
