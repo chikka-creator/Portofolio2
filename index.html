@@ -964,11 +964,13 @@
         map: makeGlowTexture(),
         transparent: true,
         blending: THREE.AdditiveBlending,
-        opacity: 0.65,
+        opacity: 0.85,
         depthWrite: false
       });
       const glowMesh = new THREE.Mesh(glowGeo, glowMat);
       glowMesh.position.set(0, 0, -0.05);
+      glowMesh.renderOrder = 150;
+      glowMesh.scale.setScalar(0.45);
       centerGroup.add(glowMesh);
 
       // Central Portrait Mesh
@@ -981,6 +983,8 @@
       });
       const portraitMesh = new THREE.Mesh(portraitGeo, portraitMat);
       portraitMesh.position.set(0, -0.1, 0);
+      portraitMesh.renderOrder = 200;
+      portraitMesh.scale.setScalar(0.62);
       centerGroup.add(portraitMesh);
 
       // Try loading custom cutout portrait if present
@@ -1164,6 +1168,9 @@
 
         const isMobile = window.innerWidth < 768;
         const R = isMobile ? 2.65 : 3.35;
+
+        // Portrait sits in front of the ring so cards orbit behind the person
+        centerGroup.position.z = R + 0.7;
 
         let maxFocus = -999;
         let frontIdx = 0;
