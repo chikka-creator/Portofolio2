@@ -1,667 +1,1249 @@
 <!doctype html>
 <html lang="id" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fakhri Cahyo Diandra Nandito | Front-End & UI/UX Developer</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fakhri Cahyo Diandra Nandito | Front-End & UI/UX Developer</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: { sans: ["Inter", "sans-serif"] },
-            colors: { brand: "#111827" },
-          },
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.186.1/build/three.module.js"
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "sans-serif"] },
+          colors: { brand: "#111827" },
         },
-      };
-    </script>
+      },
+    };
+  </script>
 
-    <style>
-      .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
+  <style>
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-      /* LIQUID GLASS THEME */
-      .glass-pill {
-        background: rgba(255, 255, 255, 0.45);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-      }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-      #nav-bubble {
-        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-      }
+    /* LIQUID GLASS THEME */
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    }
 
-      ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #f9fafb; }
-      ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
-      ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
-    </style>
-  </head>
-  <body class="bg-gray-50 text-brand antialiased selection:bg-brand selection:text-white relative">
-    
-    <div class="fixed w-full top-6 z-50 flex flex-col items-center px-6 transition-all duration-300">
-      
-      <div class="max-w-6xl w-full flex items-center justify-between">
-          <a href="#" class="text-white hover:opacity-80 transition-opacity flex items-center drop-shadow-md z-10 text-lg font-bold tracking-tight">
-              Fakhri C.D.N
-          </a>
+    #nav-bubble {
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
 
-          <nav id="main-nav" class="glass-pill rounded-full p-1.5 hidden lg:flex items-center shadow-lg relative right-6">
-              <div id="nav-bubble" class="absolute top-1.5 bottom-1.5 left-1.5 bg-white rounded-full shadow-sm z-0 w-0"></div>
-              
-              <a href="#about" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors" data-i18n="navAbout">Tentang</a>
-              <a href="#expertise" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide" data-i18n="navExpertise">Keahlian</a>
-              <a href="#work" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide" data-i18n="navWork">Karya</a>
-              <a href="#certifications" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide" data-i18n="navCert">Sertifikasi</a>
-              <a href="#contact" class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide" data-i18n="navContact">Kontak</a>
-              
-              <div class="lang-toggle-btn relative z-10 flex items-center gap-2 pl-4 pr-3 text-[#1e3a8a] text-sm font-medium cursor-pointer border-l border-[#1e3a8a]/20 ml-1 hover:opacity-70 transition-opacity">
-                  <img src="https://flagcdn.com/w20/id.png" alt="Language" class="lang-flag w-5 h-auto rounded-sm shadow-sm opacity-90">
-                  <span class="lang-text tracking-wide w-[28px] text-center">IDN</span>
-                  <svg class="w-4 h-4 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-              </div>
-          </nav>
-          
-          <button id="mobile-menu-btn" class="lg:hidden text-white drop-shadow-md focus:outline-none z-10">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-          </button>
-      </div>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
 
-      <div id="mobile-menu" class="lg:hidden w-full max-w-md mt-4 glass-pill rounded-2xl p-4 flex flex-col gap-2 opacity-0 pointer-events-none -translate-y-4 transition-all duration-300 transform shadow-xl origin-top">
-          <a href="#about" class="mobile-link text-[#1e3a8a] font-semibold text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navAbout">Tentang</a>
-          <a href="#expertise" class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navExpertise">Keahlian</a>
-          <a href="#work" class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navWork">Karya</a>
-          <a href="#certifications" class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navCert">Sertifikasi</a>
-          <a href="#contact" class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors" data-i18n="navContact">Kontak</a>
-          <div class="h-px bg-[#1e3a8a]/10 my-1"></div>
-          <div class="lang-toggle-btn flex justify-center items-center gap-3 text-[#1e3a8a] font-bold py-3 rounded-xl cursor-pointer hover:bg-white/60 transition-colors">
-              <img src="https://flagcdn.com/w20/id.png" alt="Language" class="lang-flag w-6 h-auto rounded-sm shadow-sm">
-              <span class="lang-text tracking-wide">IDN</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-          </div>
-      </div>
+    ::-webkit-scrollbar-track {
+      background: #f9fafb;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9ca3af;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-brand antialiased selection:bg-brand selection:text-white relative">
+
+  <div class="fixed w-full top-6 z-50 flex flex-col items-center px-6 transition-all duration-300">
+
+    <div class="max-w-6xl w-full flex items-center justify-between">
+      <a href="#" id="fakhri"
+        class="text-[#1e3a8a] hover:opacity-80 transition-opacity flex items-center drop-shadow-md z-10 text-lg font-bold tracking-tight">
+        Fakhri C.D.N
+      </a>
+
+      <nav id="main-nav" class="glass-pill rounded-full p-1.5 hidden lg:flex items-center shadow-lg relative right-6">
+        <div id="nav-bubble" class="absolute top-1.5 bottom-1.5 left-1.5 bg-white rounded-full shadow-sm z-0 w-0"></div>
+
+        <a href="#about"
+          class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors"
+          data-i18n="navAbout">Tentang</a>
+        <a href="#expertise"
+          class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide"
+          data-i18n="navExpertise">Keahlian</a>
+        <a href="#work"
+          class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide"
+          data-i18n="navWork">Karya</a>
+        <a href="#contact"
+          class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide"
+          data-i18n="navContact">Kontak</a>
+
+        <div
+          class="lang-toggle-btn relative z-10 flex items-center gap-2 pl-4 pr-3 text-[#1e3a8a] text-sm font-medium cursor-pointer border-l border-[#1e3a8a]/20 ml-1 hover:opacity-70 transition-opacity">
+          <img src="https://flagcdn.com/w20/id.png" alt="Language"
+            class="lang-flag w-5 h-auto rounded-sm shadow-sm opacity-90">
+          <span class="lang-text tracking-wide w-[28px] text-center">IDN</span>
+          <svg class="w-4 h-4 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+          </svg>
+        </div>
+      </nav>
+
+      <button id="mobile-menu-btn" class="lg:hidden text-white drop-shadow-md focus:outline-none z-10">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
 
-    <section id="about" class="scroll-section min-h-screen flex items-center pt-20 relative bg-brand bg-cover bg-center bg-no-repeat" style="background-image: url(&quot;setup pertama.png&quot;)">
-      <div class="absolute inset-0 bg-brand/85 z-0"></div>
-      <div class="max-w-5xl mx-auto px-6 w-full reveal relative z-10">
-        <p class="text-gray-400 font-medium mb-4 tracking-wide text-sm uppercase">Fakhri Cahyo Diandra Nandito</p>
-        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-6 text-white">
-          <span data-i18n="heroTitle1">Merancang pengalaman <br class="hidden md:block" /></span>
-          <span class="text-gray-400" data-i18n="heroTitle2">digital yang bermakna.</span>
-        </h1>
-        <p class="text-lg text-gray-200 max-w-2xl leading-relaxed mb-10" data-i18n="heroDesc">
-          Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna.
+    <div id="mobile-menu"
+      class="lg:hidden w-full max-w-md mt-4 glass-pill rounded-2xl p-4 flex flex-col gap-2 opacity-0 pointer-events-none -translate-y-4 transition-all duration-300 transform shadow-xl origin-top">
+      <a href="#about"
+        class="mobile-link text-[#1e3a8a] font-semibold text-center py-3 rounded-xl hover:bg-white/60 transition-colors"
+        data-i18n="navAbout">Tentang</a>
+      <a href="#expertise"
+        class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors"
+        data-i18n="navExpertise">Keahlian</a>
+      <a href="#work"
+        class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors"
+        data-i18n="navWork">Karya</a>
+      <a href="#contact"
+        class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors"
+        data-i18n="navContact">Kontak</a>
+      <div class="h-px bg-[#1e3a8a]/10 my-1"></div>
+      <div
+        class="lang-toggle-btn flex justify-center items-center gap-3 text-[#1e3a8a] font-bold py-3 rounded-xl cursor-pointer hover:bg-white/60 transition-colors">
+        <img src="https://flagcdn.com/w20/id.png" alt="Language" class="lang-flag w-6 h-auto rounded-sm shadow-sm">
+        <span class="lang-text tracking-wide">IDN</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <section id="about"
+    class="scroll-section min-h-screen flex items-center pt-20 relative bg-brand bg-cover bg-center bg-no-repeat"
+    style="background-image: url(&quot;setup pertama.png&quot;)">
+    <div class="absolute inset-0 bg-brand/85 z-0"></div>
+    <div class="max-w-5xl mx-auto px-6 w-full reveal relative z-10">
+      <p class="text-gray-400 font-medium mb-4 tracking-wide text-sm uppercase">Fakhri Cahyo Diandra Nandito</p>
+      <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-6 text-white">
+        <span data-i18n="heroTitle1">Merancang pengalaman <br class="hidden md:block" /></span>
+        <span class="text-gray-400" data-i18n="heroTitle2">digital yang bermakna.</span>
+      </h1>
+      <p class="text-lg text-gray-200 max-w-2xl leading-relaxed mb-10" data-i18n="heroDesc">
+        Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks
+        menjadi solusi elegan yang berpusat pada pengguna.
+      </p>
+      <a href="#contact" data-i18n="heroBtn"
+        class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-brand bg-white rounded-full hover:bg-gray-200 transition-colors focus:ring-4 focus:ring-gray-300/50">
+        Mulai Diskusi
+      </a>
+    </div>
+  </section>
+
+  <section id="expertise" class="scroll-section py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tight mb-12 reveal" data-i18n="expTitle">Keahlian & Kemampuan</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="reveal border-t border-gray-100 pt-6">
+          <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Hard Skills</h3>
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-xl font-semibold mb-2">Front-End Development</h4>
+              <p class="text-gray-600 text-sm leading-relaxed" data-i18n="expFrontDesc">Membangun arsitektur web yang
+                tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework
+                modern yang efisien.</p>
+            </div>
+            <div>
+              <h4 class="text-xl font-semibold mb-2">UI/UX Design</h4>
+              <p class="text-gray-600 text-sm leading-relaxed" data-i18n="expUIDesc">Merancang wireframe, prototyping,
+                dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa
+                aplikasi.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal border-t border-gray-100 pt-6">
+          <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Soft Skills</h3>
+          <ul class="space-y-5">
+            <li class="flex items-start">
+              <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+              <div>
+                <h4 class="font-semibold text-gray-900" data-i18n="expProbTitle">Problem Solving</h4>
+                <p class="text-sm text-gray-500 mt-1" data-i18n="expProbDesc">Kemampuan menganalisis masalah kompleks,
+                  debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+              <div>
+                <h4 class="font-semibold text-gray-900" data-i18n="expTeamTitle">Bekerja Secara Tim</h4>
+                <p class="text-sm text-gray-500 mt-1" data-i18n="expTeamDesc">Berkomunikasi secara proaktif dan
+                  kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
+              <div>
+                <h4 class="font-semibold text-gray-900" data-i18n="expAdaptTitle">Adaptasi Cepat</h4>
+                <p class="text-sm text-gray-500 mt-1" data-i18n="expAdaptDesc">Luwes dalam mempelajari teknologi baru,
+                  menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika
+                  proyek.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-16 reveal border-t border-gray-100 pt-8">
+        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6" data-i18n="expToolsTitle">Perangkat
+          Lunak</h3>
+        <div class="flex flex-wrap gap-4">
+          <div
+            class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#007ACC] shadow-sm"></span>
+            <span class="text-sm font-semibold text-gray-800 tracking-wide">Visual Studio Code</span>
+          </div>
+          <div
+            class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#F24E1E] shadow-sm"></span>
+            <span class="text-sm font-semibold text-gray-800 tracking-wide">Figma</span>
+          </div>
+          <div
+            class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#00C4CC] shadow-sm"></span>
+            <span class="text-sm font-semibold text-gray-800 tracking-wide">Canva</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3D ORBIT SHOWCASE SECTION (KARYA & SERTIFIKASI) -->
+  <section id="work" class="scroll-section relative h-[400vh] bg-[#07080f] text-white">
+    <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between select-none">
+      
+      <!-- 3D WebGL Canvas -->
+      <canvas id="orb-canvas" class="absolute inset-0 w-full h-full block z-0 outline-none touch-pan-y" style="touch-action: pan-y;"></canvas>
+
+      <!-- Atmospheric Ambient Lighting & Glows -->
+      <div class="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
+        <div class="absolute -top-[12%] left-1/2 -translate-x-1/2 w-[720px] h-[520px] bg-blue-600/12 rounded-full blur-[140px]"></div>
+        <div class="absolute -bottom-[10%] left-1/2 -translate-x-1/2 w-[620px] h-[420px] bg-indigo-600/15 rounded-full blur-[130px]"></div>
+      </div>
+
+      <!-- Top Header HUD -->
+      <div class="relative z-10 pt-24 md:pt-28 text-center px-6 pointer-events-none">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs font-semibold tracking-widest uppercase text-blue-300 shadow-sm mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+          <span data-i18n="workBadge">Karya Unggulan &amp; Prestasi</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm" data-i18n="workTitle">
+          Karya &amp; Sertifikasi
+        </h2>
+        <p class="text-xs md:text-sm text-gray-400 mt-2 max-w-md mx-auto hidden sm:block" data-i18n="workSubtitle">
+          Jelajahi karya pilihan dan sertifikasi keahlian dalam rotasi interaktif 3D.
         </p>
-        <a href="#contact" data-i18n="heroBtn" class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-brand bg-white rounded-full hover:bg-gray-200 transition-colors focus:ring-4 focus:ring-gray-300/50">
-          Mulai Diskusi
-        </a>
       </div>
-    </section>
 
-    <section id="expertise" class="scroll-section py-24 bg-white">
-      <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-bold tracking-tight mb-12 reveal" data-i18n="expTitle">Keahlian & Kemampuan</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div class="reveal border-t border-gray-100 pt-6">
-            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Hard Skills</h3>
-            <div class="space-y-6">
-              <div>
-                <h4 class="text-xl font-semibold mb-2">Front-End Development</h4>
-                <p class="text-gray-600 text-sm leading-relaxed" data-i18n="expFrontDesc">Membangun arsitektur web yang tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework modern yang efisien.</p>
-              </div>
-              <div>
-                <h4 class="text-xl font-semibold mb-2">UI/UX Design</h4>
-                <p class="text-gray-600 text-sm leading-relaxed" data-i18n="expUIDesc">Merancang wireframe, prototyping, dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa aplikasi.</p>
-              </div>
+      <!-- Bottom HUD: Active Card Information & Action Link -->
+      <div class="relative z-10 pb-8 md:pb-12 text-center px-6 pointer-events-none flex flex-col items-center">
+        <div class="inline-flex flex-col items-center bg-[#10121d]/85 border border-white/10 backdrop-blur-xl rounded-2xl px-6 py-4 shadow-2xl max-w-md w-full transition-all duration-300 pointer-events-auto">
+          <div class="flex items-center justify-between w-full border-b border-white/10 pb-2 mb-2">
+            <div class="flex items-center gap-2">
+              <span id="orb-counter" class="text-xs font-mono font-bold tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 rounded-full">01 / 08</span>
+              <span id="orb-kind" class="text-[10px] uppercase font-bold tracking-wider text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">Project</span>
             </div>
+            <span id="orb-tag" class="text-xs font-semibold text-blue-300 tracking-wide">Full-Stack</span>
           </div>
-          
-          <div class="reveal border-t border-gray-100 pt-6">
-            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Soft Skills</h3>
-            <ul class="space-y-5">
-              <li class="flex items-start">
-                <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-                <div>
-                  <h4 class="font-semibold text-gray-900" data-i18n="expProbTitle">Problem Solving</h4>
-                  <p class="text-sm text-gray-500 mt-1" data-i18n="expProbDesc">Kemampuan menganalisis masalah kompleks, debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.</p>
-                </div>
-              </li>
-              <li class="flex items-start">
-                <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-                <div>
-                  <h4 class="font-semibold text-gray-900" data-i18n="expTeamTitle">Bekerja Secara Tim</h4>
-                  <p class="text-sm text-gray-500 mt-1" data-i18n="expTeamDesc">Berkomunikasi secara proaktif dan kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.</p>
-                </div>
-              </li>
-              <li class="flex items-start">
-                <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-                <div>
-                  <h4 class="font-semibold text-gray-900" data-i18n="expAdaptTitle">Adaptasi Cepat</h4>
-                  <p class="text-sm text-gray-500 mt-1" data-i18n="expAdaptDesc">Luwes dalam mempelajari teknologi baru, menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika proyek.</p>
-                </div>
-              </li>
-            </ul>
+
+          <h3 id="orb-title" class="text-lg md:text-xl font-bold text-white tracking-tight text-center line-clamp-1 w-full">
+            TechInventory System
+          </h3>
+
+          <div id="orb-hint-box" class="mt-2.5 flex items-center justify-center gap-2 text-xs text-gray-300 font-medium w-full">
+            <span id="orb-hint-icon">
+              <svg class="w-4 h-4 text-blue-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </span>
+            <span id="orb-hint-text">Klik kartu untuk membuka repositori GitHub</span>
           </div>
         </div>
 
-        <div class="mt-16 reveal border-t border-gray-100 pt-8">
-          <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6" data-i18n="expToolsTitle">Perangkat Lunak</h3>
-          <div class="flex flex-wrap gap-4">
-            <div class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#007ACC] shadow-sm"></span>
-              <span class="text-sm font-semibold text-gray-800 tracking-wide">Visual Studio Code</span>
-            </div>
-            <div class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#F24E1E] shadow-sm"></span>
-              <span class="text-sm font-semibold text-gray-800 tracking-wide">Figma</span>
-            </div>
-            <div class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#00C4CC] shadow-sm"></span>
-              <span class="text-sm font-semibold text-gray-800 tracking-wide">Canva</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="work" class="scroll-section py-24 bg-gray-50">
-      <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-bold tracking-tight mb-12 reveal" data-i18n="workTitle">Karya</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          <article class="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col overflow-hidden">
-            <div class="aspect-video w-full overflow-hidden relative border-b border-gray-100 bg-gray-100">
-              <img src="TechInventory.png" alt="Screenshot TechInventory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-            </div>
-            <div class="p-8 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-6">
-                  <h3 class="text-xl font-bold text-gray-900" data-i18n="work1Title">TechInventory System</h3>
-                  <span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm border border-blue-100">Full-Stack</span>
-                </div>
-                <p class="text-gray-600 mb-5 text-sm leading-relaxed" data-i18n="work1Desc">Sistem manajemen inventaris tingkat lanjut. Membangun fitur peminjaman alat, manajemen stok otomatis, hingga sistem penalti poin bagi pengguna.</p>
-                
-                <a href="https://github.com/chikka-creator/TechInventory.git" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-[#1e3a8a] transition-colors mb-6 group/link">
-                  <svg class="w-4 h-4 text-gray-400 group-hover/link:text-[#1e3a8a] transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span data-i18n="workLinkCode">Lihat Repositori</span>
-                </a>
-              </div>
-              <div class="flex flex-wrap gap-2.5 text-[10px] font-semibold text-gray-500 mt-auto pt-4 border-t border-gray-100/50">
-                <span class="bg-gray-100 px-2.5 py-1 rounded">Laravel Breeze</span>
-                <span class="bg-gray-100 px-2.5 py-1 rounded">MySQL</span>
-                <span class="bg-gray-100 px-2.5 py-1 rounded">Tailwind CSS</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col overflow-hidden">
-            <div class="aspect-video w-full overflow-hidden relative border-b border-gray-100 bg-[#0a0a0a] flex items-center justify-center">
-              <img src="RemakeNet.png" alt="Screenshot Streaming App Mobile UI" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-            </div>
-            <div class="p-8 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-6">
-                  <h3 class="text-xl font-bold text-gray-900" data-i18n="work2Title">Streaming App UI</h3>
-                  <span class="px-3 py-1 bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm border border-red-100">Mobile-First</span>
-                </div>
-                <p class="text-gray-600 mb-5 text-sm leading-relaxed" data-i18n="work2Desc">Merancang ulang antarmuka mobile untuk landing page platform streaming. Berfokus pada implementasi dark theme yang pekat dan penataan struktur grid.</p>
-                
-                <a href="https://www.figma.com/design/rnLD3kSvpWiQDQYp0hYRto/Study-Case-Kel-8?node-id=0-1&t=dwrDat1ogs7I355f-1" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-[#F24E1E] transition-colors mb-6 group/link">
-                  <svg class="w-4 h-4 text-gray-400 group-hover/link:text-[#F24E1E] transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M10 2H7.5A3.5 3.5 0 0 0 4 5.5A3.5 3.5 0 0 0 7.5 9H10V2zm0 7H7.5A3.5 3.5 0 0 0 4 12.5A3.5 3.5 0 0 0 7.5 16H10V9zm0 7H7.5A3.5 3.5 0 0 0 4 19.5A3.5 3.5 0 0 0 7.5 23H10v-7zm0-14h2.5A3.5 3.5 0 0 1 16 5.5A3.5 3.5 0 0 1 12.5 9H10V2zm0 7h2.5A3.5 3.5 0 0 1 16 12.5A3.5 3.5 0 0 1 12.5 16H10V9z"/>
-                  </svg>
-                  <span data-i18n="workLinkFigma">Lihat Figma</span>
-                </a>
-              </div>
-              <div class="flex flex-wrap gap-2.5 text-[10px] font-semibold text-gray-500 mt-auto pt-4 border-t border-gray-100/50">
-                <span class="bg-gray-100 px-2.5 py-1 rounded">UI/UX Design</span>
-              </div>
-            </div>
-          </article>
+        <!-- Scroll Indicator Hint -->
+        <div class="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-gray-500 uppercase tracking-widest pointer-events-none">
+          <span data-i18n="orbScrollHint">Gulir untuk memutar</span>
+          <svg class="w-3 h-3 text-blue-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
       </div>
-    </section>
 
-    <section id="certifications" class="scroll-section py-24 bg-white border-t border-gray-100">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold tracking-tight mb-12 reveal" data-i18n="certTitle">Sertifikasi</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif1.jpeg" alt="Sertifikat SIMETRI 2025 UI/UX Design" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight">UI/UX Design</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2025</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert1Desc">Partisipasi aktif dalam rangkaian acara SIMETRI 2025 dengan tema "Crafting Solution Through Modern UI/UX Design".</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert1Pub">Diterbitkan oleh: Departemen Sistem Informasi ITS</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif2.jpeg" alt="Sertifikat Frontend Backend Dasar" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert2Title">Dasar Frontend & Backend</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2025</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert2Desc">Partisipasi dalam program "Software Development Chapter: Dasar Frontend dan Backend Untuk Pemula".</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert2Pub">Diterbitkan oleh: Bali Project Indonesia</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif3.jpeg" alt="Sertifikat Computational Thinking SMP" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert3Title">Computational Thinking (SMP)</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2025</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert3Desc">Penyelesaian pelatihan "Cara Berpikir Logis untuk Mengatasi Masalah" jenjang SMP dalam program Digital Talent Scholarship.</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert3Pub">Diterbitkan oleh: KOMDIGI</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif4.jpeg" alt="Sertifikat Computational Thinking SMA" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert4Title">Computational Thinking (SMA)</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2025</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert4Desc">Penyelesaian pelatihan "Cara Berpikir Logis untuk Mengatasi Masalah" jenjang SMA dalam program Digital Talent Scholarship.</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert4Pub">Diterbitkan oleh: KOMDIGI</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif5.jpeg" alt="Sertifikat Aplikasi Chat Wirausaha" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert5Title">Aplikasi Chat Wirausaha</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2025</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert5Desc">Pelatihan tentang pemanfaatan aplikasi chat untuk mendukung operasional wirausahawan pemula (Digital Talent Scholarship).</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert5Pub">Diterbitkan oleh: KOMDIGI</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif6.jpeg" alt="Sertifikat Global Game Jam" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert6Title">Global Game Jam 2025</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2025</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert6Desc">Berpartisipasi aktif dalam ajang pengembangan game kolaboratif (Global Game Jam) regional Surabaya di Universitas Ciputra.</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert6Pub">Diterbitkan oleh: GADAS & Univ. Ciputra</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif7.jpeg" alt="Sertifikat AI untuk Software Developer" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert7Title">AI untuk Software Developer</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2026</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert7Desc">Partisipasi dalam webinar "Ngoding di Era AI" yang membahas dasar pemanfaatan kecerdasan buatan bagi developer perangkat lunak.</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert7Pub">Diterbitkan oleh: Bali Project Indonesia</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="seritf8.jpeg" alt="Sertifikat English Discoveries TOEIC Excellence Program" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert8Title">English Discoveries</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2026</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert8Desc">Penyelesaian program "English Discoveries" sebagai bagian dari TOEIC Excellence Program (Jan–Mar 2026) yang berfokus pada peningkatan kemampuan bahasa Inggris profesional dan akademik.</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert8Pub">Diterbitkan oleh: Edusoft Ltd. (subsidiary of ETS)</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif9.png" alt="Sertifikat Data Science Expo PENS 2026" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert9Title">Data Science Expo</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2026</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert9Desc">Partisipasi sebagai peserta dalam Seminar &amp; Talkshow bertajuk "Data Science Expo" pada 11 April 2026, yang membahas wawasan dan praktik terkini di bidang ilmu data dan kecerdasan buatan.</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert9Pub">Diterbitkan oleh: PENS (Politeknik Elektronika Negeri Surabaya)</p>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-300 reveal flex flex-col bg-gray-50">
-            <div class="aspect-[4/3] w-full overflow-hidden relative border-b border-gray-100 bg-white flex items-center justify-center p-2">
-              <img src="sertif10.jpeg" alt="Sertifikat Seminar Persiapan Sekolah Kedinasan Science Society" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-in-out"/>
-              <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex justify-between items-start mb-4 gap-2">
-                  <h3 class="text-lg font-bold text-gray-900 leading-tight" data-i18n="cert10Title">Seminar Sekolah Kedinasan</h3>
-                  <span class="text-[10px] font-bold text-brand bg-white border border-gray-200 px-2 py-1 rounded shadow-sm shrink-0">2026</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed mb-6" data-i18n="cert10Desc">Penghargaan atas partisipasi dalam Seminar Persiapan Seleksi Sekolah Kedinasan Tahun 2027 yang diselenggarakan oleh LKP Science Society Surabaya.</p>
-              </div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider border-t border-gray-200 pt-4 mt-auto" data-i18n="cert10Pub">Diterbitkan oleh: LKP Science Society Surabaya</p>
-            </div>
-          </article>
-
-        </div>
+      <!-- Semantic Screen-Reader & Search Engine Fallback -->
+      <div class="sr-only">
+        <h2>Daftar Karya &amp; Sertifikasi Fakhri Cahyo Diandra Nandito</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/chikka-creator/TechInventory.git">TechInventory System - Full-Stack Inventory Management System</a>
+          </li>
+          <li>SIMETRI 2025 - UI/UX Design (Departemen Sistem Informasi ITS)</li>
+          <li>
+            <a href="https://www.figma.com/design/rnLD3kSvpWiQDQYp0hYRto/Study-Case-Kel-8?node-id=0-1&amp;t=dwrDat1ogs7I355f-1">Streaming App UI - Mobile-First Redesign in Figma</a>
+          </li>
+          <li>Dasar Frontend &amp; Backend - Bali Project Indonesia</li>
+          <li>Coming Soon - Upcoming Project</li>
+          <li>AI untuk Software Developer - Webinar Ngoding di Era AI (Bali Project Indonesia)</li>
+          <li>Global Game Jam 2025 - GADAS &amp; Universitas Ciputra Surabaya</li>
+          <li>English Discoveries - TOEIC Excellence Program Edusoft Ltd. ETS</li>
+        </ul>
       </div>
-    </section>
 
-    <footer id="contact" class="scroll-section bg-gray-50 py-24 border-t border-gray-100">
-      <div class="max-w-5xl mx-auto px-6 text-center reveal">
-        <h2 class="text-3xl font-bold tracking-tight mb-6" data-i18n="contactTitle">Mari berkolaborasi.</h2>
-        <p class="text-gray-500 mb-10 max-w-xl mx-auto text-sm leading-relaxed" data-i18n="contactDesc">
-          Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur? Mari terhubung untuk proyek Anda selanjutnya.
-        </p>
-        <a href="mailto:ditofakhri3@gmail.com" class="text-xl md:text-2xl font-medium border-b-2 border-brand pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors" data-i18n="contactBtn">
-          klik untuk menghubungi saya
-        </a>
-        <div class="mt-24 text-xs text-gray-400 font-medium tracking-wide uppercase" data-i18n="footerText">
-          &copy; 2026 Fakhri Cahyo Diandra Nandito.
-        </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="scroll-section bg-gray-50 py-24 border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 text-center reveal">
+      <h2 class="text-3xl font-bold tracking-tight mb-6" data-i18n="contactTitle">Mari berkolaborasi.</h2>
+      <p class="text-gray-500 mb-10 max-w-xl mx-auto text-sm leading-relaxed" data-i18n="contactDesc">
+        Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur?
+        Mari terhubung untuk proyek Anda selanjutnya.
+      </p>
+      <a href="mailto:ditofakhri3@gmail.com"
+        class="text-xl md:text-2xl font-medium border-b-2 border-brand pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors"
+        data-i18n="contactBtn">
+        klik untuk menghubungi saya
+      </a>
+      <div class="mt-24 text-xs text-gray-400 font-medium tracking-wide uppercase" data-i18n="footerText">
+        &copy; 2026 Fakhri Cahyo Diandra Nandito.
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <script>
-      // 1. DATA TRANSLATION DICTIONARY
-      const translations = {
-        id: {
-            navAbout: "Tentang", navExpertise: "Keahlian", navWork: "Karya", navCert: "Sertifikasi", navContact: "Kontak",
-            heroTitle1: "Merancang pengalaman <br class=\"hidden md:block\" />", heroTitle2: "digital yang bermakna.",
-            heroDesc: "Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna.",
-            heroBtn: "Mulai Diskusi", expTitle: "Keahlian & Kemampuan",
-            expFrontDesc: "Membangun arsitektur web yang tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework modern yang efisien.",
-            expUIDesc: "Merancang wireframe, prototyping, dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa aplikasi.",
-            expProbTitle: "Problem Solving", expProbDesc: "Kemampuan menganalisis masalah kompleks, debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.",
-            expTeamTitle: "Bekerja Secara Tim", expTeamDesc: "Berkomunikasi secara proaktif dan kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.",
-            expAdaptTitle: "Adaptasi Cepat", expAdaptDesc: "Luwes dalam mempelajari teknologi baru, menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika proyek.",
-            expToolsTitle: "Perangkat Lunak", 
-            workTitle: "Karya", work1Title: "TechInventory System",
-            work1Desc: "Sistem manajemen inventaris tingkat lanjut. Membangun fitur peminjaman alat, manajemen stok otomatis, hingga sistem penalti poin bagi pengguna.",
-            work2Title: "Streaming App UI",
-            work2Desc: "Merancang ulang antarmuka mobile untuk landing page platform streaming. Berfokus pada implementasi dark theme yang pekat dan penataan struktur grid.",
-            workLinkCode: "Lihat Repositori",
-            workLinkFigma: "Lihat Figma",
-            certTitle: "Sertifikasi", 
-            cert1Desc: "Partisipasi aktif dalam rangkaian acara SIMETRI 2025 dengan tema \"Crafting Solution Through Modern UI/UX Design\".",
-            cert1Pub: "Diterbitkan oleh: Departemen Sistem Informasi ITS",
-            cert2Title: "Dasar Frontend & Backend",
-            cert2Desc: "Partisipasi dalam program \"Software Development Chapter: Dasar Frontend dan Backend Untuk Pemula\".",
-            cert2Pub: "Diterbitkan oleh: Bali Project Indonesia",
-            cert3Title: "Computational Thinking (SMP)",
-            cert3Desc: "Penyelesaian pelatihan \"Cara Berpikir Logis untuk Mengatasi Masalah\" jenjang SMP dalam program Digital Talent Scholarship.",
-            cert3Pub: "Diterbitkan oleh: KOMDIGI",
-            cert4Title: "Computational Thinking (SMA)",
-            cert4Desc: "Penyelesaian pelatihan \"Cara Berpikir Logis untuk Mengatasi Masalah\" jenjang SMA dalam program Digital Talent Scholarship.",
-            cert4Pub: "Diterbitkan oleh: KOMDIGI",
-            cert5Title: "Aplikasi Chat Wirausaha",
-            cert5Desc: "Pelatihan tentang pemanfaatan aplikasi chat untuk mendukung operasional wirausahawan pemula (Digital Talent Scholarship).",
-            cert5Pub: "Diterbitkan oleh: KOMDIGI",
-            cert6Title: "Global Game Jam 2025",
-            cert6Desc: "Berpartisipasi aktif dalam ajang pengembangan game kolaboratif (Global Game Jam) regional Surabaya di Universitas Ciputra.",
-            cert6Pub: "Diterbitkan oleh: GADAS & Univ. Ciputra",
-            cert7Title: "AI untuk Software Developer",
-            cert7Desc: "Partisipasi dalam webinar \"Ngoding di Era AI\" yang membahas dasar pemanfaatan kecerdasan buatan bagi developer perangkat lunak.",
-            cert7Pub: "Diterbitkan oleh: Bali Project Indonesia",
-            cert8Title: "English Discoveries",
-            cert8Desc: "Penyelesaian program \"English Discoveries\" sebagai bagian dari TOEIC Excellence Program (Jan–Mar 2026) yang berfokus pada peningkatan kemampuan bahasa Inggris profesional dan akademik.",
-            cert8Pub: "Diterbitkan oleh: Edusoft Ltd. (subsidiary of ETS)",
-            cert9Title: "Data Science Expo",
-            cert9Desc: "Partisipasi sebagai peserta dalam Seminar & Talkshow bertajuk \"Data Science Expo\" pada 11 April 2026, yang membahas wawasan dan praktik terkini di bidang ilmu data dan kecerdasan buatan.",
-            cert9Pub: "Diterbitkan oleh: PENS (Politeknik Elektronika Negeri Surabaya)",
-            cert10Title: "Seminar Sekolah Kedinasan",
-            cert10Desc: "Penghargaan atas partisipasi dalam Seminar Persiapan Seleksi Sekolah Kedinasan Tahun 2027 yang diselenggarakan oleh LKP Science Society Surabaya.",
-            cert10Pub: "Diterbitkan oleh: LKP Science Society Surabaya",
-            contactTitle: "Mari berkolaborasi.", contactDesc: "Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur? Mari terhubung untuk proyek Anda selanjutnya.",
-            contactBtn: "klik untuk menghubungi saya", footerText: "© 2026 Fakhri Cahyo Diandra Nandito."
+  <script type="module">
+    import * as THREE from 'three';
+
+    // 1. DATA TRANSLATION DICTIONARY
+    const translations = {
+      id: {
+        navAbout: "Tentang", navExpertise: "Keahlian", navWork: "Karya", navCert: "Sertifikasi", navContact: "Kontak",
+        heroTitle1: "Merancang pengalaman <br class=\"hidden md:block\" />", heroTitle2: "digital yang bermakna.",
+        heroDesc: "Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna.",
+        heroBtn: "Mulai Diskusi", expTitle: "Keahlian & Kemampuan",
+        expFrontDesc: "Membangun arsitektur web yang tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework modern yang efisien.",
+        expUIDesc: "Merancang wireframe, prototyping, dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa aplikasi.",
+        expProbTitle: "Problem Solving", expProbDesc: "Kemampuan menganalisis masalah kompleks, debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.",
+        expTeamTitle: "Bekerja Secara Tim", expTeamDesc: "Berkomunikasi secara proaktif dan kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.",
+        expAdaptTitle: "Adaptasi Cepat", expAdaptDesc: "Luwes dalam mempelajari teknologi baru, menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika proyek.",
+        expToolsTitle: "Perangkat Lunak",
+        workBadge: "Karya Unggulan & Prestasi",
+        workTitle: "Karya & Sertifikasi",
+        workSubtitle: "Jelajahi karya pilihan dan sertifikasi keahlian dalam rotasi interaktif 3D.",
+        orbScrollHint: "Gulir untuk memutar",
+        work1Title: "TechInventory System",
+        work1Desc: "Sistem manajemen inventaris tingkat lanjut. Membangun fitur peminjaman alat, manajemen stok otomatis, hingga sistem penalti poin bagi pengguna.",
+        work2Title: "Streaming App UI",
+        work2Desc: "Merancang ulang antarmuka mobile untuk landing page platform streaming. Berfokus pada implementasi dark theme yang pekat dan penataan struktur grid.",
+        workLinkCode: "Lihat Repositori",
+        workLinkFigma: "Lihat Figma",
+        certTitle: "Sertifikasi",
+        cert1Desc: "Partisipasi aktif dalam rangkaian acara SIMETRI 2025 dengan tema \"Crafting Solution Through Modern UI/UX Design\".",
+        cert1Pub: "Diterbitkan oleh: Departemen Sistem Informasi ITS",
+        cert2Title: "Dasar Frontend & Backend",
+        cert2Desc: "Partisipasi dalam program \"Software Development Chapter: Dasar Frontend dan Backend Untuk Pemula\".",
+        cert2Pub: "Diterbitkan oleh: Bali Project Indonesia",
+        cert3Title: "Computational Thinking (SMP)",
+        cert3Desc: "Penyelesaian pelatihan \"Cara Berpikir Logis untuk Mengatasi Masalah\" jenjang SMP dalam program Digital Talent Scholarship.",
+        cert3Pub: "Diterbitkan oleh: KOMDIGI",
+        cert4Title: "Computational Thinking (SMA)",
+        cert4Desc: "Penyelesaian pelatihan \"Cara Berpikir Logis untuk Mengatasi Masalah\" jenjang SMA dalam program Digital Talent Scholarship.",
+        cert4Pub: "Diterbitkan oleh: KOMDIGI",
+        cert5Title: "Aplikasi Chat Wirausaha",
+        cert5Desc: "Pelatihan tentang pemanfaatan aplikasi chat untuk mendukung operasional wirausahawan pemula (Digital Talent Scholarship).",
+        cert5Pub: "Diterbitkan oleh: KOMDIGI",
+        cert6Title: "Global Game Jam 2025",
+        cert6Desc: "Berpartisipasi aktif dalam ajang pengembangan game kolaboratif (Global Game Jam) regional Surabaya di Universitas Ciputra.",
+        cert6Pub: "Diterbitkan oleh: GADAS & Univ. Ciputra",
+        cert7Title: "AI untuk Software Developer",
+        cert7Desc: "Partisipasi dalam webinar \"Ngoding di Era AI\" yang membahas dasar pemanfaatan kecerdasan buatan bagi developer perangkat lunak.",
+        cert7Pub: "Diterbitkan oleh: Bali Project Indonesia",
+        cert8Title: "English Discoveries",
+        cert8Desc: "Penyelesaian program \"English Discoveries\" sebagai bagian dari TOEIC Excellence Program (Jan–Mar 2026) yang berfokus pada peningkatan kemampuan bahasa Inggris profesional dan akademik.",
+        cert8Pub: "Diterbitkan oleh: Edusoft Ltd. (subsidiary of ETS)",
+        cert9Title: "Data Science Expo",
+        cert9Desc: "Partisipasi sebagai peserta dalam Seminar & Talkshow bertajuk \"Data Science Expo\" pada 11 April 2026, yang membahas wawasan dan praktik terkini di bidang ilmu data dan kecerdasan buatan.",
+        cert9Pub: "Diterbitkan oleh: PENS (Politeknik Elektronika Negeri Surabaya)",
+        cert10Title: "Seminar Sekolah Kedinasan",
+        cert10Desc: "Penghargaan atas partisipasi dalam Seminar Persiapan Seleksi Sekolah Kedinasan Tahun 2027 yang diselenggarakan oleh LKP Science Society Surabaya.",
+        cert10Pub: "Diterbitkan oleh: LKP Science Society Surabaya",
+        contactTitle: "Mari berkolaborasi.", contactDesc: "Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur? Mari terhubung untuk proyek Anda selanjutnya.",
+        contactBtn: "klik untuk menghubungi saya", footerText: "© 2026 Fakhri Cahyo Diandra Nandito."
+      },
+      en: {
+        navAbout: "About", navExpertise: "Expertise", navWork: "Work", navCert: "Certificates", navContact: "Contact",
+        heroTitle1: "Crafting meaningful <br class=\"hidden md:block\" />", heroTitle2: "digital experiences.",
+        heroDesc: "I am a Front-End Developer and UI/UX Designer. Focused on simplifying complex interfaces into elegant, user-centric solutions.",
+        heroBtn: "Start a Conversation", expTitle: "Skills & Expertise",
+        expFrontDesc: "Building robust, high-performance, and interactive web architectures using Native HTML/CSS/JS to efficient modern framework implementations.",
+        expUIDesc: "Designing wireframes, prototyping, and ensuring visual consistency as well as intuitive navigation flows without sacrificing application performance.",
+        expProbTitle: "Problem Solving", expProbDesc: "Ability to analyze complex problems, precision debugging, and design system logic that solves root causes scalably.",
+        expTeamTitle: "Team Collaboration", expTeamDesc: "Communicating proactively and collaboratively with designers, backend engineers, and stakeholders to align project goals.",
+        expAdaptTitle: "Fast Adaptation", expAdaptDesc: "Flexible in learning new technologies, adapting to design direction changes, and maintaining quality standards amidst project dynamics.",
+        expToolsTitle: "Software & Tools",
+        workBadge: "Featured Works & Achievements",
+        workTitle: "Works & Certifications",
+        workSubtitle: "Explore interactive projects and featured certificates in a 3D orbit.",
+        orbScrollHint: "Scroll to rotate",
+        work1Title: "TechInventory System",
+        work1Desc: "Advanced inventory management system. Building tool borrowing features, automated stock management, to a point penalty system for users.",
+        work2Title: "Streaming App UI",
+        work2Desc: "Redesigning the mobile interface for a streaming platform landing page. Focused on implementing a deep dark theme and dynamic grid structure.",
+        workLinkCode: "View Repository",
+        workLinkFigma: "View in Figma",
+        certTitle: "Certifications",
+        cert1Desc: "Active participation in the SIMETRI 2025 event series themed \"Crafting Solution Through Modern UI/UX Design\".",
+        cert1Pub: "Issued by: Information Systems Dept, ITS",
+        cert2Title: "Basic Frontend & Backend",
+        cert2Desc: "Participation in the \"Software Development Chapter: Basic Frontend and Backend for Beginners\" program.",
+        cert2Pub: "Issued by: Bali Project Indonesia",
+        cert3Title: "Computational Thinking (JHS)",
+        cert3Desc: "Completion of the \"Logical Thinking for Problem Solving\" training (Junior High level) under the Digital Talent Scholarship program.",
+        cert3Pub: "Issued by: KOMDIGI",
+        cert4Title: "Computational Thinking (SHS)",
+        cert4Desc: "Completion of the \"Logical Thinking for Problem Solving\" training (Senior High level) under the Digital Talent Scholarship program.",
+        cert4Pub: "Issued by: KOMDIGI",
+        cert5Title: "Chat Apps for Business",
+        cert5Desc: "Training on the utilization of chat applications to support operations for beginner entrepreneurs (Digital Talent Scholarship).",
+        cert5Pub: "Issued by: KOMDIGI",
+        cert6Title: "Global Game Jam 2025",
+        cert6Desc: "Active participation in the collaborative game development event (Global Game Jam) for the Surabaya region at Ciputra University.",
+        cert6Pub: "Issued by: GADAS & Ciputra Univ.",
+        cert7Title: "AI for Software Developers",
+        cert7Desc: "Participation in the \"Coding in the AI Era\" webinar covering the basics of utilizing artificial intelligence for software developers.",
+        cert7Pub: "Issued by: Bali Project Indonesia",
+        cert8Title: "English Discoveries",
+        cert8Desc: "Completion of the \"English Discoveries\" program as part of the TOEIC Excellence Program (Jan–Mar 2026), focused on enhancing professional and academic English proficiency.",
+        cert8Pub: "Issued by: Edusoft Ltd. (subsidiary of ETS)",
+        cert9Title: "Data Science Expo",
+        cert9Desc: "Participation as a speaker and attendee at the \"Data Science Expo\" Seminar & Talkshow on April 11, 2026, covering the latest insights and practices in data science and artificial intelligence.",
+        cert9Pub: "Issued by: PENS (Surabaya State Electronics Polytechnic)",
+        cert10Title: "Government School Seminar",
+        cert10Desc: "Recognition for participation in the 2027 Government School Selection Preparation Seminar organized by LKP Science Society Surabaya.",
+        cert10Pub: "Issued by: LKP Science Society Surabaya",
+        contactTitle: "Let's collaborate.", contactDesc: "Looking for a developer who understands how to connect design logic with clean, structured code? Let's connect for your next project.",
+        contactBtn: "click to contact me", footerText: "© 2026 Fakhri Cahyo Diandra Nandito."
+      }
+    };
+
+    // 2. ORBIT 3D CARDS CONFIGURATION (8 CARDS)
+    const ORBIT_CARDS = [
+      {
+        kind: "project",
+        title: "TechInventory System",
+        tag: "Full-Stack",
+        img: "TechInventory.png",
+        url: "https://github.com/chikka-creator/TechInventory.git",
+        hintId: "Klik kartu untuk membuka repositori GitHub",
+        hintEn: "Click card to open GitHub repository"
+      },
+      {
+        kind: "cert",
+        title: "SIMETRI 2025",
+        tag: "UI/UX Design",
+        img: "sertif1.jpeg",
+        url: "",
+        hintId: "Sertifikat Terverifikasi • Departemen SI ITS",
+        hintEn: "Verified Certificate • Information Systems ITS"
+      },
+      {
+        kind: "project",
+        title: "Streaming App UI",
+        tag: "Mobile-First",
+        img: "RemakeNet.png",
+        url: "https://www.figma.com/design/rnLD3kSvpWiQDQYp0hYRto/Study-Case-Kel-8?node-id=0-1&t=dwrDat1ogs7I355f-1",
+        hintId: "Klik kartu untuk membuka desain di Figma",
+        hintEn: "Click card to view design in Figma"
+      },
+      {
+        kind: "cert",
+        title: "Dasar Frontend & Backend",
+        tag: "Web Dev",
+        img: "sertif2.jpeg",
+        url: "",
+        hintId: "Sertifikat Terverifikasi • Bali Project Indonesia",
+        hintEn: "Verified Certificate • Bali Project Indonesia"
+      },
+      {
+        kind: "soon",
+        title: "Coming Soon",
+        tag: "In Progress",
+        img: "",
+        url: "",
+        hintId: "Proyek mendatang sedang dalam pengembangan",
+        hintEn: "Upcoming project in active development"
+      },
+      {
+        kind: "cert",
+        title: "AI untuk Software Developer",
+        tag: "Artificial Intelligence",
+        img: "sertif7.jpeg",
+        url: "",
+        hintId: "Sertifikat Terverifikasi • Bali Project Indonesia",
+        hintEn: "Verified Certificate • Bali Project Indonesia"
+      },
+      {
+        kind: "cert",
+        title: "Global Game Jam 2025",
+        tag: "Game Dev",
+        img: "sertif6.jpeg",
+        url: "",
+        hintId: "Sertifikat Terverifikasi • Universitas Ciputra",
+        hintEn: "Verified Certificate • Ciputra University"
+      },
+      {
+        kind: "cert",
+        title: "English Discoveries",
+        tag: "Language",
+        img: "seritf8.jpeg", // Note exact filename
+        url: "",
+        hintId: "Sertifikat Terverifikasi • TOEIC Program ETS",
+        hintEn: "Verified Certificate • TOEIC Program ETS"
+      }
+    ];
+
+    const N = ORBIT_CARDS.length;
+    const STEP = (Math.PI * 2) / N;
+
+    let currentLang = 'id';
+    let updateHUDLanguage = () => {};
+
+    function initPage() {
+      // 3. MOBILE MENU LOGIC
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+      let isMobileMenuOpen = false;
+
+      function toggleMobileMenu() {
+        isMobileMenuOpen = !isMobileMenuOpen;
+        if (isMobileMenuOpen) {
+          mobileMenu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+          mobileMenu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        } else {
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        }
+      }
+
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', toggleMobileMenu);
+        mobileLinks.forEach(link => { link.addEventListener('click', toggleMobileMenu); });
+      }
+
+      // 4. NAVBAR BUBBLE & SCROLLSPY LOGIC
+      const nav = document.getElementById('main-nav');
+      const bubble = document.getElementById('nav-bubble');
+      const links = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('.scroll-section');
+      let activeLink = links[0];
+
+      function moveBubble(targetLink) {
+        if (!targetLink || !bubble || window.innerWidth < 1024) return;
+        bubble.style.width = `${targetLink.offsetWidth}px`;
+        bubble.style.left = `${targetLink.offsetLeft}px`;
+      }
+
+      function updateActiveText(targetLink) {
+        links.forEach(link => {
+          link.classList.remove('font-semibold');
+          link.classList.add('font-medium');
+        });
+        targetLink.classList.remove('font-medium');
+        targetLink.classList.add('font-semibold');
+
+        mobileLinks.forEach(mLink => {
+          if (mLink.getAttribute('href') === targetLink.getAttribute('href')) {
+            mLink.classList.replace('font-medium', 'font-semibold');
+          } else {
+            mLink.classList.replace('font-semibold', 'font-medium');
+          }
+        });
+      }
+
+      setTimeout(() => { moveBubble(activeLink); }, 100);
+      window.addEventListener('resize', () => { moveBubble(activeLink); });
+
+      links.forEach(link => { link.addEventListener('mouseenter', function () { moveBubble(this); }); });
+      if (nav) {
+        nav.addEventListener('mouseleave', () => { moveBubble(activeLink); });
+      }
+
+      const scrollSpyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            const correspondingLink = document.querySelector(`.nav-link[href="#${id}"]`);
+            if (correspondingLink) {
+              activeLink = correspondingLink;
+              moveBubble(activeLink);
+              updateActiveText(activeLink);
+            }
+          }
+        });
+      }, { root: null, rootMargin: '-40% 0px -60% 0px', threshold: 0 });
+
+      sections.forEach(section => { scrollSpyObserver.observe(section); });
+
+      // 5. LANGUAGE TOGGLE LOGIC
+      const langToggles = document.querySelectorAll('.lang-toggle-btn');
+      const langFlags = document.querySelectorAll('.lang-flag');
+      const langTexts = document.querySelectorAll('.lang-text');
+
+      langToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          currentLang = currentLang === 'id' ? 'en' : 'id';
+
+          langFlags.forEach(img => img.src = currentLang === 'en' ? 'https://flagcdn.com/w20/us.png' : 'https://flagcdn.com/w20/id.png');
+          langTexts.forEach(span => span.textContent = currentLang === 'en' ? 'ENG' : 'IDN');
+
+          document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+              if (key === 'heroTitle1') el.innerHTML = translations[currentLang][key];
+              else el.textContent = translations[currentLang][key];
+            }
+          });
+
+          updateHUDLanguage();
+          setTimeout(() => { moveBubble(activeLink); }, 50);
+        });
+      });
+
+      // 6. ANIMASI REVEAL SCROLL
+      const observerOptions = { root: null, rootMargin: "0px", threshold: 0.12 };
+      const observer = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observerInstance.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      document.querySelectorAll(".reveal").forEach((el) => { observer.observe(el); });
+
+      // 7. INITIALIZE THREE.JS 3D ORBIT SCENE
+      initOrbit3D();
+    }
+
+    // ==========================================
+    // 8. THREE.JS 3D ORBIT ENGINE IMPLEMENTATION
+    // ==========================================
+    function initOrbit3D() {
+      const canvas = document.getElementById('orb-canvas');
+      const workSection = document.getElementById('work');
+      if (!canvas || !workSection) return;
+
+      // Check WebGL availability
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({
+          canvas,
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance"
+        });
+      } catch (err) {
+        console.warn("WebGL not supported, falling back to static view.", err);
+        return;
+      }
+
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+      renderer.setClearColor(0x07080f, 1);
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x07080f, 0.08);
+
+      const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+      camera.position.set(0, 0.25, 7.2);
+      camera.lookAt(0, 0, 0);
+
+      // Card Texture Generator
+      function makeCardTexture(card) {
+        const c = document.createElement('canvas');
+        c.width = 768;
+        c.height = 480;
+        const ctx = c.getContext('2d');
+
+        function renderCard(loadedImg = null) {
+          ctx.clearRect(0, 0, c.width, c.height);
+
+          // Rounded Card Clip
+          const r = 28;
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(r, 0);
+          ctx.lineTo(c.width - r, 0);
+          ctx.quadraticCurveTo(c.width, 0, c.width, r);
+          ctx.lineTo(c.width, c.height - r);
+          ctx.quadraticCurveTo(c.width, c.height, c.width - r, c.height);
+          ctx.lineTo(r, c.height);
+          ctx.quadraticCurveTo(0, c.height, 0, c.height - r);
+          ctx.lineTo(0, r);
+          ctx.quadraticCurveTo(0, 0, r, 0);
+          ctx.closePath();
+          ctx.clip();
+
+          // Background
+          ctx.fillStyle = '#0f111a';
+          ctx.fillRect(0, 0, c.width, c.height);
+
+          if (loadedImg) {
+            // Draw image with cover object-fit
+            const imgRatio = loadedImg.width / loadedImg.height;
+            const canvasRatio = c.width / c.height;
+            let drawW, drawH, drawX, drawY;
+
+            if (imgRatio > canvasRatio) {
+              drawH = c.height;
+              drawW = loadedImg.width * (c.height / loadedImg.height);
+              drawX = (c.width - drawW) / 2;
+              drawY = 0;
+            } else {
+              drawW = c.width;
+              drawH = loadedImg.height * (c.width / loadedImg.width);
+              drawX = 0;
+              drawY = (c.height - drawH) / 2;
+            }
+            ctx.drawImage(loadedImg, drawX, drawY, drawW, drawH);
+
+            // Dark gradient overlay for clear typography
+            const grad = ctx.createLinearGradient(0, c.height * 0.25, 0, c.height);
+            grad.addColorStop(0, 'rgba(7, 8, 15, 0.0)');
+            grad.addColorStop(0.5, 'rgba(7, 8, 15, 0.7)');
+            grad.addColorStop(1, 'rgba(7, 8, 15, 0.96)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, c.width, c.height);
+          } else if (card.kind === 'soon') {
+            // Sci-fi In Progress Graphic
+            const grad = ctx.createRadialGradient(c.width / 2, c.height / 2, 30, c.width / 2, c.height / 2, 360);
+            grad.addColorStop(0, '#17223b');
+            grad.addColorStop(1, '#080a12');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, c.width, c.height);
+
+            // Grid pattern
+            ctx.strokeStyle = 'rgba(59, 130, 246, 0.15)';
+            ctx.lineWidth = 1.5;
+            for (let x = 0; x < c.width; x += 40) {
+              ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, c.height); ctx.stroke();
+            }
+            for (let y = 0; y < c.height; y += 40) {
+              ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(c.width, y); ctx.stroke();
+            }
+
+            // Central Glowing Tech Symbol
+            ctx.save();
+            ctx.translate(c.width / 2, c.height / 2 - 30);
+            ctx.strokeStyle = 'rgba(96, 165, 250, 0.7)';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([8, 6]);
+            ctx.beginPath();
+            ctx.arc(0, 0, 44, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#60a5fa';
+            ctx.font = 'bold 32px "Inter", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✦', 0, 0);
+            ctx.restore();
+          } else {
+            // Placeholder gradient
+            const grad = ctx.createLinearGradient(0, 0, c.width, c.height);
+            grad.addColorStop(0, '#1e293b');
+            grad.addColorStop(1, '#0f172a');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, c.width, c.height);
+          }
+
+          // Category Badge Pill
+          const pillY = c.height - 110;
+          const pillX = 36;
+          ctx.font = 'bold 15px "Inter", sans-serif';
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          const tagText = card.tag.toUpperCase();
+          const tagWidth = ctx.measureText(tagText).width;
+
+          // Pill Background
+          ctx.fillStyle = card.kind === 'project' ? 'rgba(37, 99, 235, 0.35)' : (card.kind === 'soon' ? 'rgba(217, 119, 6, 0.35)' : 'rgba(255, 255, 255, 0.15)');
+          ctx.strokeStyle = card.kind === 'project' ? 'rgba(96, 165, 250, 0.6)' : (card.kind === 'soon' ? 'rgba(251, 191, 36, 0.6)' : 'rgba(255, 255, 255, 0.3)');
+          ctx.lineWidth = 1.5;
+
+          const pr = 12;
+          const pw = tagWidth + 24;
+          const ph = 26;
+          ctx.beginPath();
+          ctx.roundRect(pillX, pillY - ph / 2, pw, ph, pr);
+          ctx.fill();
+          ctx.stroke();
+
+          // Pill Text
+          ctx.fillStyle = card.kind === 'project' ? '#93c5fd' : (card.kind === 'soon' ? '#fde68a' : '#f8fafc');
+          ctx.fillText(tagText, pillX + 12, pillY);
+
+          // Type Tag
+          const kindLabel = card.kind === 'project' ? 'PROJECT' : (card.kind === 'soon' ? 'UPCOMING' : 'CERTIFICATE');
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
+          ctx.font = '600 13px "Inter", sans-serif';
+          ctx.fillText('•  ' + kindLabel, pillX + pw + 12, pillY);
+
+          // Card Title
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 34px "Inter", sans-serif';
+          ctx.textBaseline = 'alphabetic';
+          ctx.shadowColor = 'rgba(0,0,0,0.85)';
+          ctx.shadowBlur = 12;
+          ctx.fillText(card.title, 36, c.height - 46);
+          ctx.shadowBlur = 0;
+
+          // Perimeter border stroke
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+          ctx.lineWidth = 2.5;
+          ctx.stroke();
+
+          ctx.restore();
+        }
+
+        renderCard();
+
+        const texture = new THREE.CanvasTexture(c);
+        texture.minFilter = THREE.LinearFilter;
+        texture.generateMipmaps = false;
+
+        if (card.img) {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => {
+            renderCard(img);
+            texture.needsUpdate = true;
+          };
+          img.onerror = () => {
+            renderCard(null);
+            texture.needsUpdate = true;
+          };
+          img.src = card.img;
+        }
+
+        return texture;
+      }
+
+      // Procedural Portrait Texture Fallback
+      function makeProceduralPortraitTexture() {
+        const c = document.createElement('canvas');
+        c.width = 512;
+        c.height = 700;
+        const ctx = c.getContext('2d');
+        const cx = 256;
+        const cy = 350;
+
+        // Radial aura
+        const bgGrad = ctx.createRadialGradient(cx, cy, 20, cx, cy, 320);
+        bgGrad.addColorStop(0, 'rgba(30, 58, 138, 0.7)');
+        bgGrad.addColorStop(0.5, 'rgba(15, 23, 42, 0.85)');
+        bgGrad.addColorStop(1, 'rgba(7, 8, 15, 0)');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        // Tech Orbital Rings
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([12, 10]);
+        ctx.beginPath();
+        ctx.arc(cx, cy, 185, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = 'rgba(99, 102, 241, 0.55)';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([20, 14, 6, 14]);
+        ctx.beginPath();
+        ctx.arc(cx, cy, 155, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Central Holographic Orb
+        const orbGrad = ctx.createRadialGradient(cx - 35, cy - 35, 10, cx, cy, 125);
+        orbGrad.addColorStop(0, '#60a5fa');
+        orbGrad.addColorStop(0.35, '#2563eb');
+        orbGrad.addColorStop(0.8, '#1e3a8a');
+        orbGrad.addColorStop(1, '#0f172a');
+        ctx.fillStyle = orbGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 125, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = 'rgba(147, 197, 253, 0.85)';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 125, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Monogram "F"
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 115px "Inter", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+        ctx.shadowBlur = 20;
+        ctx.fillText('F', cx, cy + 4);
+        ctx.shadowBlur = 0;
+
+        // Subtitle
+        ctx.fillStyle = '#93c5fd';
+        ctx.font = '600 14px "Inter", sans-serif';
+        ctx.letterSpacing = '3px';
+        ctx.fillText('FAKHRI C.D.N', cx, cy + 80);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.minFilter = THREE.LinearFilter;
+        return tex;
+      }
+
+      // Aura Glow Texture
+      function makeGlowTexture() {
+        const c = document.createElement('canvas');
+        c.width = 256;
+        c.height = 256;
+        const ctx = c.getContext('2d');
+        const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+        grad.addColorStop(0, 'rgba(59, 130, 246, 0.55)');
+        grad.addColorStop(0.35, 'rgba(37, 99, 235, 0.25)');
+        grad.addColorStop(0.7, 'rgba(29, 78, 216, 0.08)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 256, 256);
+        const tex = new THREE.CanvasTexture(c);
+        return tex;
+      }
+
+      // Create Central Portrait Group
+      const centerGroup = new THREE.Group();
+      scene.add(centerGroup);
+
+      // Ambient Glow behind center portrait
+      const glowGeo = new THREE.PlaneGeometry(3.6, 3.6);
+      const glowMat = new THREE.MeshBasicMaterial({
+        map: makeGlowTexture(),
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        opacity: 0.65,
+        depthWrite: false
+      });
+      const glowMesh = new THREE.Mesh(glowGeo, glowMat);
+      glowMesh.position.set(0, 0, -0.05);
+      centerGroup.add(glowMesh);
+
+      // Central Portrait Mesh
+      const portraitGeo = new THREE.PlaneGeometry(1.65, 2.25);
+      const portraitMat = new THREE.MeshBasicMaterial({
+        map: makeProceduralPortraitTexture(),
+        transparent: true,
+        side: THREE.DoubleSide,
+        depthWrite: false
+      });
+      const portraitMesh = new THREE.Mesh(portraitGeo, portraitMat);
+      portraitMesh.position.set(0, -0.1, 0);
+      centerGroup.add(portraitMesh);
+
+      // Try loading custom cutout portrait if present
+      const textureLoader = new THREE.TextureLoader();
+      textureLoader.load(
+        'portrait.png',
+        (loadedTex) => {
+          loadedTex.minFilter = THREE.LinearFilter;
+          portraitMat.map = loadedTex;
+          portraitMat.needsUpdate = true;
         },
-        en: {
-            navAbout: "About", navExpertise: "Expertise", navWork: "Work", navCert: "Certificates", navContact: "Contact",
-            heroTitle1: "Crafting meaningful <br class=\"hidden md:block\" />", heroTitle2: "digital experiences.",
-            heroDesc: "I am a Front-End Developer and UI/UX Designer. Focused on simplifying complex interfaces into elegant, user-centric solutions.",
-            heroBtn: "Start a Conversation", expTitle: "Skills & Expertise",
-            expFrontDesc: "Building robust, high-performance, and interactive web architectures using Native HTML/CSS/JS to efficient modern framework implementations.",
-            expUIDesc: "Designing wireframes, prototyping, and ensuring visual consistency as well as intuitive navigation flows without sacrificing application performance.",
-            expProbTitle: "Problem Solving", expProbDesc: "Ability to analyze complex problems, precision debugging, and design system logic that solves root causes scalably.",
-            expTeamTitle: "Team Collaboration", expTeamDesc: "Communicating proactively and collaboratively with designers, backend engineers, and stakeholders to align project goals.",
-            expAdaptTitle: "Fast Adaptation", expAdaptDesc: "Flexible in learning new technologies, adapting to design direction changes, and maintaining quality standards amidst project dynamics.",
-            expToolsTitle: "Software & Tools", 
-            workTitle: "Works", work1Title: "TechInventory System",
-            work1Desc: "Advanced inventory management system. Building tool borrowing features, automated stock management, to a point penalty system for users.",
-            work2Title: "Streaming App UI",
-            work2Desc: "Redesigning the mobile interface for a streaming platform landing page. Focused on implementing a deep dark theme and dynamic grid structure.",
-            workLinkCode: "View Repository",
-            workLinkFigma: "View in Figma",
-            certTitle: "Certifications", 
-            cert1Desc: "Active participation in the SIMETRI 2025 event series themed \"Crafting Solution Through Modern UI/UX Design\".",
-            cert1Pub: "Issued by: Information Systems Dept, ITS",
-            cert2Title: "Basic Frontend & Backend",
-            cert2Desc: "Participation in the \"Software Development Chapter: Basic Frontend and Backend for Beginners\" program.",
-            cert2Pub: "Issued by: Bali Project Indonesia",
-            cert3Title: "Computational Thinking (JHS)",
-            cert3Desc: "Completion of the \"Logical Thinking for Problem Solving\" training (Junior High level) under the Digital Talent Scholarship program.",
-            cert3Pub: "Issued by: KOMDIGI",
-            cert4Title: "Computational Thinking (SHS)",
-            cert4Desc: "Completion of the \"Logical Thinking for Problem Solving\" training (Senior High level) under the Digital Talent Scholarship program.",
-            cert4Pub: "Issued by: KOMDIGI",
-            cert5Title: "Chat Apps for Business",
-            cert5Desc: "Training on the utilization of chat applications to support operations for beginner entrepreneurs (Digital Talent Scholarship).",
-            cert5Pub: "Issued by: KOMDIGI",
-            cert6Title: "Global Game Jam 2025",
-            cert6Desc: "Active participation in the collaborative game development event (Global Game Jam) for the Surabaya region at Ciputra University.",
-            cert6Pub: "Issued by: GADAS & Ciputra Univ.",
-            cert7Title: "AI for Software Developers",
-            cert7Desc: "Participation in the \"Coding in the AI Era\" webinar covering the basics of utilizing artificial intelligence for software developers.",
-            cert7Pub: "Issued by: Bali Project Indonesia",
-            cert8Title: "English Discoveries",
-            cert8Desc: "Completion of the \"English Discoveries\" program as part of the TOEIC Excellence Program (Jan–Mar 2026), focused on enhancing professional and academic English proficiency.",
-            cert8Pub: "Issued by: Edusoft Ltd. (subsidiary of ETS)",
-            cert9Title: "Data Science Expo",
-            cert9Desc: "Participation as a speaker and attendee at the \"Data Science Expo\" Seminar & Talkshow on April 11, 2026, covering the latest insights and practices in data science and artificial intelligence.",
-            cert9Pub: "Issued by: PENS (Surabaya State Electronics Polytechnic)",
-            cert10Title: "Government School Seminar",
-            cert10Desc: "Recognition for participation in the 2027 Government School Selection Preparation Seminar organized by LKP Science Society Surabaya.",
-            cert10Pub: "Issued by: LKP Science Society Surabaya",
-            contactTitle: "Let's collaborate.", contactDesc: "Looking for a developer who understands how to connect design logic with clean, structured code? Let's connect for your next project.",
-            contactBtn: "click to contact me", footerText: "© 2026 Fakhri Cahyo Diandra Nandito."
+        undefined,
+        () => {
+          // Keep procedural hologram fallback quietly
+        }
+      );
+
+      // Create 8 Orbit Card Meshes
+      const cardGeometry = new THREE.PlaneGeometry(1.6, 1.0);
+      const cardMeshes = [];
+
+      ORBIT_CARDS.forEach((card) => {
+        const cardTexture = makeCardTexture(card);
+        const cardMaterial = new THREE.MeshBasicMaterial({
+          map: cardTexture,
+          transparent: true,
+          side: THREE.DoubleSide
+        });
+        const mesh = new THREE.Mesh(cardGeometry, cardMaterial);
+        mesh.userData = { card };
+        scene.add(mesh);
+        cardMeshes.push(mesh);
+      });
+
+      // HUD Elements
+      const orbCounterEl = document.getElementById('orb-counter');
+      const orbKindEl = document.getElementById('orb-kind');
+      const orbTagEl = document.getElementById('orb-tag');
+      const orbTitleEl = document.getElementById('orb-title');
+      const orbHintTextEl = document.getElementById('orb-hint-text');
+      const orbHintIconEl = document.getElementById('orb-hint-icon');
+
+      let currentActiveCardIdx = -1;
+
+      function updateHUD(activeIdx) {
+        if (activeIdx < 0 || activeIdx >= N) return;
+        currentActiveCardIdx = activeIdx;
+        const card = ORBIT_CARDS[activeIdx];
+
+        if (orbCounterEl) orbCounterEl.textContent = `${String(activeIdx + 1).padStart(2, '0')} / 08`;
+        if (orbTagEl) orbTagEl.textContent = card.tag;
+        if (orbTitleEl) orbTitleEl.textContent = card.title;
+
+        if (orbKindEl) {
+          if (card.kind === 'project') {
+            orbKindEl.textContent = 'Project';
+            orbKindEl.className = 'text-[10px] uppercase font-bold tracking-wider text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20';
+          } else if (card.kind === 'soon') {
+            orbKindEl.textContent = currentLang === 'en' ? 'Upcoming' : 'Dalam Proses';
+            orbKindEl.className = 'text-[10px] uppercase font-bold tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20';
+          } else {
+            orbKindEl.textContent = currentLang === 'en' ? 'Certificate' : 'Sertifikasi';
+            orbKindEl.className = 'text-[10px] uppercase font-bold tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20';
+          }
+        }
+
+        if (orbHintTextEl) {
+          orbHintTextEl.textContent = currentLang === 'en' ? card.hintEn : card.hintId;
+        }
+
+        if (orbHintIconEl) {
+          if (card.url) {
+            orbHintIconEl.innerHTML = `<svg class="w-4 h-4 text-blue-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>`;
+          } else if (card.kind === 'soon') {
+            orbHintIconEl.innerHTML = `<svg class="w-4 h-4 text-amber-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+          } else {
+            orbHintIconEl.innerHTML = `<svg class="w-4 h-4 text-emerald-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+          }
+        }
+      }
+
+      updateHUDLanguage = () => {
+        if (currentActiveCardIdx >= 0) {
+          updateHUD(currentActiveCardIdx);
         }
       };
 
-      document.addEventListener("DOMContentLoaded", () => {
-        
+      // Raycaster for Hover & Click
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2(-9999, -9999);
+      let hoveredIndex = -1;
 
-        // 2. MOBILE MENU LOGIC
+      function onPointerMove(e) {
+        const rect = canvas.getBoundingClientRect();
+        if (e.clientY < rect.top || e.clientY > rect.bottom) {
+          mouse.x = -9999;
+          mouse.y = -9999;
+          hoveredIndex = -1;
+          canvas.style.cursor = 'default';
+          return;
+        }
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        let isMobileMenuOpen = false;
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(cardMeshes);
 
-        function toggleMobileMenu() {
-            isMobileMenuOpen = !isMobileMenuOpen;
-            if(isMobileMenuOpen) {
-                mobileMenu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
-                mobileMenu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-            } else {
-                mobileMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
-                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        if (intersects.length > 0) {
+          const hit = intersects[0].object;
+          const idx = cardMeshes.indexOf(hit);
+          if (idx >= 0) {
+            const theta = (idx * STEP) - currentAngle;
+            const focusK = Math.cos(theta);
+            if (focusK > 0.45) {
+              hoveredIndex = idx;
+              canvas.style.cursor = ORBIT_CARDS[idx].url ? 'pointer' : 'default';
+              return;
             }
+          }
         }
 
-        mobileBtn.addEventListener('click', toggleMobileMenu);
-        mobileLinks.forEach(link => { link.addEventListener('click', toggleMobileMenu); });
+        hoveredIndex = -1;
+        canvas.style.cursor = 'default';
+      }
 
+      function onPointerDown() {
+        if (hoveredIndex >= 0) {
+          const card = ORBIT_CARDS[hoveredIndex];
+          if (card.url) {
+            window.open(card.url, '_blank', 'noopener,noreferrer');
+          }
+        }
+      }
 
-        // 3. LANGUAGE TOGGLE LOGIC (Desktop & Mobile)
+      canvas.addEventListener('pointermove', onPointerMove, { passive: true });
+      canvas.addEventListener('pointerdown', onPointerDown);
 
-        const langToggles = document.querySelectorAll('.lang-toggle-btn');
-        const langFlags = document.querySelectorAll('.lang-flag');
-        const langTexts = document.querySelectorAll('.lang-text');
-        let currentLang = 'id';
+      // Scroll State & Motion Lerp
+      let targetAngle = 0;
+      let currentAngle = 0;
+      const clock = new THREE.Clock();
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        langToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                currentLang = currentLang === 'id' ? 'en' : 'id';
-                
-                langFlags.forEach(img => img.src = currentLang === 'en' ? 'https://flagcdn.com/w20/us.png' : 'https://flagcdn.com/w20/id.png');
-                langTexts.forEach(span => span.textContent = currentLang === 'en' ? 'ENG' : 'IDN');
+      function onScroll() {
+        const rect = workSection.getBoundingClientRect();
+        const totalScrollable = rect.height - window.innerHeight;
+        if (totalScrollable <= 0) return;
+        const scrolled = -rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+        targetAngle = progress * Math.PI * 2;
+      }
 
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (translations[currentLang][key]) {
-                        if(key === 'heroTitle1') el.innerHTML = translations[currentLang][key];
-                        else el.textContent = translations[currentLang][key];
-                    }
-                });
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
 
-                setTimeout(() => { moveBubble(activeLink); }, 50); // Recalculate bubble width
-            });
+      // Responsive Resize
+      function onWindowResize() {
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        if (width === 0 || height === 0) return;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height, false);
+      }
+
+      window.addEventListener('resize', onWindowResize);
+
+      // Animation Loop
+      let isVisible = false;
+
+      function animate() {
+        const delta = Math.min(clock.getDelta(), 0.1);
+
+        // Smoothing rotation
+        if (prefersReducedMotion) {
+          currentAngle = targetAngle;
+        } else {
+          currentAngle += (targetAngle - currentAngle) * Math.min(1, delta * 7.5);
+        }
+
+        const isMobile = window.innerWidth < 768;
+        const R = isMobile ? 2.65 : 3.35;
+
+        let maxFocus = -999;
+        let frontIdx = 0;
+
+        // Position and orient cards in 3D orbit
+        cardMeshes.forEach((mesh, i) => {
+          const theta = (i * STEP) - currentAngle;
+          mesh.position.x = Math.sin(theta) * R;
+          mesh.position.z = Math.cos(theta) * R;
+
+          // Natural vertical offset
+          const staggerY = Math.sin(i * 1.5) * 0.12;
+          mesh.position.y = staggerY;
+
+          // Keep cards billboard facing camera
+          mesh.rotation.set(0, 0, 0);
+
+          // Depth factor cos(theta): 1 is front, -1 is back
+          const focusK = Math.cos(theta);
+
+          if (focusK > maxFocus) {
+            maxFocus = focusK;
+            frontIdx = i;
+          }
+
+          // Scale
+          const isHovered = (hoveredIndex === i && focusK > 0.45);
+          const baseScale = 0.82 + Math.max(0, focusK) * 0.26;
+          const hoverMultiplier = isHovered ? 1.08 : 1.0;
+          const finalScale = baseScale * hoverMultiplier;
+          mesh.scale.set(finalScale, finalScale, 1);
+
+          // Opacity
+          const targetOpacity = 0.38 + (focusK + 1) * 0.31;
+          mesh.material.opacity = Math.max(0.28, Math.min(1.0, targetOpacity));
+
+          // Depth rendering order
+          mesh.renderOrder = Math.round((focusK + 1) * 50);
         });
 
+        // Sync Active Card HUD
+        if (frontIdx !== currentActiveCardIdx) {
+          updateHUD(frontIdx);
+        }
 
-        // 4. ANIMASI REVEAL SCROLL
+        // Floating animation for portrait
+        if (!prefersReducedMotion) {
+          centerGroup.position.y = Math.sin(clock.getElapsedTime() * 1.7) * 0.04;
+        }
 
-        const observerOptions = { root: null, rootMargin: "0px", threshold: 0.12 };
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-              observer.unobserve(entry.target);
+        renderer.render(scene, camera);
+      }
+
+      // Observer to pause animation loop when section is offscreen
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!isVisible) {
+              isVisible = true;
+              clock.start();
+              renderer.setAnimationLoop(animate);
             }
-          });
-        }, observerOptions);
-        document.querySelectorAll(".reveal").forEach((el) => { observer.observe(el); });
+          } else {
+            if (isVisible) {
+              isVisible = false;
+              renderer.setAnimationLoop(null);
+            }
+          }
+        });
+      }, { threshold: 0.01 });
 
+      sectionObserver.observe(workSection);
+    }
 
-        // 5. NAVBAR BUBBLE & SCROLLSPY LOGIC
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  </script>
+</body>
 
-        const nav = document.getElementById('main-nav');
-        const bubble = document.getElementById('nav-bubble');
-        const links = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.scroll-section');
-        let activeLink = links[0];
-
-        function moveBubble(targetLink) {
-            if (!targetLink || window.innerWidth < 1024) return; // Don't move if mobile
-            bubble.style.width = `${targetLink.offsetWidth}px`;
-            bubble.style.left = `${targetLink.offsetLeft}px`;
-        }
-
-        function updateActiveText(targetLink) {
-            links.forEach(link => {
-                link.classList.remove('font-semibold');
-                link.classList.add('font-medium');
-            });
-            targetLink.classList.remove('font-medium');
-            targetLink.classList.add('font-semibold');
-            
-            // Sync active state for mobile links visually
-            mobileLinks.forEach(mLink => {
-                if(mLink.getAttribute('href') === targetLink.getAttribute('href')){
-                    mLink.classList.replace('font-medium', 'font-semibold');
-                } else {
-                    mLink.classList.replace('font-semibold', 'font-medium');
-                }
-            });
-        }
-
-        setTimeout(() => { moveBubble(activeLink); }, 100);
-        window.addEventListener('resize', () => { moveBubble(activeLink); });
-
-        links.forEach(link => { link.addEventListener('mouseenter', function() { moveBubble(this); }); });
-        nav.addEventListener('mouseleave', () => { moveBubble(activeLink); });
-
-        const scrollSpyObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    const correspondingLink = document.querySelector(`.nav-link[href="#${id}"]`);
-                    if (correspondingLink) {
-                        activeLink = correspondingLink;
-                        moveBubble(activeLink);
-                        updateActiveText(activeLink);
-                    }
-                }
-            });
-        }, { root: null, rootMargin: '-40% 0px -60% 0px', threshold: 0 });
-
-        sections.forEach(section => { scrollSpyObserver.observe(section); });
-      });
-    </script>
-  </body>
 </html>
