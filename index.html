@@ -24,8 +24,8 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ["Inter", "sans-serif"] },
-          colors: { brand: "#111827" },
+          fontFamily: { sans: ["Inter", "sans-serif"], mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"] },
+          colors: { brand: "#111827", scene: "#07080f" },
         },
       },
     };
@@ -43,13 +43,13 @@
       transform: translateY(0);
     }
 
-    /* LIQUID GLASS THEME */
+    /* STUDIO DARK GLASS THEME */
     .glass-pill {
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(10, 13, 20, 0.65);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.45);
     }
 
     #nav-bubble {
@@ -61,48 +61,559 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: #f9fafb;
+      background: #07080f;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #d1d5db;
+      background: rgba(245, 158, 11, 0.35);
       border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #9ca3af;
+      background: rgba(245, 158, 11, 0.55);
     }
+
+    /* Bracket mono CTA — satu idiom dengan chip portrait #experience */
+    .cta-bracket {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+      background: rgba(10, 13, 20, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .cta-bracket .brkt { color: #f59e0b; transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); }
+    .cta-bracket:hover {
+      color: #ffffff;
+      border-color: rgba(245, 158, 11, 0.8);
+      background: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
+    }
+    .cta-bracket:hover .brkt-left { transform: translateX(-2px); }
+    .cta-bracket:hover .brkt-right { transform: translateX(2px); }
+    .cta-bracket:focus-visible {
+      outline: 2px solid #f59e0b;
+      outline-offset: 3px;
+    }
+  
+    /* ========================================================
+       Experience Floating Cards — Cyber-Glass Parade
+       ======================================================== */
+    #experience .float-card {
+      position: absolute;
+      box-sizing: border-box;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform:
+        translateZ(calc(var(--card-z, 0px) * (1 - var(--card-e, 0)) + 120px * var(--card-e, 0)))
+        translate(0, var(--card-float, 0px));
+      border-radius: 1.25rem;
+      background: linear-gradient(150deg, rgba(22, 28, 38, 0.96) 0%, rgba(13, 17, 25, 0.98) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      transition: border-color 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      cursor: pointer;
+      user-select: none;
+      will-change: transform, opacity, left, top, width, height;
+    }
+
+    #experience .float-card:hover {
+      border-color: rgba(245, 158, 11, 0.65);
+      box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.85), 0 0 35px rgba(245, 158, 11, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    #experience .float-card.is-dominant {
+      border-color: rgba(245, 158, 11, 0.85);
+      box-shadow: 0 35px 90px -15px rgba(0, 0, 0, 0.95), 0 0 70px rgba(245, 158, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    #experience .float-card:focus-visible {
+      outline: 2px solid #f59e0b;
+      outline-offset: 3px;
+    }
+
+    /* Ambient glow & Specular top sheen */
+    .card-ambient-glow {
+      position: absolute;
+      inset: -30px;
+      border-radius: 2.5rem;
+      background: radial-gradient(circle at 50% 25%, var(--kind-glow, rgba(245, 158, 11, 0.2)), transparent 70%);
+      opacity: 0.35;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .card-specular-shine {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Kinds Theme Tokens (Harmonized with potraiit.jpg palette) */
+    .float-card[data-kind="hard"] {
+      --kind-color: #38bdf8;
+      --kind-bg: rgba(56, 189, 248, 0.12);
+      --kind-border: rgba(56, 189, 248, 0.3);
+      --kind-glow: rgba(56, 189, 248, 0.25);
+    }
+    .float-card[data-kind="soft"] {
+      --kind-color: #34d399;
+      --kind-bg: rgba(52, 211, 153, 0.12);
+      --kind-border: rgba(52, 211, 153, 0.3);
+      --kind-glow: rgba(52, 211, 153, 0.25);
+    }
+    .float-card[data-kind="tools"] {
+      --kind-color: #fbbf24;
+      --kind-bg: rgba(251, 191, 36, 0.12);
+      --kind-border: rgba(251, 191, 36, 0.3);
+      --kind-glow: rgba(251, 191, 36, 0.25);
+    }
+    .float-card[data-kind="work"] {
+      --kind-color: #f59e0b;
+      --kind-bg: rgba(245, 158, 11, 0.12);
+      --kind-border: rgba(245, 158, 11, 0.3);
+      --kind-glow: rgba(245, 158, 11, 0.25);
+    }
+
+    /* Category Pill */
+    .card-kind-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 9999px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--kind-color);
+      background: var(--kind-bg);
+      border: 1px solid var(--kind-border);
+    }
+    .kind-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--kind-color);
+      box-shadow: 0 0 8px var(--kind-color);
+    }
+
+    /* 1. COMPACT VIEW (Idle State) */
+    .card-view-compact {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0.65rem;
+      transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 2;
+    }
+    .card-compact-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.2rem 0.35rem 0.5rem;
+    }
+    .card-num-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.05em;
+    }
+    .card-compact-media {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      border-radius: 0.65rem;
+      overflow: hidden;
+      background: #070913;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      flex-shrink: 0;
+    }
+    .card-compact-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    #experience .float-card:hover .card-compact-thumb {
+      transform: scale(1.06);
+    }
+    .card-compact-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(9, 12, 22, 0.85) 0%, rgba(9, 12, 22, 0.1) 50%, transparent 80%);
+      pointer-events: none;
+    }
+    .card-compact-info {
+      padding: 0.35rem 0.2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      overflow: hidden;
+    }
+    .card-compact-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-compact-desc {
+      display: none;
+    }
+    .card-compact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 1px;
+    }
+    .compact-tag {
+      font-size: 0.58rem;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5px 5px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* 2. CINEMATIC HERO VIEW (Approaching State) */
+    .card-view-expanded {
+      position: absolute;
+      inset: 0;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      background: linear-gradient(150deg, rgba(16, 22, 30, 0.97) 0%, rgba(9, 13, 19, 0.98) 100%);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-radius: 1.25rem;
+      transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 5;
+    }
+    .card-expanded-inner {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      gap: 1.75rem;
+    }
+    .card-exp-media-pane {
+      width: 44%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .card-exp-media-box {
+      position: relative;
+      flex: 1;
+      border-radius: 1.15rem;
+      overflow: hidden;
+      background: #060810;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+    .card-exp-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .card-exp-media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 9, 17, 0.85) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .card-exp-media-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(10, 15, 26, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      letter-spacing: 0.04em;
+    }
+    .card-exp-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      padding: 2px 4px;
+    }
+    .card-exp-info-pane {
+      width: 56%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-right: 0.25rem;
+    }
+    .card-exp-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+    .card-exp-title {
+      font-size: 1.42rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.22;
+      margin-bottom: 0.35rem;
+    }
+    .card-exp-desc {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-exp-tags-section {
+      margin-top: auto;
+      margin-bottom: 0.75rem;
+    }
+    .card-exp-tags-label {
+      display: block;
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-bottom: 0.35rem;
+    }
+    .card-exp-tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .exp-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 7px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #fde68a;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      letter-spacing: 0.02em;
+    }
+    .card-exp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 0.65rem 1rem;
+      border-radius: 0.85rem;
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.88) 0%, rgba(180, 83, 9, 0.78) 100%);
+      border: 1px solid rgba(251, 191, 36, 0.5);
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 20px rgba(217, 119, 6, 0.35);
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      cursor: pointer;
+    }
+    .card-exp-btn:hover {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.95) 0%, rgba(217, 119, 6, 0.9) 100%);
+      border-color: rgba(253, 230, 138, 0.7);
+      box-shadow: 0 6px 28px rgba(245, 158, 11, 0.55);
+      transform: translateY(-1px);
+    }
+
+    /* Horizontal Streaming Tickers (Matching Inspiration Image 2) */
+    @keyframes tickerScrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes tickerScrollRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .animate-ticker-left {
+      display: inline-flex;
+      white-space: nowrap;
+      width: max-content;
+      animation: tickerScrollLeft 32s linear infinite;
+    }
+    .animate-ticker-right {
+      display: inline-flex;
+      white-space: nowrap;
+      width: max-content;
+      animation: tickerScrollRight 36s linear infinite;
+    }
+    .ticker-ribbon {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02) 15%, rgba(255, 255, 255, 0.02) 85%, transparent);
+      padding: 0.35rem 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .animate-ticker-left, .animate-ticker-right {
+        animation: none;
+      }
+    }
+
+    #exp-portrait {
+      will-change: opacity, filter, transform;
+      transition: filter 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* Dialog styling */
+    .flip-card-dialog {
+      position: fixed;
+      transform-origin: center center;
+      border: 1px solid rgba(251,191,36,.3);
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      max-width: min(92vw, 36rem);
+      background: rgba(13,17,24,.97);
+      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+      box-shadow: 0 25px 80px rgba(0,0,0,.85), 0 0 50px rgba(245,158,11,.15);
+      color: #f1f5f9;
+      will-change: transform, opacity;
+    }
+    .flip-card-dialog::backdrop {
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: opacity 0.35s cubic-bezier(0.25,1,0.5,1);
+    }
+    .flip-card-dialog.dialog-closing::backdrop {
+      opacity: 0;
+    }
+    .dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .dialog-media-wrap {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #090a10;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    #card-dialog-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .flip-card-dialog h3 { color: #fff; font-weight: 700; font-size: 1.35rem; margin-bottom: 0.5rem; }
+    .flip-card-dialog p { color: #94a3b8; font-size: 0.92rem; line-height: 1.65; }
+    #card-dialog-close {
+      position: static;
+      width: 2.2rem; height: 2.2rem;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.06);
+      border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: #94a3b8; transition: all 0.2s;
+    }
+    #card-dialog-close:hover {
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      #experience .exp-stage { perspective: 600px !important; }
+      #experience .float-card { width: 195px; }
+      .card-compact-media { height: 100px; }
+      .dialog-media-wrap { height: 160px; }
+      .card-view-expanded { padding: 1rem; overflow-y: auto; }
+      .card-expanded-inner { flex-direction: column; gap: 0.75rem; }
+      .card-exp-media-pane { width: 100%; height: 140px; flex-shrink: 0; }
+      .card-exp-info-pane { width: 100%; padding-right: 0; }
+      .card-exp-title { font-size: 1.18rem; margin-bottom: 0.35rem; }
+      .card-exp-desc { font-size: 0.78rem; line-height: 1.5; margin-bottom: 0.75rem; }
+      .card-exp-tags-section { margin-bottom: 0.75rem; }
+      .exp-tag { font-size: 0.65rem; padding: 3px 8px; }
+      .card-exp-btn { padding: 0.6rem 1rem; font-size: 0.78rem; }
+    }
+    
   </style>
 </head>
 
-<body class="bg-gray-50 text-brand antialiased selection:bg-brand selection:text-white relative">
+<body class="bg-[#07080f] text-slate-200 antialiased selection:bg-amber-500/30 selection:text-white relative">
 
   <div class="fixed w-full top-6 z-50 flex flex-col items-center px-6 transition-all duration-300">
 
     <div class="max-w-6xl w-full flex items-center justify-between">
       <a href="#" id="fakhri"
-        class="text-[#1e3a8a] hover:opacity-80 transition-opacity flex items-center drop-shadow-md z-10 text-lg font-bold tracking-tight">
-        Fakhri C.D.N
+        class="text-white hover:text-amber-300 transition-colors flex items-center gap-1.5 drop-shadow-md z-10 text-lg font-bold tracking-tight">
+        <span>Fakhri C.D.N</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>
       </a>
 
-      <nav id="main-nav" class="glass-pill rounded-full p-1.5 hidden lg:flex items-center shadow-lg relative right-6">
-        <div id="nav-bubble" class="absolute top-1.5 bottom-1.5 left-1.5 bg-white rounded-full shadow-sm z-0 w-0"></div>
+      <nav id="main-nav" class="glass-pill rounded-full p-1.5 hidden lg:flex items-center shadow-lg relative right-6 border border-white/10">
+        <div id="nav-bubble" class="absolute top-1.5 bottom-1.5 left-1.5 bg-amber-400/90 rounded-full shadow-sm z-0 w-0"></div>
 
         <a href="#about"
-          class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors"
+          class="nav-link relative z-10 text-slate-300 px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-colors"
           data-i18n="navAbout">Tentang</a>
-        <a href="#expertise"
-          class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide"
+        <a href="#experience"
+          class="nav-link relative z-10 text-slate-300 px-5 py-2 rounded-full text-sm font-medium hover:text-amber-300 transition-colors tracking-wide"
           data-i18n="navExpertise">Keahlian</a>
         <a href="#work"
-          class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide"
+          class="nav-link relative z-10 text-slate-300 px-5 py-2 rounded-full text-sm font-medium hover:text-amber-300 transition-colors tracking-wide"
           data-i18n="navWork">Karya</a>
         <a href="#contact"
-          class="nav-link relative z-10 text-[#1e3a8a] px-5 py-2 rounded-full text-sm font-medium hover:text-blue-900 transition-colors tracking-wide"
+          class="nav-link relative z-10 text-slate-300 px-5 py-2 rounded-full text-sm font-medium hover:text-amber-300 transition-colors tracking-wide"
           data-i18n="navContact">Kontak</a>
 
         <div
-          class="lang-toggle-btn relative z-10 flex items-center gap-2 pl-4 pr-3 text-[#1e3a8a] text-sm font-medium cursor-pointer border-l border-[#1e3a8a]/20 ml-1 hover:opacity-70 transition-opacity">
+          class="lang-toggle-btn relative z-10 flex items-center gap-2 pl-4 pr-3 text-slate-300 text-sm font-medium cursor-pointer border-l border-white/15 ml-1 hover:text-amber-300 transition-colors">
           <img src="https://flagcdn.com/w20/id.png" alt="Language"
             class="lang-flag w-5 h-auto rounded-sm shadow-sm opacity-90">
           <span class="lang-text tracking-wide w-[28px] text-center">IDN</span>
@@ -123,20 +634,20 @@
     <div id="mobile-menu"
       class="lg:hidden w-full max-w-md mt-4 glass-pill rounded-2xl p-4 flex flex-col gap-2 opacity-0 pointer-events-none -translate-y-4 transition-all duration-300 transform shadow-xl origin-top">
       <a href="#about"
-        class="mobile-link text-[#1e3a8a] font-semibold text-center py-3 rounded-xl hover:bg-white/60 transition-colors"
+        class="mobile-link text-slate-300 font-semibold text-center py-3 rounded-xl hover:bg-white/10 hover:text-amber-300 transition-colors"
         data-i18n="navAbout">Tentang</a>
-      <a href="#expertise"
-        class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors"
+      <a href="#experience"
+        class="mobile-link text-slate-300 font-medium text-center py-3 rounded-xl hover:bg-white/10 hover:text-amber-300 transition-colors"
         data-i18n="navExpertise">Keahlian</a>
       <a href="#work"
-        class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors"
+        class="mobile-link text-slate-300 font-medium text-center py-3 rounded-xl hover:bg-white/10 hover:text-amber-300 transition-colors"
         data-i18n="navWork">Karya</a>
       <a href="#contact"
-        class="mobile-link text-[#1e3a8a] font-medium text-center py-3 rounded-xl hover:bg-white/60 transition-colors"
+        class="mobile-link text-slate-300 font-medium text-center py-3 rounded-xl hover:bg-white/10 hover:text-amber-300 transition-colors"
         data-i18n="navContact">Kontak</a>
-      <div class="h-px bg-[#1e3a8a]/10 my-1"></div>
+      <div class="h-px bg-white/10 my-1"></div>
       <div
-        class="lang-toggle-btn flex justify-center items-center gap-3 text-[#1e3a8a] font-bold py-3 rounded-xl cursor-pointer hover:bg-white/60 transition-colors">
+        class="lang-toggle-btn flex justify-center items-center gap-3 text-slate-300 font-bold py-3 rounded-xl cursor-pointer hover:bg-white/10 hover:text-amber-300 transition-colors">
         <img src="https://flagcdn.com/w20/id.png" alt="Language" class="lang-flag w-6 h-auto rounded-sm shadow-sm">
         <span class="lang-text tracking-wide">IDN</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,162 +659,191 @@
   </div>
 
   <section id="about"
-    class="scroll-section min-h-screen flex items-center pt-20 relative bg-brand bg-cover bg-center bg-no-repeat"
+    class="scroll-section min-h-screen flex items-center pt-20 relative bg-brand bg-cover bg-center bg-no-repeat overflow-hidden"
     style="background-image: url(&quot;setup pertama.png&quot;)">
-    <div class="absolute inset-0 bg-brand/85 z-0"></div>
+    <!-- Dark Studio Overlay -->
+    <div class="absolute inset-0 bg-[#07080f]/85 z-0"></div>
+
+    <!-- Atmospheric Glow (Single subtle amber ambient - anti-slop rule) -->
+    <div class="absolute top-1/4 right-[15%] w-[480px] h-[340px] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
     <div class="max-w-5xl mx-auto px-6 w-full reveal relative z-10">
-      <p class="text-gray-400 font-medium mb-4 tracking-wide text-sm uppercase">Fakhri Cahyo Diandra Nandito</p>
-      <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-6 text-white">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.2em] text-amber-400 bg-amber-500/10 border border-amber-500/20 mb-6 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <span>Fakhri Cahyo Diandra Nandito</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-[1.05] tracking-tight mb-6 text-white">
         <span data-i18n="heroTitle1">Merancang pengalaman <br class="hidden md:block" /></span>
-        <span class="text-gray-400" data-i18n="heroTitle2">digital yang bermakna.</span>
+        <span class="text-slate-400" data-i18n="heroTitle2">digital yang bermakna.</span>
       </h1>
-      <p class="text-lg text-gray-200 max-w-2xl leading-relaxed mb-10" data-i18n="heroDesc">
+      <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mb-10" data-i18n="heroDesc">
         Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks
         menjadi solusi elegan yang berpusat pada pengguna.
       </p>
-      <a href="#contact" data-i18n="heroBtn"
-        class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-brand bg-white rounded-full hover:bg-gray-200 transition-colors focus:ring-4 focus:ring-gray-300/50">
-        Mulai Diskusi
+      <a href="#contact"
+        class="cta-bracket group">
+        <span class="brkt brkt-left text-amber-400 font-mono">[</span>
+        <span class="tracking-[0.2em] font-mono" data-i18n="heroBtn">MULAI DISKUSI</span>
+        <span class="brkt brkt-right text-amber-400 font-mono">]</span>
       </a>
     </div>
   </section>
 
-  <section id="expertise" class="scroll-section py-24 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-bold tracking-tight mb-12 reveal" data-i18n="expTitle">Keahlian & Kemampuan</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div class="reveal border-t border-gray-100 pt-6">
-          <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Hard Skills</h3>
-          <div class="space-y-6">
-            <div>
-              <h4 class="text-xl font-semibold mb-2">Front-End Development</h4>
-              <p class="text-gray-600 text-sm leading-relaxed" data-i18n="expFrontDesc">Membangun arsitektur web yang
-                tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework
-                modern yang efisien.</p>
-            </div>
-            <div>
-              <h4 class="text-xl font-semibold mb-2">UI/UX Design</h4>
-              <p class="text-gray-600 text-sm leading-relaxed" data-i18n="expUIDesc">Merancang wireframe, prototyping,
-                dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa
-                aplikasi.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal border-t border-gray-100 pt-6">
-          <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Soft Skills</h3>
-          <ul class="space-y-5">
-            <li class="flex items-start">
-              <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-              <div>
-                <h4 class="font-semibold text-gray-900" data-i18n="expProbTitle">Problem Solving</h4>
-                <p class="text-sm text-gray-500 mt-1" data-i18n="expProbDesc">Kemampuan menganalisis masalah kompleks,
-                  debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.</p>
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-              <div>
-                <h4 class="font-semibold text-gray-900" data-i18n="expTeamTitle">Bekerja Secara Tim</h4>
-                <p class="text-sm text-gray-500 mt-1" data-i18n="expTeamDesc">Berkomunikasi secara proaktif dan
-                  kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.
-                </p>
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="mr-4 mt-1.5 block w-2 h-2 bg-brand rounded-full shrink-0"></span>
-              <div>
-                <h4 class="font-semibold text-gray-900" data-i18n="expAdaptTitle">Adaptasi Cepat</h4>
-                <p class="text-sm text-gray-500 mt-1" data-i18n="expAdaptDesc">Luwes dalam mempelajari teknologi baru,
-                  menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika
-                  proyek.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
+  <!-- SKILLS & EXPERIENCE FLOATING CARDS SECTION (MATCHING INSPIRATION IMAGE 2) -->
+  <section id="experience" class="scroll-section relative bg-[#0a0d14] text-white"
+           style="height: 400vh;">
+    <!-- Sticky Viewport -->
+    <div id="exp-sticky" class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
+      
+      <!-- Atmospheric Glow (Cinematic Studio Teal & Warm Amber) -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-[8%] left-1/2 -translate-x-1/2 w-[640px] h-[400px] bg-cyan-600/10 rounded-full blur-[130px]"></div>
+        <div class="absolute bottom-[12%] left-1/3 w-[520px] h-[360px] bg-amber-600/10 rounded-full blur-[110px]"></div>
       </div>
 
-      <div class="mt-16 reveal border-t border-gray-100 pt-8">
-        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6" data-i18n="expToolsTitle">Perangkat
-          Lunak</h3>
-        <div class="flex flex-wrap gap-4">
-          <div
-            class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#007ACC] shadow-sm"></span>
-            <span class="text-sm font-semibold text-gray-800 tracking-wide">Visual Studio Code</span>
+      <!-- Horizontal Streaming Ticker Tapes (Matching Inspiration Image 2) -->
+      <div class="absolute inset-0 pointer-events-none z-[1] overflow-hidden flex flex-col justify-around pt-36 pb-20 opacity-25 select-none">
+        <!-- Ticker 1: Left to Right -->
+        <div class="ticker-ribbon overflow-hidden whitespace-nowrap">
+          <div class="animate-ticker-left font-mono text-[11px] md:text-xs tracking-[0.25em] text-slate-400 uppercase">
+            <span>■ ■ &nbsp; TURNING COMPLEXITY INTO CLARITY &nbsp; ■ ■ &nbsp; FRONT-END ARCHITECTURE &nbsp; ■ ■ &nbsp; CREATIVE CODE &nbsp; ■ ■ &nbsp; TURNING COMPLEXITY INTO CLARITY &nbsp; ■ ■ &nbsp; FRONT-END ARCHITECTURE &nbsp; ■ ■ &nbsp; CREATIVE CODE &nbsp;</span>
+            <span>■ ■ &nbsp; TURNING COMPLEXITY INTO CLARITY &nbsp; ■ ■ &nbsp; FRONT-END ARCHITECTURE &nbsp; ■ ■ &nbsp; CREATIVE CODE &nbsp; ■ ■ &nbsp; TURNING COMPLEXITY INTO CLARITY &nbsp; ■ ■ &nbsp; FRONT-END ARCHITECTURE &nbsp; ■ ■ &nbsp; CREATIVE CODE &nbsp;</span>
           </div>
-          <div
-            class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#F24E1E] shadow-sm"></span>
-            <span class="text-sm font-semibold text-gray-800 tracking-wide">Figma</span>
+        </div>
+        <!-- Ticker 2: Right to Left -->
+        <div class="ticker-ribbon overflow-hidden whitespace-nowrap">
+          <div class="animate-ticker-right font-mono text-[11px] md:text-xs tracking-[0.25em] text-slate-400 uppercase">
+            <span>■ ■ &nbsp; UI/UX DESIGN &amp; PROTOTYPING &nbsp; ■ ■ &nbsp; DESIGN SYSTEMS &nbsp; ■ ■ &nbsp; HIGH PERFORMANCE WEB &nbsp; ■ ■ &nbsp; UI/UX DESIGN &amp; PROTOTYPING &nbsp; ■ ■ &nbsp; DESIGN SYSTEMS &nbsp; ■ ■ &nbsp; HIGH PERFORMANCE WEB &nbsp;</span>
+            <span>■ ■ &nbsp; UI/UX DESIGN &amp; PROTOTYPING &nbsp; ■ ■ &nbsp; DESIGN SYSTEMS &nbsp; ■ ■ &nbsp; HIGH PERFORMANCE WEB &nbsp; ■ ■ &nbsp; UI/UX DESIGN &amp; PROTOTYPING &nbsp; ■ ■ &nbsp; DESIGN SYSTEMS &nbsp; ■ ■ &nbsp; HIGH PERFORMANCE WEB &nbsp;</span>
           </div>
-          <div
-            class="flex items-center gap-2.5 px-5 py-2.5 bg-gray-50 border border-gray-200 rounded-full hover:shadow-sm transition-all cursor-default">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#00C4CC] shadow-sm"></span>
-            <span class="text-sm font-semibold text-gray-800 tracking-wide">Canva</span>
+        </div>
+        <!-- Ticker 3: Left to Right -->
+        <div class="ticker-ribbon overflow-hidden whitespace-nowrap">
+          <div class="animate-ticker-left font-mono text-[11px] md:text-xs tracking-[0.25em] text-slate-400 uppercase">
+            <span>■ ■ &nbsp; RESPONSIVE SYSTEMS &nbsp; ■ ■ &nbsp; SYSTEM LOGIC &amp; ARCHITECTURE &nbsp; ■ ■ &nbsp; ACCESSIBLE &amp; SCALABLE &nbsp; ■ ■ &nbsp; RESPONSIVE SYSTEMS &nbsp; ■ ■ &nbsp; SYSTEM LOGIC &amp; ARCHITECTURE &nbsp; ■ ■ &nbsp; ACCESSIBLE &amp; SCALABLE &nbsp;</span>
+            <span>■ ■ &nbsp; RESPONSIVE SYSTEMS &nbsp; ■ ■ &nbsp; SYSTEM LOGIC &amp; ARCHITECTURE &nbsp; ■ ■ &nbsp; ACCESSIBLE &amp; SCALABLE &nbsp; ■ ■ &nbsp; RESPONSIVE SYSTEMS &nbsp; ■ ■ &nbsp; SYSTEM LOGIC &amp; ARCHITECTURE &nbsp; ■ ■ &nbsp; ACCESSIBLE &amp; SCALABLE &nbsp;</span>
           </div>
         </div>
       </div>
 
+      <!-- Section Header -->
+      <div id="exp-header" class="max-w-4xl mx-auto px-6 pt-16 md:pt-20 pb-2 text-center relative z-20 pointer-events-none transition-all duration-300">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase text-amber-400 bg-amber-500/10 border border-amber-500/20 mb-2 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+          <span data-i18n="expBadge">Keahlian &amp; Rekam Jejak</span>
+        </div>
+        <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight text-white drop-shadow-sm" data-i18n="expSectionTitle">Keahlian &amp; Pengalaman</h2>
+        <p class="text-xs md:text-sm text-gray-400 mt-1 max-w-lg mx-auto" data-i18n="expSectionSubtitle">Eksplorasi spektrum kemampuan teknis, perangkat kerja, dan pengalaman kolaboratif.</p>
+      </div>
+
+      <!-- 3D Stage Container (mengisi viewport, perspective di sini) -->
+      <div class="exp-stage absolute inset-0" style="transform-style: preserve-3d; perspective: 1200px;">
+        
+        <!-- Silhouette Cutout: portait.png (Matching Inspiration Image 2 - Grounded Center-Bottom) -->
+        <div id="exp-portrait" class="absolute left-1/2 bottom-0 -translate-x-1/2 z-10 pointer-events-none flex flex-col items-center justify-end select-none origin-bottom">
+          <!-- Studio Spotlight Glow behind head/shoulders -->
+          <div class="absolute top-[14%] left-1/2 -translate-x-1/2 w-[340px] md:w-[480px] h-[340px] md:h-[480px] rounded-full bg-gradient-to-t from-transparent via-cyan-500/15 to-amber-500/20 blur-[90px] pointer-events-none -z-10"></div>
+          
+          <!-- Cutout Image: portait.png -->
+          <img src="portait.png" alt="Fakhri Cahyo Diandra Nandito"
+               class="h-[50vh] md:h-[62vh] max-h-[620px] w-auto object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)] transition-transform duration-300 pointer-events-none" />
+
+          <!-- Interactive Action Buttons on Lower Torso (Matching Inspiration Image 2) -->
+          <div class="absolute bottom-5 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-3 md:gap-4 pointer-events-auto whitespace-nowrap">
+            <a href="#work" class="group px-3.5 md:px-5 py-1.5 md:py-2 rounded-lg text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] text-slate-300 hover:text-white border border-white/20 hover:border-amber-400/80 bg-[#0a0d14]/90 hover:bg-amber-500/20 backdrop-blur-md transition-all shadow-[0_4px_25px_rgba(0,0,0,0.7)] flex items-center gap-1.5 whitespace-nowrap">
+              <span class="text-amber-400 group-hover:translate-x-[-2px] transition-transform">[</span>
+              <span data-i18n="heroStartProject">START A PROJECT</span>
+              <span class="text-amber-400 group-hover:translate-x-[2px] transition-transform">]</span>
+            </a>
+            <a href="#contact" class="group px-3.5 md:px-5 py-1.5 md:py-2 rounded-lg text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] text-slate-300 hover:text-white border border-white/20 hover:border-cyan-400/80 bg-[#0a0d14]/90 hover:bg-cyan-500/20 backdrop-blur-md transition-all shadow-[0_4px_25px_rgba(0,0,0,0.7)] flex items-center gap-1.5 whitespace-nowrap">
+              <span class="text-cyan-400 group-hover:translate-x-[-2px] transition-transform">[</span>
+              <span data-i18n="heroGetInTouch">GET IN TOUCH</span>
+              <span class="text-cyan-400 group-hover:translate-x-[2px] transition-transform">]</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 11 Float Cards rendered by initFloatCards() -->
+      </div>
+    </div>
+    <!-- sr-only Semantic Fallback -->
+    <div class="sr-only">
+      <h2>Keahlian &amp; Pengalaman Fakhri Cahyo Diandra Nandito</h2>
+      <ul>
+        <li>Front-End Development</li><li>UI/UX Design</li>
+        <li>Problem Solving</li><li>Team Collaboration</li><li>Fast Adaptation</li>
+        <li>Visual Studio Code</li><li>Figma</li><li>Canva</li>
+        <li>Pengalaman Magang &amp; Industri</li>
+        <li>Kepemimpinan &amp; Organisasi</li>
+        <li>Partisipasi &amp; Workshop Aktif</li>
+      </ul>
     </div>
   </section>
 
-  <!-- 3D ORBIT SHOWCASE SECTION (KARYA & SERTIFIKASI) -->
-  <section id="work" class="scroll-section relative h-[400vh] bg-[#07080f] text-white">
-    <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between select-none">
+  <!-- 3D ORBIT SHOWCASE SECTION: KARYA & SERTIFIKASI (MATCHING INSPIRATION IMAGE 1) -->
+  <section id="work" class="scroll-section relative h-[400vh] bg-[#0a0d14] text-white">
+    <div class="sticky top-0 h-screen w-full overflow-hidden select-none">
       
       <!-- 3D WebGL Canvas -->
       <canvas id="orb-canvas" class="absolute inset-0 w-full h-full block z-0 outline-none touch-pan-y" style="touch-action: pan-y;"></canvas>
 
-      <!-- Atmospheric Ambient Lighting & Glows -->
+      <!-- Atmospheric Ambient Lighting & Glows (Cyan & Warm Amber) -->
       <div class="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
-        <div class="absolute -top-[12%] left-1/2 -translate-x-1/2 w-[720px] h-[520px] bg-blue-600/12 rounded-full blur-[140px]"></div>
-        <div class="absolute -bottom-[10%] left-1/2 -translate-x-1/2 w-[620px] h-[420px] bg-indigo-600/15 rounded-full blur-[130px]"></div>
+        <div class="absolute -top-[12%] right-[10%] w-[720px] h-[520px] bg-cyan-600/10 rounded-full blur-[140px]"></div>
+        <div class="absolute -bottom-[10%] right-[20%] w-[620px] h-[420px] bg-amber-600/10 rounded-full blur-[130px]"></div>
       </div>
 
-      <!-- Top Header HUD -->
-      <div class="relative z-10 pt-24 md:pt-28 text-center px-6 pointer-events-none">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs font-semibold tracking-widest uppercase text-blue-300 shadow-sm mb-3">
-          <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-          <span data-i18n="workBadge">Karya Unggulan &amp; Prestasi</span>
+      <!-- Main Editorial Layout: Left Side Content & Active HUD (Matching Image 1) -->
+      <div class="relative z-10 h-full w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-between py-20 md:py-24 pointer-events-none">
+        
+        <!-- Left Side: Editorial Typography -->
+        <div class="max-w-2xl pt-2 md:pt-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-amber-500/25 backdrop-blur-md text-xs font-semibold tracking-widest uppercase text-amber-300 shadow-sm mb-4 md:mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+            <span data-i18n="workBadge">Karya Unggulan &amp; Prestasi</span>
+          </div>
+          
+          <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-[0.95] drop-shadow-md whitespace-nowrap" data-i18n="workHeadline">
+            WORK THAT<br/>
+            BEGINS WITH<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-slate-400">STRATEGY.</span>
+          </h2>
+          
+          <p class="text-xs md:text-sm text-gray-400 mt-4 md:mt-6 max-w-md leading-relaxed hidden sm:block" data-i18n="workSubtitle">
+            Jelajahi karya pilihan dan sertifikasi keahlian dalam rotasi interaktif 3D yang mengelilingi pusat gravitasi digital.
+          </p>
         </div>
-        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm" data-i18n="workTitle">
-          Karya &amp; Sertifikasi
-        </h2>
-        <p class="text-xs md:text-sm text-gray-400 mt-2 max-w-md mx-auto hidden sm:block" data-i18n="workSubtitle">
-          Jelajahi karya pilihan dan sertifikasi keahlian dalam rotasi interaktif 3D.
-        </p>
-      </div>
 
-      <!-- Bottom HUD: Active Card Information & Action Link -->
-      <div class="relative z-10 pb-8 md:pb-12 text-center px-6 pointer-events-none flex flex-col items-center">
-        <div class="inline-flex flex-col items-center bg-[#10121d]/85 border border-white/10 backdrop-blur-xl rounded-2xl px-6 py-4 shadow-2xl max-w-md w-full transition-all duration-300 pointer-events-auto">
-          <div class="flex items-center justify-between w-full border-b border-white/10 pb-2 mb-2">
-            <div class="flex items-center gap-2">
-              <span id="orb-counter" class="text-xs font-mono font-bold tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 rounded-full">01 / 08</span>
-              <span id="orb-kind" class="text-[10px] uppercase font-bold tracking-wider text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">Project</span>
+        <!-- Left Side Bottom: Active Card Information & Action Link -->
+        <div class="max-w-md w-full pointer-events-auto pb-2 md:pb-4">
+          <div class="bg-[#0d1219]/90 border border-white/10 backdrop-blur-xl rounded-2xl p-5 shadow-2xl transition-all duration-300">
+            <div class="flex items-center justify-between w-full border-b border-white/10 pb-2.5 mb-3">
+              <div class="flex items-center gap-2">
+                <span id="orb-counter" class="text-xs font-mono font-bold tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-full">01 / 08</span>
+                <span id="orb-kind" class="text-[10px] uppercase font-bold tracking-wider text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">Project</span>
+              </div>
+              <span id="orb-tag" class="text-xs font-semibold text-slate-300 tracking-wide">Full-Stack</span>
             </div>
-            <span id="orb-tag" class="text-xs font-semibold text-blue-300 tracking-wide">Full-Stack</span>
+
+            <h3 id="orb-title" class="text-lg md:text-xl font-bold text-white tracking-tight line-clamp-1 w-full">
+              TechInventory System
+            </h3>
+
+            <div id="orb-hint-box" class="mt-3 flex items-center gap-2 text-xs text-gray-300 font-medium w-full">
+              <span id="orb-hint-icon">
+                <svg class="w-4 h-4 text-amber-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </span>
+              <span id="orb-hint-text">Klik kartu untuk membuka repositori GitHub</span>
+            </div>
           </div>
 
-          <h3 id="orb-title" class="text-lg md:text-xl font-bold text-white tracking-tight text-center line-clamp-1 w-full">
-            TechInventory System
-          </h3>
-
-          <div id="orb-hint-box" class="mt-2.5 flex items-center justify-center gap-2 text-xs text-gray-300 font-medium w-full">
-            <span id="orb-hint-icon">
-              <svg class="w-4 h-4 text-blue-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </span>
-            <span id="orb-hint-text">Klik kartu untuk membuka repositori GitHub</span>
+          <!-- Scroll Indicator Hint -->
+          <div class="mt-3 flex items-center gap-2 text-[11px] text-gray-500 uppercase tracking-widest pointer-events-none">
+            <span data-i18n="orbScrollHint">Gulir untuk memutar</span>
+            <svg class="w-3.5 h-3.5 text-amber-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </div>
         </div>
 
-        <!-- Scroll Indicator Hint -->
-        <div class="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-gray-500 uppercase tracking-widest pointer-events-none">
-          <span data-i18n="orbScrollHint">Gulir untuk memutar</span>
-          <svg class="w-3 h-3 text-blue-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-        </div>
       </div>
 
       <!-- Semantic Screen-Reader & Search Engine Fallback -->
@@ -328,23 +868,84 @@
     </div>
   </section>
 
-  <footer id="contact" class="scroll-section bg-gray-50 py-24 border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-6 text-center reveal">
-      <h2 class="text-3xl font-bold tracking-tight mb-6" data-i18n="contactTitle">Mari berkolaborasi.</h2>
-      <p class="text-gray-500 mb-10 max-w-xl mx-auto text-sm leading-relaxed" data-i18n="contactDesc">
+  <footer id="contact" class="scroll-section relative bg-[#07080f] py-24 border-t border-white/5 overflow-hidden">
+    <!-- Ambient Glow (Single subtle cyan ambient - anti-slop rule) -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[560px] h-[300px] bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+    <div class="max-w-5xl mx-auto px-6 text-center reveal relative z-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.2em] text-amber-400 bg-amber-500/10 border border-amber-500/20 mb-6 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <span data-i18n="contactBadge">Mari Terhubung</span>
+      </div>
+
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[1.05] mb-6 text-white whitespace-nowrap"
+        data-i18n="contactHeadline" data-i18n-html="true">
+        LET'S BUILD<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-slate-400">SOMETHING.</span>
+      </h2>
+
+      <p class="text-slate-400 mb-10 max-w-xl mx-auto text-sm leading-relaxed" data-i18n="contactDesc">
         Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur?
         Mari terhubung untuk proyek Anda selanjutnya.
       </p>
+
       <a href="mailto:ditofakhri3@gmail.com"
-        class="text-xl md:text-2xl font-medium border-b-2 border-brand pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors"
-        data-i18n="contactBtn">
-        klik untuk menghubungi saya
+        class="cta-bracket group"
+        aria-label="Kirim email ke ditofakhri3@gmail.com">
+        <span class="brkt brkt-left text-amber-400 font-mono">[</span>
+        <span class="tracking-[0.15em] font-mono" data-i18n="contactBtn">ditofakhri3@gmail.com</span>
+        <span class="brkt brkt-right text-amber-400 font-mono">]</span>
       </a>
-      <div class="mt-24 text-xs text-gray-400 font-medium tracking-wide uppercase" data-i18n="footerText">
-        &copy; 2026 Fakhri Cahyo Diandra Nandito.
+
+      <!-- Social Links -->
+      <div class="mt-14 flex items-center justify-center gap-4 flex-wrap">
+        <a href="https://github.com/chikka-creator" target="_blank" rel="noopener noreferrer"
+          aria-label="GitHub Fakhri C.D.N"
+          class="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-white/10 bg-white/[0.03] hover:border-amber-500/50 hover:bg-amber-500/10 transition-all">
+          <svg class="w-[18px] h-[18px] text-slate-400 group-hover:text-amber-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.5-1.695-.255-.12-.555-.615-.555-1.395 0-.66.24-1.095.585-1.38.18-.15.54-.24.93-.24.27 0 .63.045.99.135.51.135 1.17.54 1.62 1.08.42.54.855 1.245 1.245 1.65.345.36.72.555 1.23.555.72 0 1.305-.615 1.305-1.5 0-.45-.15-.99-.465-1.575.21-.105.645-.09 1.11.06 1.98.75 3.09 1.245 3.09 2.04 0 .69-.48 1.05-1.245 1.05-.33 0-.675-.045-1.02-.135-.39-.105-.78-.24-1.17-.42l-.12-.045c-.075-.03-.15-.045-.225-.045-.15 0-.27.105-.27.255 0 .24.435 1.32 1.05 2.01.495.555 1.245 1.05 2.16 1.05.27 0 .54-.03.81-.09.585-.15 1.17-.435 1.695-.81 1.11-.735 1.86-2.475 1.86-4.17 0-.33-.015-.66-.045-1.005-.735-.93-1.95-1.905-3.06-2.595 1.71.285 3.24.285 4.245.285 2.25 0 4.095-1.095 4.095-2.73 0-3.225-3.87-5.565-8.28-5.565C5.955 3.03 3.27 5.055 3.27 7.98c0 .495.075.96.195 1.38-.945.75-1.545 1.86-1.545 3.24 0 2.07 1.86 3.75 4.14 3.75.18 0 .465-.015.735-.03.315-.03.6-.045.87-.045.09 0 .165.015.165.045v.135c-.15.15-.585.555-1.245.81-1.44.585-3.87 1.245-4.92 1.245C1.8 20.175 0 17.475 0 15.06 0 6.72 5.37 0 12 0z"/></svg>
+          <span class="text-xs font-mono uppercase tracking-[0.15em] text-slate-400 group-hover:text-amber-400 transition-colors" data-i18n="linkGithub">GitHub</span>
+        </a>
+        <a href="https://www.instagram.com/khrisselll/" target="_blank" rel="noopener noreferrer"
+          aria-label="Instagram Fakhri C.D.N"
+          class="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-white/10 bg-white/[0.03] hover:border-amber-500/50 hover:bg-amber-500/10 transition-all">
+          <svg class="w-[18px] h-[18px] text-slate-400 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/></svg>
+          <span class="text-xs font-mono uppercase tracking-[0.15em] text-slate-400 group-hover:text-amber-400 transition-colors" data-i18n="linkInstagram">Instagram</span>
+        </a>
+        <a href="mailto:ditofakhri3@gmail.com"
+          aria-label="Email Fakhri C.D.N"
+          class="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-white/10 bg-white/[0.03] hover:border-amber-500/50 hover:bg-amber-500/10 transition-all">
+          <svg class="w-[18px] h-[18px] text-slate-400 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span class="text-xs font-mono uppercase tracking-[0.15em] text-slate-400 group-hover:text-amber-400 transition-colors" data-i18n="linkEmail">Email</span>
+        </a>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="mt-20 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3">
+        <div class="text-xs font-mono text-slate-500 tracking-wide" data-i18n="footerText">
+          &copy; 2026 — Surabaya, Indonesia
+        </div>
+        <div class="text-xs font-mono text-slate-500 tracking-wide uppercase">
+          <a href="#" class="hover:text-amber-400 transition-colors">Fakhri C.D.N</a>
+          <span class="text-slate-700 mx-2">/</span>
+          <span data-i18n="footerRole">Front-End &amp; UI/UX Developer</span>
+        </div>
       </div>
     </div>
   </footer>
+
+  <dialog id="card-dialog" class="flip-card-dialog" aria-labelledby="card-dialog-title">
+    <div class="dialog-header">
+      <span id="card-dialog-kind" class="card-kind-pill"></span>
+      <button id="card-dialog-close" type="button" aria-label="Tutup">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="dialog-media-wrap">
+      <img id="card-dialog-img" src="" alt="" />
+    </div>
+    <h3 id="card-dialog-title"></h3>
+    <p id="card-dialog-desc"></p>
+  </dialog>
 
   <script type="module">
     import * as THREE from 'three';
@@ -355,16 +956,32 @@
         navAbout: "Tentang", navExpertise: "Keahlian", navWork: "Karya", navCert: "Sertifikasi", navContact: "Kontak",
         heroTitle1: "Merancang pengalaman <br class=\"hidden md:block\" />", heroTitle2: "digital yang bermakna.",
         heroDesc: "Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna.",
-        heroBtn: "Mulai Diskusi", expTitle: "Keahlian & Kemampuan",
+        heroBtn: "MULAI DISKUSI", expTitle: "Keahlian & Kemampuan",
+        expBadge: "Keahlian & Rekam Jejak",
+        expSectionTitle: "Keahlian & Pengalaman",
+        expSectionSubtitle: "Eksplorasi spektrum kemampuan teknis, perangkat kerja, dan pengalaman kolaboratif.",
+        expCardHint: "Klik kartu untuk rincian lengkap",
+        expCardBtn: "Buka Detail & Sertifikat",
+        expCardOf: "DARI",
+        expCardCompetencies: "Kompetensi Utama:",
+        expToolsDescVS: "Editor kode utama untuk pengembangan web modern dengan ekosistem ekstensi terintegrasi.",
+        expToolsDescFigma: "Platform desain utama untuk perancangan UI, wireframe, prototyping, dan manajemen design token.",
+        expToolsDescCanva: "Mendukung pembuatan materi visual, compositing grafis, dan aset presentasi profesional.",
+        exp1Title: "Pengalaman Magang & Industri", exp1Desc: "Pengalaman praktis mengimplementasikan arsitektur kode frontend, integrasi antarmuka, dan optimalisasi alur pengguna pada proyek nyata.",
+        exp2Title: "Kepemimpinan & Organisasi", exp2Desc: "Mengkoordinasikan tim dan mengelola timeline eksekusi acara teknis maupun kreatif secara sistematis untuk hasil optimal.",
+        exp3Title: "Partisipasi & Workshop Aktif", exp3Desc: "Aktif mengikuti berbagai workshop teknologi, hackathon, dan seminar bersertifikasi untuk terus mengasah kapabilitas teknis.",
         expFrontDesc: "Membangun arsitektur web yang tangguh, berkinerja tinggi, dan interaktif menggunakan Native HTML/CSS/JS hingga implementasi framework modern yang efisien.",
         expUIDesc: "Merancang wireframe, prototyping, dan memastikan konsistensi visual serta alur navigasi yang intuitif tanpa mengorbankan performa aplikasi.",
         expProbTitle: "Problem Solving", expProbDesc: "Kemampuan menganalisis masalah kompleks, debugging presisi, dan merancang logika sistem yang menyelesaikan akar masalah secara terukur.",
         expTeamTitle: "Bekerja Secara Tim", expTeamDesc: "Berkomunikasi secara proaktif dan kolaboratif dengan desainer, backend engineer, maupun stakeholder untuk menyelaraskan tujuan proyek.",
         expAdaptTitle: "Adaptasi Cepat", expAdaptDesc: "Luwes dalam mempelajari teknologi baru, menyesuaikan diri dengan perubahan arah desain, dan menjaga standar kualitas di tengah dinamika proyek.",
         expToolsTitle: "Perangkat Lunak",
+        heroStartProject: "Mulai Proyek",
+        heroGetInTouch: "Hubungi Saya",
         workBadge: "Karya Unggulan & Prestasi",
+        workHeadline: "KARYA YANG<br/>DIBANGUN DENGAN<br/><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-slate-400\">STRATEGI.</span>",
         workTitle: "Karya & Sertifikasi",
-        workSubtitle: "Jelajahi karya pilihan dan sertifikasi keahlian dalam rotasi interaktif 3D.",
+        workSubtitle: "Jelajahi karya pilihan dan sertifikasi keahlian dalam rotasi interaktif 3D yang mengelilingi pusat gravitasi digital.",
         orbScrollHint: "Gulir untuk memutar",
         work1Title: "TechInventory System",
         work1Desc: "Sistem manajemen inventaris tingkat lanjut. Membangun fitur peminjaman alat, manajemen stok otomatis, hingga sistem penalti poin bagi pengguna.",
@@ -402,23 +1019,44 @@
         cert10Title: "Seminar Sekolah Kedinasan",
         cert10Desc: "Penghargaan atas partisipasi dalam Seminar Persiapan Seleksi Sekolah Kedinasan Tahun 2027 yang diselenggarakan oleh LKP Science Society Surabaya.",
         cert10Pub: "Diterbitkan oleh: LKP Science Society Surabaya",
+        contactBadge: "Mari Terhubung",
+        contactHeadline: "LET'S BUILD<br /><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-slate-400\">SOMETHING.</span>",
         contactTitle: "Mari berkolaborasi.", contactDesc: "Mencari developer yang memahami bagaimana menghubungkan design logic dengan kode yang bersih dan terstruktur? Mari terhubung untuk proyek Anda selanjutnya.",
-        contactBtn: "klik untuk menghubungi saya", footerText: "© 2026 Fakhri Cahyo Diandra Nandito."
+        contactBtn: "ditofakhri3@gmail.com",
+        footerText: "© 2026 — Surabaya, Indonesia",
+        footerRole: "Front-End & UI/UX Developer",
+        linkGithub: "GitHub", linkInstagram: "Instagram", linkEmail: "Email"
       },
       en: {
         navAbout: "About", navExpertise: "Expertise", navWork: "Work", navCert: "Certificates", navContact: "Contact",
         heroTitle1: "Crafting meaningful <br class=\"hidden md:block\" />", heroTitle2: "digital experiences.",
         heroDesc: "I am a Front-End Developer and UI/UX Designer. Focused on simplifying complex interfaces into elegant, user-centric solutions.",
-        heroBtn: "Start a Conversation", expTitle: "Skills & Expertise",
+        heroBtn: "START A CONVERSATION", expTitle: "Skills & Expertise",
+        expBadge: "Capabilities & Journey",
+        expSectionTitle: "Skills & Experience",
+        expSectionSubtitle: "Explore the spectrum of technical skills, design tools, and collaborative experience.",
+        expCardHint: "Click card for full details",
+        expCardBtn: "Open Details & Credentials",
+        expCardOf: "OF",
+        expCardCompetencies: "Key Competencies:",
+        expToolsDescVS: "Primary code editor for modern web engineering with an integrated extension ecosystem.",
+        expToolsDescFigma: "Primary interface design platform for UI layouts, wireframes, prototyping, and design token management.",
+        expToolsDescCanva: "Supporting visual composition, pitch graphics, and professional presentation assets.",
+        exp1Title: "Internship & Industry Experience", exp1Desc: "Hands-on experience implementing frontend code architecture, UI integration, and user workflow optimization in real projects.",
+        exp2Title: "Leadership & Organization", exp2Desc: "Coordinating teams and systematically managing execution timelines for technical and creative events.",
+        exp3Title: "Active Workshops & Participation", exp3Desc: "Actively attending tech workshops, hackathons, and certified programs to continuously sharpen technical expertise.",
         expFrontDesc: "Building robust, high-performance, and interactive web architectures using Native HTML/CSS/JS to efficient modern framework implementations.",
         expUIDesc: "Designing wireframes, prototyping, and ensuring visual consistency as well as intuitive navigation flows without sacrificing application performance.",
         expProbTitle: "Problem Solving", expProbDesc: "Ability to analyze complex problems, precision debugging, and design system logic that solves root causes scalably.",
         expTeamTitle: "Team Collaboration", expTeamDesc: "Communicating proactively and collaboratively with designers, backend engineers, and stakeholders to align project goals.",
         expAdaptTitle: "Fast Adaptation", expAdaptDesc: "Flexible in learning new technologies, adapting to design direction changes, and maintaining quality standards amidst project dynamics.",
         expToolsTitle: "Software & Tools",
+        heroStartProject: "Start A Project",
+        heroGetInTouch: "Get In Touch",
         workBadge: "Featured Works & Achievements",
+        workHeadline: "WORK THAT<br/>BEGINS WITH<br/><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-slate-400\">STRATEGY.</span>",
         workTitle: "Works & Certifications",
-        workSubtitle: "Explore interactive projects and featured certificates in a 3D orbit.",
+        workSubtitle: "Explore interactive projects and featured certificates in a 3D orbit circling digital gravity.",
         orbScrollHint: "Scroll to rotate",
         work1Title: "TechInventory System",
         work1Desc: "Advanced inventory management system. Building tool borrowing features, automated stock management, to a point penalty system for users.",
@@ -456,8 +1094,13 @@
         cert10Title: "Government School Seminar",
         cert10Desc: "Recognition for participation in the 2027 Government School Selection Preparation Seminar organized by LKP Science Society Surabaya.",
         cert10Pub: "Issued by: LKP Science Society Surabaya",
+        contactBadge: "Get In Touch",
+        contactHeadline: "LET'S BUILD<br /><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-slate-400\">SOMETHING.</span>",
         contactTitle: "Let's collaborate.", contactDesc: "Looking for a developer who understands how to connect design logic with clean, structured code? Let's connect for your next project.",
-        contactBtn: "click to contact me", footerText: "© 2026 Fakhri Cahyo Diandra Nandito."
+        contactBtn: "ditofakhri3@gmail.com",
+        footerText: "© 2026 — Surabaya, Indonesia",
+        footerRole: "Front-End & UI/UX Developer",
+        linkGithub: "GitHub", linkInstagram: "Instagram", linkEmail: "Email"
       }
     };
 
@@ -635,12 +1278,13 @@
           document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[currentLang][key]) {
-              if (key === 'heroTitle1') el.innerHTML = translations[currentLang][key];
+              if (key === 'heroTitle1' || key === 'workHeadline' || key === 'contactHeadline') el.innerHTML = translations[currentLang][key];
               else el.textContent = translations[currentLang][key];
             }
           });
 
           updateHUDLanguage();
+          if (typeof window.updateFloatCardsLanguage === 'function') window.updateFloatCardsLanguage();
           setTimeout(() => { moveBubble(activeLink); }, 50);
         });
       });
@@ -659,6 +1303,7 @@
 
       // 7. INITIALIZE THREE.JS 3D ORBIT SCENE
       initOrbit3D();
+      initFloatCards();
     }
 
     // ==========================================
@@ -685,13 +1330,13 @@
 
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
-      renderer.setClearColor(0x07080f, 1);
+      renderer.setClearColor(0x0a0d14, 1);
 
       const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x07080f, 0.08);
+      scene.fog = new THREE.FogExp2(0x0a0d14, 0.08);
 
       const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-      camera.position.set(0, 0.25, 7.2);
+      camera.position.set(0, 0.15, 7.3);
       camera.lookAt(0, 0, 0);
 
       // Card Texture Generator
@@ -835,6 +1480,21 @@
           ctx.fillText(card.title, 36, c.height - 46);
           ctx.shadowBlur = 0;
 
+          // Top filmstrip ticker border (Matching Image 1 ribbon aesthetic)
+          ctx.fillStyle = 'rgba(10, 13, 20, 0.85)';
+          ctx.fillRect(0, 0, c.width, 32);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(0, 32);
+          ctx.lineTo(c.width, 32);
+          ctx.stroke();
+
+          ctx.font = '600 11px monospace';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('■ ■  TURNING COMPLEXITY INTO CLARITY  ■ ■  PORTFOLIO ARCHITECTURE  ■ ■', 24, 16);
+
           // Perimeter border stroke
           ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
           ctx.lineWidth = 2.5;
@@ -866,87 +1526,50 @@
         return texture;
       }
 
-      // Procedural Portrait Texture Fallback
-      function makeProceduralPortraitTexture() {
+      // Studio Portrait Texture Generator (using portait.png transparent cutout)
+      function createStudioPortraitTexture() {
         const c = document.createElement('canvas');
-        c.width = 512;
-        c.height = 700;
+        c.width = 768;
+        c.height = 1024;
         const ctx = c.getContext('2d');
-        const cx = 256;
-        const cy = 350;
 
-        // Radial aura
-        const bgGrad = ctx.createRadialGradient(cx, cy, 20, cx, cy, 320);
-        bgGrad.addColorStop(0, 'rgba(30, 58, 138, 0.7)');
-        bgGrad.addColorStop(0.5, 'rgba(15, 23, 42, 0.85)');
-        bgGrad.addColorStop(1, 'rgba(7, 8, 15, 0)');
-        ctx.fillStyle = bgGrad;
-        ctx.fillRect(0, 0, c.width, c.height);
+        function renderFallback() {
+          ctx.clearRect(0, 0, c.width, c.height);
+          ctx.fillStyle = 'rgba(245, 158, 11, 0.12)';
+          ctx.fillRect(0, 0, c.width, c.height);
+        }
 
-        // Tech Orbital Rings
-        ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([12, 10]);
-        ctx.beginPath();
-        ctx.arc(cx, cy, 185, 0, Math.PI * 2);
-        ctx.stroke();
+        renderFallback();
+        const texture = new THREE.CanvasTexture(c);
+        texture.minFilter = THREE.LinearFilter;
+        texture.generateMipmaps = false;
 
-        ctx.strokeStyle = 'rgba(99, 102, 241, 0.55)';
-        ctx.lineWidth = 3;
-        ctx.setLineDash([20, 14, 6, 14]);
-        ctx.beginPath();
-        ctx.arc(cx, cy, 155, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+          ctx.clearRect(0, 0, c.width, c.height);
+          ctx.drawImage(img, 0, 0, c.width, c.height);
+          texture.needsUpdate = true;
+        };
+        img.onerror = () => {
+          renderFallback();
+          texture.needsUpdate = true;
+        };
+        img.src = 'portait.png';
 
-        // Central Holographic Orb
-        const orbGrad = ctx.createRadialGradient(cx - 35, cy - 35, 10, cx, cy, 125);
-        orbGrad.addColorStop(0, '#60a5fa');
-        orbGrad.addColorStop(0.35, '#2563eb');
-        orbGrad.addColorStop(0.8, '#1e3a8a');
-        orbGrad.addColorStop(1, '#0f172a');
-        ctx.fillStyle = orbGrad;
-        ctx.beginPath();
-        ctx.arc(cx, cy, 125, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.strokeStyle = 'rgba(147, 197, 253, 0.85)';
-        ctx.lineWidth = 3.5;
-        ctx.beginPath();
-        ctx.arc(cx, cy, 125, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Monogram "F"
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '900 115px "Inter", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-        ctx.shadowBlur = 20;
-        ctx.fillText('F', cx, cy + 4);
-        ctx.shadowBlur = 0;
-
-        // Subtitle
-        ctx.fillStyle = '#93c5fd';
-        ctx.font = '600 14px "Inter", sans-serif';
-        ctx.letterSpacing = '3px';
-        ctx.fillText('FAKHRI C.D.N', cx, cy + 80);
-
-        const tex = new THREE.CanvasTexture(c);
-        tex.minFilter = THREE.LinearFilter;
-        return tex;
+        return texture;
       }
 
-      // Aura Glow Texture
+      // Aura Glow Texture (Warm Amber & Steel Cyan)
       function makeGlowTexture() {
         const c = document.createElement('canvas');
         c.width = 256;
         c.height = 256;
         const ctx = c.getContext('2d');
         const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
-        grad.addColorStop(0, 'rgba(59, 130, 246, 0.55)');
-        grad.addColorStop(0.35, 'rgba(37, 99, 235, 0.25)');
-        grad.addColorStop(0.7, 'rgba(29, 78, 216, 0.08)');
+        grad.addColorStop(0, 'rgba(245, 158, 11, 0.45)');    // Warm amber core
+        grad.addColorStop(0.35, 'rgba(56, 189, 248, 0.22)'); // Steel cyan rim
+        grad.addColorStop(0.7, 'rgba(14, 165, 233, 0.06)');  // Deep cyan halo
         grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 256, 256);
@@ -959,44 +1582,31 @@
       scene.add(centerGroup);
 
       // Ambient Glow behind center portrait
-      const glowGeo = new THREE.PlaneGeometry(3.6, 3.6);
+      const glowGeo = new THREE.PlaneGeometry(4.8, 4.8);
       const glowMat = new THREE.MeshBasicMaterial({
         map: makeGlowTexture(),
         transparent: true,
         blending: THREE.AdditiveBlending,
-        opacity: 0.65,
+        opacity: 0.75,
         depthWrite: false
       });
       const glowMesh = new THREE.Mesh(glowGeo, glowMat);
       glowMesh.position.set(0, 0, -0.05);
+      glowMesh.renderOrder = 5;
       centerGroup.add(glowMesh);
 
-      // Central Portrait Mesh
-      const portraitGeo = new THREE.PlaneGeometry(1.65, 2.25);
+      // Central Portrait Mesh (portait.png transparent cutout)
+      const portraitGeo = new THREE.PlaneGeometry(2.4, 3.2);
       const portraitMat = new THREE.MeshBasicMaterial({
-        map: makeProceduralPortraitTexture(),
+        map: createStudioPortraitTexture(),
         transparent: true,
         side: THREE.DoubleSide,
         depthWrite: false
       });
       const portraitMesh = new THREE.Mesh(portraitGeo, portraitMat);
-      portraitMesh.position.set(0, -0.1, 0);
+      portraitMesh.position.set(0, 0, 0);
+      portraitMesh.renderOrder = 50;
       centerGroup.add(portraitMesh);
-
-      // Try loading custom cutout portrait if present
-      const textureLoader = new THREE.TextureLoader();
-      textureLoader.load(
-        'portrait.png',
-        (loadedTex) => {
-          loadedTex.minFilter = THREE.LinearFilter;
-          portraitMat.map = loadedTex;
-          portraitMat.needsUpdate = true;
-        },
-        undefined,
-        () => {
-          // Keep procedural hologram fallback quietly
-        }
-      );
 
       // Create 8 Orbit Card Meshes
       const cardGeometry = new THREE.PlaneGeometry(1.6, 1.0);
@@ -1007,7 +1617,8 @@
         const cardMaterial = new THREE.MeshBasicMaterial({
           map: cardTexture,
           transparent: true,
-          side: THREE.DoubleSide
+          side: THREE.DoubleSide,
+          depthWrite: false
         });
         const mesh = new THREE.Mesh(cardGeometry, cardMaterial);
         mesh.userData = { card };
@@ -1163,23 +1774,27 @@
         }
 
         const isMobile = window.innerWidth < 768;
-        const R = isMobile ? 2.65 : 3.35;
+        const R = isMobile ? 2.5 : 3.15;
+        const centerX = isMobile ? 0 : 1.48;
+        const centerY = isMobile ? 0.25 : 0.02;
 
         let maxFocus = -999;
         let frontIdx = 0;
 
-        // Position and orient cards in 3D orbit
+        // Position and orient cards in 3D orbit wrapping around Fakhri (Matching Inspiration Image 1)
         cardMeshes.forEach((mesh, i) => {
           const theta = (i * STEP) - currentAngle;
-          mesh.position.x = Math.sin(theta) * R;
+          mesh.position.x = centerX + Math.sin(theta) * R;
           mesh.position.z = Math.cos(theta) * R;
 
-          // Natural vertical offset
-          const staggerY = Math.sin(i * 1.5) * 0.12;
-          mesh.position.y = staggerY;
+          // Natural diagonal inclination matching Image 1:
+          // Front cards swoop down across Fakhri's waist from left to right
+          const tiltY = -Math.sin(theta) * 0.42;
+          const dipY = Math.cos(theta) * -0.32;
+          mesh.position.y = centerY + tiltY + dipY - 0.26;
 
-          // Keep cards billboard facing camera
-          mesh.rotation.set(0, 0, 0);
+          // Subtle tilt matching the helical ribbon angle
+          mesh.rotation.set(0.08, 0, -0.06);
 
           // Depth factor cos(theta): 1 is front, -1 is back
           const focusK = Math.cos(theta);
@@ -1191,17 +1806,23 @@
 
           // Scale
           const isHovered = (hoveredIndex === i && focusK > 0.45);
-          const baseScale = 0.82 + Math.max(0, focusK) * 0.26;
+          const baseScale = 0.82 + Math.max(0, focusK) * 0.28;
           const hoverMultiplier = isHovered ? 1.08 : 1.0;
           const finalScale = baseScale * hoverMultiplier;
           mesh.scale.set(finalScale, finalScale, 1);
 
           // Opacity
-          const targetOpacity = 0.38 + (focusK + 1) * 0.31;
-          mesh.material.opacity = Math.max(0.28, Math.min(1.0, targetOpacity));
+          const targetOpacity = 0.42 + (focusK + 1) * 0.29;
+          mesh.material.opacity = Math.max(0.32, Math.min(1.0, targetOpacity));
 
-          // Depth rendering order
-          mesh.renderOrder = Math.round((focusK + 1) * 50);
+          // Physical depth sorting:
+          // Front cards (focusK >= 0) pass IN FRONT of Fakhri's lower torso (renderOrder > 50)
+          // Back cards (focusK < 0) pass BEHIND Fakhri's shoulders (renderOrder < 50)
+          if (focusK >= 0) {
+            mesh.renderOrder = 60 + Math.round(focusK * 35);
+          } else {
+            mesh.renderOrder = 10 + Math.round((focusK + 1) * 15);
+          }
         });
 
         // Sync Active Card HUD
@@ -1209,10 +1830,9 @@
           updateHUD(frontIdx);
         }
 
-        // Floating animation for portrait
-        if (!prefersReducedMotion) {
-          centerGroup.position.y = Math.sin(clock.getElapsedTime() * 1.7) * 0.04;
-        }
+        // Floating animation & positioning for Fakhri's cutout
+        centerGroup.position.x = centerX;
+        centerGroup.position.y = centerY + (prefersReducedMotion ? 0 : Math.sin(clock.getElapsedTime() * 1.5) * 0.03);
 
         renderer.render(scene, camera);
       }
@@ -1236,6 +1856,731 @@
       }, { threshold: 0.01 });
 
       sectionObserver.observe(workSection);
+    }
+
+    // ==========================================
+    // FLOATING CARDS ENGINE (CYBER-GLASS PARADE)
+    // ==========================================
+    const FLOAT_CARDS = [
+      { kind: "hard",  titleKey: "expFrontTitle", descKey: "expFrontDesc", img: "TechInventory.png", tags: ["HTML5 / Semantic", "Tailwind CSS", "Modern JavaScript", "Component Architecture"], tagsEn: ["HTML5 / Semantic", "Tailwind CSS", "Modern JavaScript", "Component Architecture"] },
+      { kind: "hard",  titleKey: "expUITitle",    descKey: "expUIDesc",    img: "RemakeNet.png",      tags: ["Wireframing", "Interactive Prototyping", "Design System", "User-Centered UI"], tagsEn: ["Wireframing", "Interactive Prototyping", "Design System", "User-Centered UI"] },
+      { kind: "soft",  titleKey: "expProbTitle",  descKey: "expProbDesc",  img: "sertif3.jpeg",        tags: ["Computational Thinking", "Root-Cause Debugging", "Algorithmic Logic", "Systematic Approach"], tagsEn: ["Computational Thinking", "Root-Cause Debugging", "Algorithmic Logic", "Systematic Approach"] },
+      { kind: "soft",  titleKey: "expTeamTitle",  descKey: "expTeamDesc",  img: "sertif6.jpeg",        tags: ["Cross-Functional Sync", "Agile Collaboration", "Active Communication", "Peer Code Review"], tagsEn: ["Cross-Functional Sync", "Agile Collaboration", "Active Communication", "Peer Code Review"] },
+      { kind: "soft",  titleKey: "expAdaptTitle", descKey: "expAdaptDesc", img: "sertif7.jpeg",        tags: ["Rapid Upskilling", "Tech Stack Agility", "Continuous Learning", "Design Evolution"], tagsEn: ["Rapid Upskilling", "Tech Stack Agility", "Continuous Learning", "Design Evolution"] },
+      { kind: "tools", titleKey: null, label: "Visual Studio Code", descKey: "expToolsDescVS",    img: "assets/vscode_preview.jpg", tags: ["Code Navigation", "Git Workflows", "Workspace Config", "Web Extensions"], tagsEn: ["Code Navigation", "Git Workflows", "Workspace Config", "Web Extensions"] },
+      { kind: "tools", titleKey: null, label: "Figma",              descKey: "expToolsDescFigma", img: "assets/figma_preview.jpg",  tags: ["Auto-Layout", "Design Tokens", "High-Fi Mockups", "Responsive Grids"], tagsEn: ["Auto-Layout", "Design Tokens", "High-Fi Mockups", "Responsive Grids"] },
+      { kind: "tools", titleKey: null, label: "Canva",              descKey: "expToolsDescCanva", img: "assets/canva_preview.jpg",  tags: ["Brand Assets", "Visual Composition", "Pitch Presentations", "Social Collateral"], tagsEn: ["Brand Assets", "Visual Composition", "Pitch Presentations", "Social Collateral"] },
+      { kind: "work",  titleKey: "exp1Title", descKey: "exp1Desc",         img: "TechInventory.png",   tags: ["Hands-on Development", "Industry Workflow", "Real-world Delivery", "Code Quality"], tagsEn: ["Hands-on Development", "Industry Workflow", "Real-world Delivery", "Code Quality"] },
+      { kind: "work",  titleKey: "exp2Title", descKey: "exp2Desc",         img: "sertif11.png",        tags: ["Event Direction", "Team Leadership", "Resource Scheduling", "Execution Delivery"], tagsEn: ["Event Direction", "Team Leadership", "Resource Scheduling", "Execution Delivery"] },
+      { kind: "work",  titleKey: "exp3Title", descKey: "exp3Desc",         img: "sertif1.jpeg",         tags: ["Certified Workshop", "Skill Acceleration", "Competitive Drive", "Knowledge Growth"], tagsEn: ["Certified Workshop", "Skill Acceleration", "Competitive Drive", "Knowledge Growth"] }
+    ];
+    const N_FLOAT = FLOAT_CARDS.length;
+
+    function initFloatCards() {
+      const section = document.getElementById('experience');
+      const stage = section ? section.querySelector('.exp-stage') : null;
+      if (!section || !stage) return;
+
+      if (N_FLOAT !== 11) console.error('FLOAT_CARDS expects 11 items, got', N_FLOAT);
+
+      const prefersRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // 11 Symmetrical, mathematically non-overlapping constellation slots:
+      // Left Wing:
+      //   Column 1 (Outer Left): Cards 0, 2, 4 (Row 0, Row 1, Row 2)
+      //   Column 2 (Inner Left): Cards 1, 3 (Interlocking Row 0.5, Row 1.5)
+      // Center Anchor:
+      //   Card 9 (Row 2, centered directly below portrait)
+      // Right Wing:
+      //   Column 3 (Inner Right): Cards 5, 7 (Interlocking Row 0.5, Row 1.5)
+      //   Column 4 (Outer Right): Cards 6, 8, 10 (Row 0, Row 1, Row 2)
+      const FLOAT_SLOTS = [
+        { wing: 'left',   col: 'outer', row: 0,   z: 40 }, // 0: Front-End
+        { wing: 'left',   col: 'inner', row: 0.5, z: 50 }, // 1: UI/UX
+        { wing: 'left',   col: 'outer', row: 1,   z: 40 }, // 2: Problem Solving
+        { wing: 'left',   col: 'inner', row: 1.5, z: 50 }, // 3: Team Collab
+        { wing: 'left',   col: 'outer', row: 2,   z: 40 }, // 4: Fast Adaptation
+        { wing: 'right',  col: 'inner', row: 0.5, z: 50 }, // 5: VS Code
+        { wing: 'right',  col: 'outer', row: 0,   z: 40 }, // 6: Figma
+        { wing: 'right',  col: 'inner', row: 1.5, z: 50 }, // 7: Canva
+        { wing: 'right',  col: 'outer', row: 1,   z: 40 }, // 8: Magang & Industri
+        { wing: 'right',  col: 'inner', row: 2,   z: 50 }, // 9: Ketua Panitia
+        { wing: 'right',  col: 'outer', row: 2,   z: 40 }  // 10: Peserta Workshop
+      ];
+
+      const cardEls = [];
+      const kindLabels = { hard: 'Hard Skill', soft: 'Soft Skill', tools: 'Tools & Stack', work: 'Experience' };
+
+      FLOAT_CARDS.forEach(function(card, i) {
+        const slot = FLOAT_SLOTS[i];
+        const el = document.createElement('div');
+        el.className = 'float-card group';
+        el.setAttribute('data-kind', card.kind);
+        el.setAttribute('data-card-index', i);
+        el.tabIndex = 0;
+        el.setAttribute('role', 'button');
+        const cardTitle = card.titleKey ? (translations[currentLang][card.titleKey] || '') : card.label;
+        const cardDesc = translations[currentLang][card.descKey] || '';
+        el.setAttribute('aria-label', cardTitle);
+
+        // A. Ambient Glow & Specular Sheen
+        const glowEl = document.createElement('div');
+        glowEl.className = 'card-ambient-glow';
+        const shineEl = document.createElement('div');
+        shineEl.className = 'card-specular-shine';
+
+        // B. Compact View (Constellation idle state)
+        const compactView = document.createElement('div');
+        compactView.className = 'card-view-compact';
+
+        const cHeader = document.createElement('div');
+        cHeader.className = 'card-compact-header';
+        cHeader.innerHTML = `
+          <div class="card-kind-pill">
+            <span class="kind-dot"></span>
+            <span class="kind-label">${kindLabels[card.kind]}</span>
+          </div>
+          <span class="card-num-badge">${String(i + 1).padStart(2, '0')}/11</span>
+        `;
+
+        const cMedia = document.createElement('div');
+        cMedia.className = 'card-compact-media';
+        const cImg = document.createElement('img');
+        cImg.src = card.img || '';
+        cImg.alt = cardTitle;
+        cImg.className = 'card-compact-thumb';
+        cImg.loading = 'lazy';
+        cImg.onerror = function() { this.style.display = 'none'; };
+        const cOverlay = document.createElement('div');
+        cOverlay.className = 'card-compact-overlay';
+        cMedia.appendChild(cImg);
+        cMedia.appendChild(cOverlay);
+
+        const cInfo = document.createElement('div');
+        cInfo.className = 'card-compact-info';
+        const cTitle = document.createElement('h3');
+        cTitle.className = 'card-compact-title';
+        if (card.titleKey) {
+          cTitle.setAttribute('data-i18n', card.titleKey);
+          cTitle.textContent = cardTitle;
+        } else {
+          cTitle.textContent = card.label;
+        }
+
+        const cDesc = document.createElement('p');
+        cDesc.className = 'card-compact-desc';
+        cDesc.setAttribute('data-i18n', card.descKey);
+        cDesc.textContent = cardDesc;
+
+        const cTags = document.createElement('div');
+        cTags.className = 'card-compact-tags';
+        const activeTags = currentLang === 'en' ? (card.tagsEn || card.tags) : card.tags;
+        (activeTags || []).slice(0, 2).forEach(function(tag) {
+          const tSpan = document.createElement('span');
+          tSpan.className = 'compact-tag';
+          tSpan.textContent = tag;
+          cTags.appendChild(tSpan);
+        });
+
+        cInfo.appendChild(cTitle);
+        cInfo.appendChild(cDesc);
+        cInfo.appendChild(cTags);
+
+        compactView.appendChild(cHeader);
+        compactView.appendChild(cMedia);
+        compactView.appendChild(cInfo);
+
+        // C. Cinematic Hero View (Approaching screen state)
+        const expandedView = document.createElement('div');
+        expandedView.className = 'card-view-expanded';
+
+        const expInner = document.createElement('div');
+        expInner.className = 'card-expanded-inner';
+
+        // Left Media Pane
+        const mediaPane = document.createElement('div');
+        mediaPane.className = 'card-exp-media-pane';
+        const mediaBox = document.createElement('div');
+        mediaBox.className = 'card-exp-media-box';
+        const expImg = document.createElement('img');
+        expImg.src = card.img || '';
+        expImg.alt = cardTitle;
+        expImg.className = 'card-exp-thumb';
+        const expOverlay = document.createElement('div');
+        expOverlay.className = 'card-exp-media-overlay';
+        const expBadge = document.createElement('div');
+        expBadge.className = 'card-exp-media-badge';
+        expBadge.innerHTML = `<span class="kind-dot"></span><span>${kindLabels[card.kind]}</span>`;
+        mediaBox.appendChild(expImg);
+        mediaBox.appendChild(expOverlay);
+        mediaBox.appendChild(expBadge);
+
+        const expHint = document.createElement('div');
+        expHint.className = 'card-exp-hint';
+        expHint.innerHTML = `
+          <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+          <span data-i18n="expCardHint">${translations[currentLang].expCardHint || 'Klik kartu untuk rincian lengkap'}</span>
+        `;
+        mediaPane.appendChild(mediaBox);
+        mediaPane.appendChild(expHint);
+
+        // Right Info Pane
+        const infoPane = document.createElement('div');
+        infoPane.className = 'card-exp-info-pane';
+
+        const expHeader = document.createElement('div');
+        expHeader.className = 'card-exp-header';
+        expHeader.innerHTML = `
+          <div class="card-kind-pill">
+            <span class="kind-dot"></span>
+            <span class="kind-label">${kindLabels[card.kind]}</span>
+          </div>
+          <span class="card-num-badge">${String(i + 1).padStart(2, '0')} ${translations[currentLang].expCardOf || 'DARI'} 11</span>
+        `;
+
+        const expBody = document.createElement('div');
+        expBody.className = 'card-exp-body';
+        const expTitle = document.createElement('h3');
+        expTitle.className = 'card-exp-title';
+        if (card.titleKey) {
+          expTitle.setAttribute('data-i18n', card.titleKey);
+          expTitle.textContent = cardTitle;
+        } else {
+          expTitle.textContent = card.label;
+        }
+
+        const expDesc = document.createElement('p');
+        expDesc.className = 'card-exp-desc';
+        expDesc.setAttribute('data-i18n', card.descKey);
+        expDesc.textContent = cardDesc;
+
+        const expTagsSec = document.createElement('div');
+        expTagsSec.className = 'card-exp-tags-section';
+        const expTagsLabel = document.createElement('span');
+        expTagsLabel.className = 'card-exp-tags-label';
+        expTagsLabel.setAttribute('data-i18n', 'expCardCompetencies');
+        expTagsLabel.textContent = translations[currentLang].expCardCompetencies || 'Kompetensi Utama:';
+        
+        const expTagsList = document.createElement('div');
+        expTagsList.className = 'card-exp-tags-list';
+        (activeTags || []).forEach(function(tag) {
+          const tagEl = document.createElement('span');
+          tagEl.className = 'exp-tag';
+          tagEl.textContent = tag;
+          expTagsList.appendChild(tagEl);
+        });
+        expTagsSec.appendChild(expTagsLabel);
+        expTagsSec.appendChild(expTagsList);
+
+        expBody.appendChild(expTitle);
+        expBody.appendChild(expDesc);
+        expBody.appendChild(expTagsSec);
+
+        const expFooter = document.createElement('div');
+        expFooter.className = 'card-exp-footer';
+        const expBtn = document.createElement('button');
+        expBtn.type = 'button';
+        expBtn.className = 'card-exp-btn';
+        expBtn.innerHTML = `
+          <span data-i18n="expCardBtn">${translations[currentLang].expCardBtn || 'Buka Detail &amp; Sertifikat'}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        `;
+        expFooter.appendChild(expBtn);
+
+        infoPane.appendChild(expHeader);
+        infoPane.appendChild(expBody);
+        infoPane.appendChild(expFooter);
+
+        expInner.appendChild(mediaPane);
+        expInner.appendChild(infoPane);
+        expandedView.appendChild(expInner);
+
+        // Assemble into float card
+        el.appendChild(glowEl);
+        el.appendChild(shineEl);
+        el.appendChild(compactView);
+        el.appendChild(expandedView);
+
+        el.style.setProperty('--card-z', slot.z + 'px');
+
+        stage.appendChild(el);
+        cardEls.push(el);
+      });
+
+      // Global function to update cards text on language toggle
+      window.updateFloatCardsLanguage = function() {
+        FLOAT_CARDS.forEach(function(card, i) {
+          const el = cardEls[i];
+          if (!el) return;
+          const cardTitle = card.titleKey ? (translations[currentLang][card.titleKey] || '') : card.label;
+          el.setAttribute('aria-label', cardTitle);
+          const activeTags = currentLang === 'en' ? (card.tagsEn || card.tags) : card.tags;
+          
+          // Compact tags
+          const cTags = el.querySelector('.card-compact-tags');
+          if (cTags) {
+            cTags.innerHTML = '';
+            (activeTags || []).slice(0, 2).forEach(function(tag) {
+              const tSpan = document.createElement('span');
+              tSpan.className = 'compact-tag';
+              tSpan.textContent = tag;
+              cTags.appendChild(tSpan);
+            });
+          }
+          
+          // Expanded tags
+          const expTagsList = el.querySelector('.card-exp-tags-list');
+          if (expTagsList) {
+            expTagsList.innerHTML = '';
+            (activeTags || []).forEach(function(tag) {
+              const tagEl = document.createElement('span');
+              tagEl.className = 'exp-tag';
+              tagEl.textContent = tag;
+              expTagsList.appendChild(tagEl);
+            });
+          }
+        });
+      };
+
+      var eCurrent = new Float32Array(N_FLOAT);
+      var eTarget = new Float32Array(N_FLOAT);
+      var geo = [];
+      var animId = null;
+      var isVisible = false;
+      var lastTime = 0;
+      var cardElsRef = cardEls;
+      var portraitEl = document.getElementById('exp-portrait');
+
+      // Geometry measurement: idle compact card vs centered cinematic hero card
+      function measure() {
+        var vw = window.innerWidth, vh = window.innerHeight;
+        var isMobile = vw <= 768;
+
+        var baseW, baseH, targetW, targetH;
+
+        if (isMobile) {
+          baseW = Math.min((vw - 32) / 2, 160);
+          baseH = 118;
+          targetW = Math.min(vw * 0.92, 380);
+          targetH = Math.min(vh * 0.78, 520);
+        } else {
+          baseW = Math.min(vw * 0.165, 218);
+          baseH = Math.min(vh * 0.24, 178);
+          targetW = Math.min(vw * 0.72, 860);
+          targetH = Math.min(vh * 0.68, 480);
+        }
+
+        var targetX = (vw - targetW) / 2;
+        var targetY = (vh - targetH) / 2;
+
+        if (!isMobile) {
+          // Precise Desktop Mathematical Constellation
+          var topReserve = Math.max(130, vh * 0.17);
+          var bottomMargin = Math.max(20, vh * 0.035);
+          var availH = vh - topReserve - bottomMargin;
+          var rowGap = Math.max(12, (availH - 3 * baseH) / 2);
+
+          var rowY0 = topReserve;
+          var rowY1 = topReserve + baseH + rowGap;
+          var rowY2 = topReserve + 2 * (baseH + rowGap);
+          var rowY05 = (rowY0 + rowY1) / 2;
+          var rowY15 = (rowY1 + rowY2) / 2;
+
+          var marginX = Math.max(20, vw * 0.022);
+          var colGap = Math.max(12, vw * 0.012);
+
+          var colOuterLeftX = marginX;
+          var colInnerLeftX = marginX + baseW + colGap;
+
+          var colOuterRightX = vw - marginX - baseW;
+          var colInnerRightX = colOuterRightX - colGap - baseW;
+
+          var colCenterX = (vw - baseW) / 2;
+
+          FLOAT_SLOTS.forEach(function(slot, i) {
+            var ox = 0, oy = 0;
+            if (slot.wing === 'left') {
+              ox = slot.col === 'outer' ? colOuterLeftX : colInnerLeftX;
+            } else if (slot.wing === 'right') {
+              ox = slot.col === 'outer' ? colOuterRightX : colInnerRightX;
+            } else {
+              ox = colCenterX;
+            }
+
+            if (slot.row === 0) oy = rowY0;
+            else if (slot.row === 0.5) oy = rowY05;
+            else if (slot.row === 1) oy = rowY1;
+            else if (slot.row === 1.5) oy = rowY15;
+            else if (slot.row === 2) oy = rowY2;
+
+            geo[i] = {
+              originX: ox,
+              originY: oy,
+              baseW: baseW,
+              baseH: baseH,
+              targetX: targetX,
+              targetY: targetY,
+              targetW: targetW,
+              targetH: targetH,
+              wing: slot.wing,
+              z: slot.z
+            };
+          });
+        } else {
+          // Clean Mobile 2-Column Balanced Grid
+          var mTop = 90;
+          var mRowGap = 12;
+          var mLeftX = 12;
+          var mRightX = vw - 12 - baseW;
+
+          FLOAT_SLOTS.forEach(function(slot, i) {
+            var colIdx = i % 2;
+            var rowIdx = Math.floor(i / 2);
+            var ox = colIdx === 0 ? mLeftX : mRightX;
+            var oy = mTop + rowIdx * (baseH + mRowGap);
+
+            geo[i] = {
+              originX: ox,
+              originY: oy,
+              baseW: baseW,
+              baseH: baseH,
+              targetX: targetX,
+              targetY: targetY,
+              targetW: targetW,
+              targetH: targetH,
+              wing: colIdx === 0 ? 'left' : 'right',
+              z: slot.z
+            };
+          });
+        }
+      }
+
+      function computeTargets(progress) {
+        // Idle buffer: 0.0 to 0.04 keeps constellation intact before first card expands
+        var idleBuffer = 0.04;
+        if (progress < idleBuffer) {
+          for (var k = 0; k < N_FLOAT; k++) eTarget[k] = 0;
+          return;
+        }
+
+        var effProgress = (progress - idleBuffer) / (1 - idleBuffer);
+        var g = effProgress * N_FLOAT;
+        for (var i = 0; i < N_FLOAT; i++) {
+          var e = 0;
+          if (i === N_FLOAT - 1) {
+            // Last card holds till section end
+            if (g >= i + 0.3) e = 1;
+            else if (g > i) e = (g - i) / 0.3;
+          } else {
+            if (g >= i && g < i + 0.3) e = (g - i) / 0.3;
+            else if (g >= i + 0.3 && g < i + 0.8) e = 1;
+            else if (g >= i + 0.8 && g < i + 1.0) e = 1 - (g - (i + 0.8)) / 0.2;
+          }
+          eTarget[i] = Math.max(0, Math.min(1, e));
+        }
+      }
+
+      function tick(now) {
+        var rect = section.getBoundingClientRect();
+        var scrollable = rect.height - window.innerHeight;
+        if (scrollable <= 0) { animId = requestAnimationFrame(tick); return; }
+
+        var progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+        computeTargets(progress);
+
+        var delta = Math.min(0.1, (now - lastTime) / 1000 || 0.016);
+        lastTime = now;
+        var t = Math.min(1, delta * 7.5);
+
+        // Pass 1: lerp all e, find maxE and current leader card
+        var maxE = 0;
+        var leaderIdx = -1;
+        for (var i = 0; i < N_FLOAT; i++) {
+          if (prefersRM) { eCurrent[i] = eTarget[i]; }
+          else { eCurrent[i] += (eTarget[i] - eCurrent[i]) * t; }
+          if (eCurrent[i] > maxE) { maxE = eCurrent[i]; leaderIdx = i; }
+        }
+
+        var allowAll = maxE < 0.1;
+
+        // Section header smoothly floats up and fades as cards approach
+        var expHeader = document.getElementById('exp-header');
+        if (expHeader) {
+          var headerFade = Math.max(0, 1 - maxE * 3.5);
+          expHeader.style.opacity = headerFade.toFixed(3);
+          expHeader.style.transform = 'translateY(' + (-maxE * 25).toFixed(1) + 'px)';
+        }
+
+        // Pass 2: apply smooth geometry interpolation, view cross-fade, and 3D depth
+        for (var j = 0; j < N_FLOAT; j++) {
+          var e = eCurrent[j];
+          var el = cardElsRef[j];
+          if (!el) continue;
+
+          var isLeader = (j === leaderIdx) && (maxE > 0.05);
+
+          // Idle subtle float for non-dominant cards
+          var floatPx = (prefersRM || e >= 0.8) ? 0 : (1 - e) * Math.sin((now / 1000) * 0.6 + j * 1.7) * 4;
+          el.style.setProperty('--card-float', floatPx.toFixed(2) + 'px');
+          el.style.setProperty('--card-e', e.toFixed(4));
+
+          // Smoothly glide position and dimensions from constellation to centered hero showcase
+          if (geo[j]) {
+            var gv = geo[j];
+            var curX = gv.originX + (gv.targetX - gv.originX) * e;
+            var curY = gv.originY + (gv.targetY - gv.originY) * e;
+            var curW = gv.baseW + (gv.targetW - gv.baseW) * e;
+            var curH = gv.baseH + (gv.targetH - gv.baseH) * e;
+
+            // Dispersal shift for non-leader cards when any card takes center stage
+            if (!isLeader && maxE > 0.01) {
+              if (gv.wing === 'left') {
+                curX -= 45 * maxE;
+              } else if (gv.wing === 'right') {
+                curX += 45 * maxE;
+              } else {
+                curY += 35 * maxE;
+              }
+            }
+
+            el.style.left = curX.toFixed(1) + 'px';
+            el.style.top = curY.toFixed(1) + 'px';
+            el.style.width = curW.toFixed(1) + 'px';
+            el.style.height = curH.toFixed(1) + 'px';
+          }
+
+          // Clean view transition: strictly hide compact view to prevent text ghosting
+          var compactView = el.querySelector('.card-view-compact');
+          var expandedView = el.querySelector('.card-view-expanded');
+
+          if (compactView && expandedView) {
+            if (e < 0.22) {
+              compactView.style.display = 'flex';
+              compactView.style.opacity = '1';
+              compactView.style.pointerEvents = '';
+              expandedView.style.display = 'none';
+              expandedView.style.opacity = '0';
+              expandedView.style.pointerEvents = 'none';
+            } else {
+              compactView.style.display = 'none';
+              compactView.style.opacity = '0';
+              compactView.style.pointerEvents = 'none';
+              expandedView.style.display = 'flex';
+              var p = Math.min(1, (e - 0.22) / 0.35);
+              expandedView.style.opacity = p.toFixed(3);
+              expandedView.style.pointerEvents = (e > 0.4) ? 'auto' : 'none';
+            }
+          }
+
+          el.classList.toggle('is-dominant', isLeader && e > 0.4);
+
+          // Atmospheric Dimming & Dispersal Fade
+          var targetOp = isLeader ? 1 : Math.max(0, 1 - maxE * 2.8);
+          el.style.opacity = targetOp.toFixed(3);
+
+          // 3D Depth: leader steps majestically forward (+120px Z), other cards step back
+          var zBase = geo[j] ? geo[j].z : 40;
+          var zVal = zBase * (1 - e) + (isLeader ? 120 * e : -60 * maxE);
+          var scaleVal = isLeader ? 1 : Math.max(0.7, 1 - 0.12 * maxE);
+          el.style.transform = 'translateZ(' + zVal.toFixed(1) + 'px) translate(0, ' + floatPx.toFixed(1) + 'px) scale(' + scaleVal.toFixed(3) + ')';
+
+          // Click Gating: only focused card (or all when idle) is clickable
+          var clickable = allowAll || (isLeader && e > 0.35);
+          if (clickable) {
+            el.style.pointerEvents = '';
+            if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+          } else {
+            el.style.pointerEvents = 'none';
+            if (el.hasAttribute('tabindex')) el.removeAttribute('tabindex');
+          }
+        }
+
+        // Portrait avatar dims, blurs, and scales back smoothly (anchored at center bottom)
+        if (portraitEl) {
+          portraitEl.style.opacity = Math.max(0.04, 1 - maxE * 0.96).toFixed(3);
+          portraitEl.style.filter = 'blur(' + (maxE * 12).toFixed(1) + 'px)';
+          portraitEl.style.transformOrigin = 'bottom center';
+          portraitEl.style.transform = 'translate(-50%, 0) scale(' + (1 - maxE * 0.15).toFixed(3) + ')';
+        }
+
+        animId = requestAnimationFrame(tick);
+      }
+
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting && !isVisible) {
+            isVisible = true;
+            measure();
+            lastTime = performance.now();
+            animId = requestAnimationFrame(tick);
+          }
+          else if (!e.isIntersecting && isVisible) {
+            isVisible = false;
+            if (animId) cancelAnimationFrame(animId);
+          }
+        });
+      }, { threshold: 0.01 });
+      obs.observe(section);
+
+      var resizeTimer = null;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(measure, 150);
+      }, { passive: true });
+
+      initFlipZoom(cardEls);
+    }
+
+    // ==========================================
+    // FLIP ZOOM DIALOG
+    // ==========================================
+    function initFlipZoom(cardEls) {
+      var dialog = document.getElementById('card-dialog');
+      if (!dialog) return;
+
+      var dTitle = document.getElementById('card-dialog-title');
+      var dDesc = document.getElementById('card-dialog-desc');
+      var dKind = document.getElementById('card-dialog-kind');
+      var closeBtn = document.getElementById('card-dialog-close');
+      var prefersRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var kindLabels = { hard: 'Hard Skill', soft: 'Soft Skill', tools: 'Tools & Stack', work: 'Experience' };
+      var triggerEl = null;
+      var isClosing = false;
+
+      function openCard(el, card) {
+        if (isClosing) return;
+        if (dialog.open) dialog.close();
+        triggerEl = el;
+        triggerEl.classList.add('is-active');
+        triggerEl.setAttribute('aria-expanded', 'true');
+
+        dKind.innerHTML = `<span class="kind-dot"></span><span>${kindLabels[card.kind]}</span>`;
+        dKind.setAttribute('data-kind', card.kind);
+        dTitle.textContent = card.titleKey ? (translations[currentLang][card.titleKey] || '') : card.label;
+        dDesc.textContent = translations[currentLang][card.descKey] || '';
+
+        var dImg = document.getElementById('card-dialog-img');
+        if (dImg && card.img) {
+          dImg.src = card.img;
+          dImg.alt = dTitle.textContent;
+        }
+
+        var first = el.getBoundingClientRect();
+        dialog.classList.remove('dialog-closing');
+        dialog.style.pointerEvents = 'auto';
+        dialog.showModal();
+        document.body.style.overflow = 'hidden';
+
+        if (prefersRM) return;
+
+        var last = dialog.getBoundingClientRect();
+        var dx = first.left + first.width / 2 - (last.left + last.width / 2);
+        var dy = first.top + first.height / 2 - (last.top + last.height / 2);
+        var sx = Math.max(0.05, first.width / last.width);
+        var sy = Math.max(0.05, first.height / last.height);
+
+        dialog.style.transition = 'none';
+        dialog.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + sx + ', ' + sy + ')';
+        dialog.style.opacity = '0';
+        dialog.style.borderRadius = '1rem';
+        dialog.getBoundingClientRect(); // force reflow
+
+        requestAnimationFrame(function() {
+          dialog.style.transition = 'transform 0.4s cubic-bezier(0.25,1,0.5,1), opacity 0.4s cubic-bezier(0.25,1,0.5,1), border-radius 0.4s cubic-bezier(0.25,1,0.5,1)';
+          dialog.style.transform = 'none';
+          dialog.style.opacity = '1';
+          dialog.style.borderRadius = '1.5rem';
+        });
+      }
+
+      function closeCard() {
+        if (isClosing || !dialog.open) return;
+        isClosing = true;
+        dialog.style.pointerEvents = 'none';
+
+        if (prefersRM) {
+          finishClose('prefersRM');
+          return;
+        }
+
+        var targetRect = triggerEl ? triggerEl.getBoundingClientRect() : null;
+        var currentRect = dialog.getBoundingClientRect();
+
+        if (targetRect) {
+          var dx = targetRect.left + targetRect.width / 2 - (currentRect.left + currentRect.width / 2);
+          var dy = targetRect.top + targetRect.height / 2 - (currentRect.top + currentRect.height / 2);
+          var sx = Math.max(0.05, targetRect.width / currentRect.width);
+          var sy = Math.max(0.05, targetRect.height / currentRect.height);
+
+          dialog.classList.add('dialog-closing');
+          dialog.style.transition = 'transform 0.35s cubic-bezier(0.25,1,0.5,1), opacity 0.35s cubic-bezier(0.25,1,0.5,1), border-radius 0.35s cubic-bezier(0.25,1,0.5,1)';
+          dialog.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + sx + ', ' + sy + ')';
+          dialog.style.opacity = '0';
+          dialog.style.borderRadius = '1rem';
+        } else {
+          dialog.classList.add('dialog-closing');
+          dialog.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+          dialog.style.opacity = '0';
+          dialog.style.transform = 'scale(0.95)';
+        }
+
+        var closed = false;
+        function finishClose() {
+          if (closed) return;
+          closed = true;
+          dialog.close();
+          dialog.classList.remove('dialog-closing');
+          dialog.style.pointerEvents = '';
+          dialog.style.transform = '';
+          dialog.style.opacity = '';
+          dialog.style.borderRadius = '';
+          dialog.style.transition = '';
+          isClosing = false;
+          if (triggerEl) {
+            triggerEl.classList.remove('is-active');
+            triggerEl.removeAttribute('aria-expanded');
+            triggerEl.focus();
+            triggerEl = null;
+          }
+        }
+
+        var timer = setTimeout(function() { finishClose(); }, 380);
+        dialog.addEventListener('transitionend', function onEnd(e) {
+          if (e.target === dialog && (e.propertyName === 'transform' || e.propertyName === 'opacity')) {
+            clearTimeout(timer);
+            dialog.removeEventListener('transitionend', onEnd);
+            finishClose();
+          }
+        });
+      }
+
+      cardEls.forEach(function(el, i) {
+        function handleOpen() { openCard(el, FLOAT_CARDS[i]); }
+        el.addEventListener('click', handleOpen);
+        el.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleOpen(); }
+        });
+      });
+
+      closeBtn.addEventListener('click', function(e) { e.preventDefault(); closeCard(); });
+      dialog.addEventListener('click', function(e) { if (e.target === dialog) closeCard(); });
+      dialog.addEventListener('cancel', function(e) { e.preventDefault(); closeCard(); });
+      dialog.addEventListener('close', function() {
+        document.body.style.overflow = '';
+        dialog.classList.remove('dialog-closing');
+        dialog.style.pointerEvents = '';
+        dialog.style.transform = '';
+        dialog.style.opacity = '';
+        dialog.style.borderRadius = '';
+        dialog.style.transition = '';
+        isClosing = false;
+        if (triggerEl) {
+          triggerEl.classList.remove('is-active');
+          triggerEl.removeAttribute('aria-expanded');
+          triggerEl.focus();
+          triggerEl = null;
+        }
+      });
     }
 
     if (document.readyState === 'loading') {
