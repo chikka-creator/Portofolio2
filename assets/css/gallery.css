@@ -1,4 +1,4 @@
-/* Gallery Light Table Styles */
+/* Gallery Light Table Styles — Farline Authentic Physics */
 
 .gal-stage {
   position: relative;
@@ -10,8 +10,10 @@
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Editorial Intro Column (Left) */
 .gal-intro {
   position: absolute;
   top: min(162px, max(84px, 16vh));
@@ -19,6 +21,18 @@
   max-width: min(44%, 620px);
   z-index: var(--z-hud);
   pointer-events: none;
+  animation: galIntroIn 0.85s cubic-bezier(0.22, 0.8, 0.25, 1) both;
+}
+
+@keyframes galIntroIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .gal-title {
@@ -32,7 +46,7 @@
 }
 
 .gal-meta {
-  margin-top: 39px;
+  margin-top: 36px;
 }
 
 .gal-rule {
@@ -52,24 +66,87 @@
   margin: 0;
 }
 
-/* HUD elements */
+.gal-cue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-top: 26px;
+  margin-bottom: 14px;
+}
+
+/* Filter Chip Bar (Directly under cue on the left) */
+.gal-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 420px;
+  margin-top: 2px;
+  pointer-events: auto;
+}
+
+.gal-filter-chip {
+  padding: 9px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background-color: var(--glass);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-state),
+              color var(--dur-fast) var(--ease-state),
+              border-color var(--dur-fast) var(--ease-state);
+}
+
+.gal-filter-chip[aria-pressed="true"] {
+  background-color: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+
+.gal-filter-chip:hover:not([aria-pressed="true"]) {
+  border-color: var(--ink);
+}
+
+/* Top-Right HUD element (Frame Counter) */
 .gal-hud {
   position: absolute;
-  top: 75px;
+  top: 31px;
   right: 60px;
   z-index: var(--z-hud);
+  pointer-events: none;
 }
 
 .gal-count {
   font-family: var(--font-mono);
   font-size: 12px;
+  line-height: 12px;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink);
+  background-color: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 13px 13px;
+  display: inline-block;
+  white-space: nowrap;
 }
 
-/* Zoom HUD Controls */
+/* Zoom HUD Controls (Bottom-Right) */
 .gal-zoom {
   position: fixed;
   bottom: 26px;
@@ -77,14 +154,15 @@
   z-index: var(--z-hud);
   display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 4px;
+  gap: 4px;
+  padding: 5px;
   background-color: var(--glass);
   border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
+  border-radius: 999px;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   box-shadow: var(--shadow-nav);
+  cursor: default;
 }
 
 .gal-zoom button {
@@ -93,11 +171,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 0;
+  background: transparent;
   font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 500;
-  border-radius: var(--radius-pill);
+  border-radius: 999px;
   color: var(--ink);
+  cursor: pointer;
   transition: background-color var(--dur-fast) var(--ease-state);
 }
 
@@ -108,52 +189,11 @@
 .gal-zoom-label {
   font-family: var(--font-mono);
   font-size: 12px;
+  line-height: 12px;
   font-weight: 500;
-  min-width: 48px;
+  min-width: 44px;
   text-align: center;
-  color: var(--ink);
-}
-
-/* Filter Chip Bar */
-.gal-filters {
-  position: absolute;
-  top: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: var(--z-hud);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  max-width: 90vw;
-  overflow-x: auto;
-  padding: 4px;
-}
-
-.gal-filter-chip {
-  padding: 8px 14px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background-color: var(--glass);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  white-space: nowrap;
-  transition: background-color var(--dur-fast) var(--ease-state), color var(--dur-fast) var(--ease-state);
-}
-
-.gal-filter-chip[aria-pressed="true"] {
-  background-color: var(--ink);
-  color: var(--white);
-  border-color: var(--ink);
-}
-
-.gal-filter-chip:hover:not([aria-pressed="true"]) {
-  border-color: var(--ink);
+  color: var(--muted-2);
 }
 
 /* Light Table Interactive Surface */
@@ -164,7 +204,8 @@
   height: 100%;
   cursor: grab;
   z-index: var(--z-plate);
-  transform-style: preserve-3d;
+  overflow: hidden;
+  touch-action: none;
 }
 
 .gal-table.is-dragging {
@@ -175,67 +216,91 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 1px;
+  height: 1px;
+  transform-origin: 0 0;
   will-change: transform;
 }
 
-/* Individual Certificate Item on Light Table */
+/* Photographic Prints on Light Table */
 .gal-item {
   position: absolute;
-  width: 180px;
-  height: 138px;
-  background-color: var(--paper-mat);
-  box-shadow: var(--shadow-print);
+  left: 0;
+  top: 0;
   cursor: pointer;
-  will-change: transform, opacity;
   transform-origin: 50% 50%;
-  transition: opacity 0.3s var(--ease-state), transform var(--dur-fast) var(--ease-state), box-shadow var(--dur-fast) var(--ease-state);
-  border-radius: var(--radius-plate);
-  overflow: hidden;
+  will-change: transform;
+  outline: none;
+  touch-action: none;
 }
 
-.gal-item:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 4px;
+/* Authentic White Mat Border & Realistic Print Shadow */
+.gal-item-mat {
+  position: absolute;
+  inset: 0;
+  padding: 6px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border-radius: 1px;
+  box-shadow: 0 1px 2px rgba(20, 19, 14, 0.08), 0 12px 26px -14px rgba(20, 19, 14, 0.30);
+  transform: rotate(calc(var(--sway, 0) * var(--sway-mult, 1deg)));
+  transition: box-shadow 0.5s cubic-bezier(0.22, 0.8, 0.25, 1);
+}
+
+/* Hover Lift State */
+.gal-stage[data-phase="done"] .gal-item:hover,
+.gal-item.is-hovered {
+  z-index: 50 !important;
+  transform: translate3d(var(--x, 0), var(--y, 0), 0) rotate(0deg) scale(1.16) !important;
+  transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.25, 1), opacity 0.6s cubic-bezier(0.22, 0.8, 0.25, 1) !important;
+}
+
+.gal-stage[data-phase="done"] .gal-item:hover .gal-item-mat,
+.gal-item.is-hovered .gal-item-mat {
+  box-shadow: 0 2px 4px rgba(20, 19, 14, 0.08), 0 34px 60px -26px rgba(20, 19, 14, 0.42) !important;
 }
 
 .gal-item img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  pointer-events: none;
 }
 
-.gal-item-edge-top {
+/* Floating Caption Pill directly under hovered print */
+.gal-item-caption {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background-color: var(--paper-edge-top);
+  left: -18px;
+  top: 100%;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  background-color: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 13px 13px;
+  opacity: 0;
+  transform: scale(0.862) translateY(-6px);
+  transform-origin: 0 0;
+  transition: opacity 0.35s cubic-bezier(0.22, 0.8, 0.25, 1),
+              transform 0.45s cubic-bezier(0.22, 0.8, 0.25, 1);
   pointer-events: none;
+  z-index: 10;
 }
 
-.gal-item-edge-side {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 4px;
-  background-color: var(--paper-edge-side);
-  pointer-events: none;
-}
-
-.gal-item.is-dimmed {
-  opacity: 0.2 !important;
-  pointer-events: none;
-  transform: scale(0.92) !important;
-}
-
-.gal-item.is-hovered {
-  box-shadow: 0 42px 100px -30px rgba(0, 0, 0, 0.85);
-  z-index: 100 !important;
+.gal-stage[data-phase="done"] .gal-item:hover .gal-item-caption,
+.gal-item.is-hovered .gal-item-caption {
+  opacity: 1 !important;
+  transform: scale(0.862) translateY(0) !important;
 }
 
 /* Soft Bottom Gradient Fade */
@@ -245,93 +310,99 @@
   left: 0;
   right: 0;
   height: 150px;
-  background: linear-gradient(to bottom, transparent, var(--stage));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #FFFFFF 92%);
   pointer-events: none;
   z-index: 15;
 }
 
-/* Lightbox Dialog */
+/* Farline Lightbox Modal */
 .gal-lightbox {
   border: none;
   background: transparent;
   padding: 0;
-  max-width: 90vw;
-  width: 740px;
-  margin: auto;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: 0;
+  position: fixed;
+  inset: 0;
   z-index: var(--z-lightbox);
+  overflow: hidden;
+  cursor: zoom-out;
 }
 
 .gal-lightbox::backdrop {
-  background-color: rgba(20, 19, 14, 0.45);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.gal-lightbox-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  padding: 20px;
 }
 
 .gal-lightbox-card {
   position: relative;
-  background-color: var(--white);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-form);
-  padding: 32px;
-  border-radius: var(--radius-form);
+  background-color: #FFFFFF;
+  padding: 6px;
+  box-sizing: border-box;
+  box-shadow: 0 3px 6px rgba(20, 19, 14, 0.08), 0 60px 110px -40px rgba(20, 19, 14, 0.45);
+  cursor: default;
+  max-width: min(88vw, 840px);
+  max-height: 70vh;
+  transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.25, 1);
 }
 
-.gal-lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--line);
-  background-color: var(--glass);
-  font-family: var(--font-mono);
-  font-size: 18px;
+.gal-lightbox-card img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(70vh - 12px);
+  object-fit: contain;
+}
+
+.gal-lightbox-caption {
+  margin-top: 18px;
+  width: 100%;
+  max-width: min(88vw, 840px);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink);
-  transition: border-color var(--dur-state) var(--ease-state);
-}
-
-.gal-lightbox-close:hover {
-  border-color: var(--ink);
-}
-
-.gal-lightbox-media {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1.3 / 1;
-  background-color: var(--paper-mat);
-  box-shadow: var(--shadow-print);
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-
-.gal-lightbox-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
 }
 
 .gal-lightbox-title {
   font-family: var(--font-body);
   font-size: 22px;
-  line-height: 1.3;
-  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: -0.015em;
+  font-weight: 500;
   color: var(--ink);
-  margin-bottom: 8px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .gal-lightbox-meta {
   font-family: var(--font-mono);
   font-size: 12px;
+  line-height: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted-2);
+  margin: 0;
+  white-space: nowrap;
 }
 
-/* Responsive Breakpoints */
+/* Responsive Adjustments */
 @media (max-width: 1199px) {
   .gal-zoom {
     right: 40px;
@@ -343,34 +414,39 @@
 
 @media (max-width: 809px) {
   .gal-intro {
-    top: 90px;
+    top: 84px;
     left: 20px;
-    max-width: 88vw;
+    max-width: 90vw;
   }
   .gal-title {
     font-size: min(84px, max(46px, 16vw));
   }
   .gal-meta {
-    margin-top: 20px;
-    max-width: 80vw;
+    margin-top: 18px;
+    max-width: 90vw;
   }
   .gal-filters {
-    top: 60px;
-    width: calc(100vw - 40px);
-    justify-content: flex-start;
+    gap: 6px;
+  }
+  .gal-filter-chip {
+    padding: 7px 11px;
+    font-size: 11px;
   }
   .gal-hud {
-    top: 60px;
+    top: 18px;
     right: 20px;
   }
   .gal-zoom {
-    bottom: 74px;
-    right: 20px;
+    display: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gal-item {
+  .gal-item,
+  .gal-item-mat,
+  .gal-item-caption,
+  .gal-intro {
+    animation: none !important;
     transition: none !important;
   }
 }

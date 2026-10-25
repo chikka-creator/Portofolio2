@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/chrome.css">
-  <link rel="stylesheet" href="assets/css/gallery.css">
+  <link rel="stylesheet" href="assets/css/gallery.css?v=11">
 </head>
 <body>
   <!-- Shell Chrome Components -->
@@ -34,13 +34,13 @@
   </a>
 
   <div class="chrome-status" role="status">
-    <span data-i18n="statusGallery">Archive</span>
+    <span data-i18n="statusGallery">Arsip</span>
   </div>
 
   <nav class="chrome-nav" aria-label="Main">
     <a href="index.html" data-i18n="navMain">Main</a>
     <a href="work.html" data-i18n="navWork">Work</a>
-    <a href="gallery.html" aria-current="page" data-i18n="navGallery">Gallery</a>
+    <a href="gallery.html" aria-current="page" data-i18n="navGallery">Galeri</a>
     <a href="about.html" data-i18n="navAbout">About</a>
     <a href="contact.html" data-i18n="navContact">Contact</a>
   </nav>
@@ -55,26 +55,26 @@
     <section class="gal-stage" id="gal-stage" aria-label="Certificate Archive Light Table">
       <!-- Editorial Intro -->
       <div class="gal-intro page-intro">
-        <h1 class="gal-title" data-i18n="galleryTitle">Gallery</h1>
+        <h1 class="gal-title" data-i18n="galleryTitle">Galeri</h1>
         <div class="gal-meta">
           <span class="gal-rule"></span>
           <p class="gal-desc" data-i18n="galleryDesc">Karya sampingan dan bingkai di antaranya, tersusun di atas meja. Geser untuk menjelajah, hover untuk mengangkat, klik untuk melihat lebih dekat.</p>
+          <div class="gal-cue" data-i18n="galleryDragHint">— DRAG TO EXPLORE</div>
+          <!-- Filter Chips Toolbar -->
+          <div class="gal-filters" role="toolbar" aria-label="Filter certificates by category">
+            <button type="button" class="gal-filter-chip" data-filter="all" aria-pressed="true">ALL 11</button>
+            <button type="button" class="gal-filter-chip" data-filter="uiux" aria-pressed="false">UI/UX 1</button>
+            <button type="button" class="gal-filter-chip" data-filter="web" aria-pressed="false">WEB 4</button>
+            <button type="button" class="gal-filter-chip" data-filter="aidata" aria-pressed="false">AI &amp; DATA 2</button>
+            <button type="button" class="gal-filter-chip" data-filter="events" aria-pressed="false">EVENTS 3</button>
+            <button type="button" class="gal-filter-chip" data-filter="lang" aria-pressed="false">LANGUAGE 1</button>
+          </div>
         </div>
-      </div>
-
-      <!-- Filter Chips Toolbar -->
-      <div class="gal-filters" role="toolbar" aria-label="Filter certificates by category">
-        <button type="button" class="gal-filter-chip" data-filter="all" aria-pressed="true">All 11</button>
-        <button type="button" class="gal-filter-chip" data-filter="uiux" aria-pressed="false">UI/UX 1</button>
-        <button type="button" class="gal-filter-chip" data-filter="web" aria-pressed="false">Web 4</button>
-        <button type="button" class="gal-filter-chip" data-filter="aidata" aria-pressed="false">AI &amp; Data 2</button>
-        <button type="button" class="gal-filter-chip" data-filter="events" aria-pressed="false">Events 3</button>
-        <button type="button" class="gal-filter-chip" data-filter="lang" aria-pressed="false">Language 1</button>
       </div>
 
       <!-- Frame Count HUD -->
       <div class="gal-hud" data-gal-ui>
-        <span class="gal-count" id="gal-count">11 frames</span>
+        <span class="gal-count" id="gal-count">11 BINGKAI</span>
       </div>
 
       <!-- Interactive Light Table Surface -->
@@ -114,13 +114,14 @@
 
       <!-- Lightbox Modal Dialog -->
       <dialog class="gal-lightbox" id="gal-lightbox" aria-label="Certificate Detail">
-        <div class="gal-lightbox-card">
-          <button type="button" class="gal-lightbox-close" aria-label="Close">×</button>
-          <div class="gal-lightbox-media">
+        <div class="gal-lightbox-container" id="gal-lightbox-container">
+          <div class="gal-lightbox-card">
             <img class="gal-lightbox-img" src="" alt="">
           </div>
-          <h3 class="gal-lightbox-title"></h3>
-          <p class="gal-lightbox-meta"></p>
+          <div class="gal-lightbox-caption">
+            <h3 class="gal-lightbox-title"></h3>
+            <p class="gal-lightbox-meta"></p>
+          </div>
         </div>
       </dialog>
     </section>
@@ -130,6 +131,6 @@
   <script src="assets/js/data.js" defer></script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/chrome.js" defer></script>
-  <script src="assets/js/gallery.js" defer></script>
+  <script src="assets/js/gallery.js?v=11" defer></script>
 </body>
 </html>
