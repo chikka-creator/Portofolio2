@@ -1,0 +1,202 @@
+/* Chrome UI: Logo, Status Pill, Nav Glass, Language Toggle, Page Intro */
+
+.chrome-logo {
+  position: absolute;
+  top: 29px;
+  left: 61px;
+  z-index: var(--z-nav);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: border-color var(--dur-state) var(--ease-state), color var(--dur-state) var(--ease-state);
+}
+
+.chrome-logo:hover {
+  border-color: var(--ink);
+}
+
+.chrome-status {
+  position: absolute;
+  top: 31px;
+  right: 60px;
+  z-index: var(--z-hud);
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 18px;
+  background-color: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.chrome-nav {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-nav);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px;
+  background-color: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-nav);
+  white-space: nowrap;
+}
+
+.chrome-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background-color: transparent;
+  transition: background-color var(--dur-state) var(--ease-state), color var(--dur-state) var(--ease-state);
+}
+
+.chrome-nav a:hover:not([aria-current="page"]) {
+  color: var(--muted-2);
+}
+
+.chrome-nav a[aria-current="page"] {
+  background-color: var(--ink);
+  color: var(--white);
+}
+
+.chrome-lang {
+  position: fixed;
+  bottom: 30px;
+  left: 60px;
+  z-index: var(--z-lang);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  background-color: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.chrome-lang button {
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background-color: transparent;
+  transition: background-color var(--dur-state) var(--ease-state), color var(--dur-state) var(--ease-state);
+}
+
+.chrome-lang button[aria-pressed="true"] {
+  background-color: var(--ink);
+  color: var(--white);
+}
+
+.chrome-lang button:hover:not([aria-pressed="true"]) {
+  color: var(--muted-2);
+}
+
+/* Page Entry Animations */
+@keyframes pageIntro {
+  0% {
+    opacity: 0.001;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-intro {
+  opacity: 0.001;
+  animation: pageIntro var(--dur-spring) var(--ease-enter) 0.1s forwards;
+}
+
+/* Responsive Breakpoints (1200, 810, 390) */
+@media (max-width: 1199px) {
+  .chrome-logo {
+    top: 24px;
+    left: 40px;
+  }
+  .chrome-status {
+    top: 24px;
+    right: 40px;
+  }
+  .chrome-lang {
+    bottom: 30px;
+    left: 40px;
+  }
+}
+
+@media (max-width: 809px) {
+  .chrome-logo {
+    top: 16px;
+    left: 20px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  .chrome-status {
+    top: 18px;
+    right: 20px;
+    padding: 10px 14px;
+    font-size: 11px;
+  }
+  .chrome-nav {
+    bottom: 18px;
+    padding: 4px;
+    gap: 1px;
+    max-width: calc(100vw - 20px);
+  }
+  .chrome-nav a {
+    padding: 9px 12px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .chrome-lang {
+    bottom: 74px;
+    left: 20px;
+    padding: 4px;
+  }
+  .chrome-lang button {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}

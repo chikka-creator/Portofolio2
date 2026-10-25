@@ -1,0 +1,32 @@
+.pm-card{position:absolute;top:0;left:0;transform-origin:50% 50%;transform-style:preserve-3d;will-change:transform;visibility:hidden}
+.pm-sheet{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;transform-origin:var(--pm-hang,50% 0);opacity:0;
+ box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 calc(34px + var(--lift,0)*82px) calc(90px + var(--lift,0)*110px) -40px rgba(0,0,0,.741)}
+.pm-wire{position:absolute;top:0;left:0;height:2px;margin-top:-1px;transform-origin:0 50%;visibility:hidden;pointer-events:none;border-radius:1px;outline:1px solid transparent;-webkit-mask:linear-gradient(transparent,#000 30%,#000 70%,transparent);mask:linear-gradient(transparent,#000 30%,#000 70%,transparent)}
+.pm-peg{position:absolute;top:0;left:0;transform-style:preserve-3d;transform-origin:50% 42%;visibility:hidden;pointer-events:none;--pd:calc(var(--pw,10px)*.4);--pgap:calc(var(--pw,10px)*.04);--wd:color-mix(in srgb,var(--peg) 70%,#4a3218);--wm:color-mix(in srgb,var(--peg) 86%,#6b4a22);--wl:color-mix(in srgb,var(--peg) 78%,#fff)}
+.pm-jaw{position:absolute;display:block}
+.pm-jaw{inset:0;transform-style:preserve-3d;transform-origin:50% 42%}
+.pm-jf{transform:translateZ(calc(var(--pd)/2 + var(--pgap))) rotateX(calc(var(--jaw,0)*1deg))}
+.pm-jb{transform:rotateY(180deg) translateZ(calc(var(--pd)/2 + var(--pgap))) rotateX(calc(var(--jaw,0)*1deg))}
+.pm-fo{inset:0;transform:translateZ(calc(var(--pd)/2));border-radius:34% 34% 22% 22%/5% 5% 3% 3%;
+ background:linear-gradient(90deg,transparent 44%,#7e7d78 44%,#e2e1dc 50%,#6f6e69 56%,transparent 56%) 0 8%/100% 36% no-repeat,
+ radial-gradient(circle at 50% 50%,#d9d8d3 0 32%,#77766f 40%,transparent 44%) 50% 44%/80% 11% no-repeat,
+ repeating-linear-gradient(90deg,rgba(84,54,20,.07) 0 1px,transparent 1px 2.6px),
+ linear-gradient(90deg,var(--wd) 0,var(--wm) 14%,var(--wl) 46%,var(--peg) 68%,var(--wd) 100%);
+ box-shadow:inset 0 -1px 1px rgba(60,38,12,.35),inset 0 1px 0 rgba(255,255,255,.35)}
+.pm-fr{top:0;bottom:0;left:calc(50% - var(--pd)/2);width:var(--pd);background:repeating-linear-gradient(0deg,rgba(84,54,20,.08) 0 1px,transparent 1px 3px),linear-gradient(90deg,color-mix(in srgb,var(--wd) 72%,#000),color-mix(in srgb,var(--wm) 88%,#000))}
+.pm-fl{transform:rotateY(-90deg) translateZ(calc(var(--pw)/2));clip-path:polygon(18% 0,100% 0,100% 88%,78% 100%,0 100%,0 53%,30% 51%,44% 44%,30% 37%,8% 35%)}
+.pm-fr{transform:rotateY(90deg) translateZ(calc(var(--pw)/2));clip-path:polygon(0 0,82% 0,92% 35%,70% 37%,56% 44%,70% 51%,100% 53%,100% 100%,22% 100%,0 88%)}
+.pm-ft{left:0;right:0;top:calc(50% - var(--pd)/2);height:var(--pd);transform:rotateX(90deg) translateZ(calc(var(--ph)/2)) scaleY(.82);border-radius:40%;background:radial-gradient(ellipse at 50% 50%,var(--wm),var(--wd))}
+.pm-coil{width:calc(var(--pd)*1.35);height:calc(var(--pd)*1.35);left:calc(50% - var(--pd)*.675);top:calc(42% - var(--pd)*.675);border-radius:50%;background:radial-gradient(circle,transparent 30%,#5f5e59 33%,#e6e5e0 45%,#9a9993 55%,#56554f 62%,transparent 65%)}
+.pm-cl{transform:rotateY(-90deg) translateZ(calc(var(--pw)/2 + .4px))}
+.pm-cr{transform:rotateY(90deg) translateZ(calc(var(--pw)/2 + .4px))}
+.pm-psh{left:-6%;top:40%;width:128%;height:70%;border-radius:50%;transform:translate3d(9%,10%,.35px);background:radial-gradient(closest-side,rgba(0,0,0,.34),rgba(0,0,0,.12) 55%,transparent);opacity:calc(var(--po,1)*var(--att,1))!important}
+.pm-veil{position:absolute;inset:0;opacity:var(--dark,0);pointer-events:none}
+.pm-edge{position:absolute;pointer-events:none;opacity:var(--edgeA,1)}
+.pm-edge-t{top:0;left:0;right:0;height:var(--edgeT,0)}
+.pm-edge-r{top:0;bottom:0;right:0;width:var(--edgeS,0)}
+.pm-title{animation:pm-title-in 1.15s cubic-bezier(.22,1,.36,1) .62s both}
+.pm-meta{animation:pm-meta-in 1s cubic-bezier(.33,1,.68,1) 1.05s both}
+.pm-meta{animation:none}
+.pm-btn{pointer-events:auto;cursor:pointer;display:inline-flex;align-items:center;gap:8px;border-radius:999px;text-decoration:none;transition:border-color .4s var(--ease),background-color .4s var(--ease),opacity .4s var(--ease)}
+.pm-meta{animation:none}

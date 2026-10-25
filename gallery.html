@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="id" data-lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery — Fakhri</title>
+  <meta name="description" content="Archive of certificates and prints.">
+  <link rel="canonical" href="https://fakhri.dev/gallery.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gallery — Fakhri">
+  <meta property="og:description" content="Archive of certificates and prints.">
+  <meta property="og:image" content="assets/img/og/og-image.webp">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Font Preloads -->
+  <link rel="preload" href="assets/fonts/Anton.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Geist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/GeistMono.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/chrome.css">
+  <link rel="stylesheet" href="assets/css/gallery.css">
+</head>
+<body>
+  <!-- Shell Chrome Components -->
+  <a class="chrome-logo" href="index.html" aria-label="Home">
+    <span>FAKHRI</span>
+  </a>
+
+  <div class="chrome-status" role="status">
+    <span data-i18n="statusGallery">Archive</span>
+  </div>
+
+  <nav class="chrome-nav" aria-label="Main">
+    <a href="index.html" data-i18n="navMain">Main</a>
+    <a href="work.html" data-i18n="navWork">Work</a>
+    <a href="gallery.html" aria-current="page" data-i18n="navGallery">Gallery</a>
+    <a href="about.html" data-i18n="navAbout">About</a>
+    <a href="contact.html" data-i18n="navContact">Contact</a>
+  </nav>
+
+  <div class="chrome-lang" role="group" aria-label="Language">
+    <button type="button" data-lang="id" aria-pressed="true">ID</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section class="gal-stage" id="gal-stage" aria-label="Certificate Archive Light Table">
+      <!-- Editorial Intro -->
+      <div class="gal-intro page-intro">
+        <h1 class="gal-title" data-i18n="galleryTitle">Gallery</h1>
+        <div class="gal-meta">
+          <span class="gal-rule"></span>
+          <p class="gal-desc" data-i18n="galleryDesc">Karya sampingan dan bingkai di antaranya, tersusun di atas meja. Geser untuk menjelajah, hover untuk mengangkat, klik untuk melihat lebih dekat.</p>
+        </div>
+      </div>
+
+      <!-- Filter Chips Toolbar -->
+      <div class="gal-filters" role="toolbar" aria-label="Filter certificates by category">
+        <button type="button" class="gal-filter-chip" data-filter="all" aria-pressed="true">All 11</button>
+        <button type="button" class="gal-filter-chip" data-filter="uiux" aria-pressed="false">UI/UX 1</button>
+        <button type="button" class="gal-filter-chip" data-filter="web" aria-pressed="false">Web 4</button>
+        <button type="button" class="gal-filter-chip" data-filter="aidata" aria-pressed="false">AI &amp; Data 2</button>
+        <button type="button" class="gal-filter-chip" data-filter="events" aria-pressed="false">Events 3</button>
+        <button type="button" class="gal-filter-chip" data-filter="lang" aria-pressed="false">Language 1</button>
+      </div>
+
+      <!-- Frame Count HUD -->
+      <div class="gal-hud" data-gal-ui>
+        <span class="gal-count" id="gal-count">11 frames</span>
+      </div>
+
+      <!-- Interactive Light Table Surface -->
+      <div class="gal-table" id="gal-table">
+        <div class="gal-world" id="gal-world">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Soft Bottom Fade -->
+      <div class="gal-fade" aria-hidden="true"></div>
+
+      <!-- Zoom HUD -->
+      <div class="gal-zoom" data-gal-ui>
+        <button type="button" id="gal-zoom-out" aria-label="Zoom out">−</button>
+        <span class="gal-zoom-label" id="gal-zoom-label">100%</span>
+        <button type="button" id="gal-zoom-in" aria-label="Zoom in">+</button>
+      </div>
+
+      <!-- Accessible Fallback -->
+      <div class="sr-only">
+        <h2>Daftar Sertifikasi &amp; Prestasi</h2>
+        <ul>
+          <li>SIMETRI 2025 — Departemen SI ITS (2025)</li>
+          <li>Dasar Frontend &amp; Backend — Bali Project Indonesia (2025)</li>
+          <li>Computational Thinking (SMP) — KOMDIGI (2025)</li>
+          <li>Computational Thinking (SMA) — KOMDIGI (2025)</li>
+          <li>Chat Apps for Business — KOMDIGI (2025)</li>
+          <li>AI untuk Software Developer — Bali Project Indonesia (2025)</li>
+          <li>Data Science Expo — PENS (2026)</li>
+          <li>Global Game Jam 2025 — GADAS &amp; Ciputra Univ. (2025)</li>
+          <li>Seminar Sekolah Kedinasan — LKP Science Society (2026)</li>
+          <li>Entrepreneur Fest 2026 — 2026</li>
+          <li>English Discoveries — Edusoft Ltd. (2026)</li>
+        </ul>
+      </div>
+
+      <!-- Lightbox Modal Dialog -->
+      <dialog class="gal-lightbox" id="gal-lightbox" aria-label="Certificate Detail">
+        <div class="gal-lightbox-card">
+          <button type="button" class="gal-lightbox-close" aria-label="Close">×</button>
+          <div class="gal-lightbox-media">
+            <img class="gal-lightbox-img" src="" alt="">
+          </div>
+          <h3 class="gal-lightbox-title"></h3>
+          <p class="gal-lightbox-meta"></p>
+        </div>
+      </dialog>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/chrome.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
+</body>
+</html>

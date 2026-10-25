@@ -1,0 +1,527 @@
+/* Home 3D Hang Hero Styles */
+
+.hang-stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--stage);
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 3D Scene Viewport */
+.hang-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+  cursor: grab;
+  z-index: var(--z-plate);
+}
+
+.hang-scene.is-dragging {
+  cursor: grabbing;
+}
+
+/* Fixed Editorial Intro Typography */
+.hang-intro {
+  position: absolute;
+  top: min(168px, max(84px, 18vh));
+  left: min(78px, max(20px, 4.2vw));
+  max-width: min(400px, 38vw);
+  z-index: var(--z-overlay);
+  pointer-events: none;
+}
+
+.hang-title {
+  font-family: var(--font-display);
+  font-size: min(141px, max(46px, 9.576vw));
+  line-height: 0.84;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  opacity: 0.001;
+  transform: translateY(30px) scale(0.94);
+  filter: blur(12px);
+  animation: titleIn 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.62s forwards;
+}
+
+@keyframes titleIn {
+  0% {
+    opacity: 0.001;
+    transform: translateY(30px) scale(0.94);
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.hang-meta {
+  margin-top: min(43px, 4.5vh);
+  max-width: min(380px, 38vw);
+  opacity: 0.001;
+  transform: translateY(16px);
+  animation: metaIn 1.0s cubic-bezier(0.33, 1, 0.68, 1) 1.05s forwards;
+}
+
+@keyframes metaIn {
+  0% {
+    opacity: 0.001;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hang-rule {
+  display: block;
+  width: 44px;
+  height: 1px;
+  background-color: var(--line);
+  margin-bottom: 14px;
+}
+
+.hang-desc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--muted-2);
+  margin: 0;
+}
+
+/* Counter HUD (Top Right, matching Farline reference pill) */
+.hang-counter {
+  position: absolute;
+  top: 29px;
+  right: 60px;
+  z-index: var(--z-hud);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  pointer-events: none;
+  transition: opacity var(--dur-state) var(--ease-state);
+}
+
+/* On home stage, status pill is replaced by counter */
+.chrome-status {
+  display: none;
+}
+
+/* Dynamic Swap Typography Area (Farline Exact) */
+.hang-swap > * {
+  transition: opacity 0.4s var(--ease-state), transform 0.4s var(--ease-state);
+}
+
+.hang-swap[data-out="false"] > :nth-child(1) { transition-delay: 20ms; }
+.hang-swap[data-out="false"] > :nth-child(2) { transition-delay: 90ms; }
+.hang-swap[data-out="false"] > :nth-child(3) { transition-delay: 0.16s; }
+.hang-swap[data-out="false"] > :nth-child(4) { transition-delay: 0.23s; }
+.hang-swap[data-out="false"] > :nth-child(5) { transition-delay: 0.3s; }
+
+.hang-swap[data-out="true"] > * {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition-duration: 0.12s;
+  transition-delay: 0s;
+}
+
+.hang-cue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 22px;
+}
+
+.hang-open-title {
+  font-family: var(--font-body);
+  font-size: clamp(22px, 1.9vw, 28px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+
+.hang-open-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 6px;
+}
+
+.hang-open-specs {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 12px;
+}
+
+.hang-open-desc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--muted-2);
+  margin: 0;
+}
+
+.hang-open-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  pointer-events: auto;
+}
+
+.hang-btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color var(--dur-fast) var(--ease-state),
+              border-color var(--dur-fast) var(--ease-state),
+              opacity var(--dur-fast) var(--ease-state);
+}
+
+.hang-btn-close:hover {
+  background-color: rgba(20, 19, 14, 0.05);
+  border-color: var(--ink);
+}
+
+.hang-btn-view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity var(--dur-fast) var(--ease-state),
+              transform var(--dur-fast) var(--ease-state);
+}
+
+.hang-btn-view:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+
+
+/* 3D Plate Card */
+.hang-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.hang-sheet {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  transform-origin: var(--pm-hang, 7% 0);
+  opacity: 0;
+  background-color: var(--paper-mat);
+  box-shadow: 0 0 0 0.5px rgba(20, 19, 14, 0.12),
+              0 calc(34px + var(--lift, 0) * 82px) calc(90px + var(--lift, 0) * 110px) -40px rgba(0, 0, 0, 0.741);
+  transform-style: preserve-3d;
+}
+
+.hang-sheet img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+}
+
+/* Paper Edges */
+.hang-edge {
+  position: absolute;
+  pointer-events: none;
+  opacity: var(--edgeA, 1);
+}
+
+.hang-edge--top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--edgeT, 0);
+  background-color: var(--paper-edge-top);
+}
+
+.hang-edge--side {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: var(--edgeS, 0);
+  background-color: var(--paper-edge-side);
+}
+
+/* Atmospheric Distance Veil Overlay */
+.hang-veil {
+  position: absolute;
+  inset: 0;
+  opacity: var(--dark, 0);
+  pointer-events: none;
+  background-color: var(--veil);
+}
+
+/* Wire Hanging Rig - 3D line segment */
+.hang-wire {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  margin-top: -1px;
+  transform-origin: 0 50%;
+  visibility: hidden;
+  pointer-events: none;
+  border-radius: 1px;
+  outline: 1px solid transparent;
+  background-color: var(--wire);
+  -webkit-mask: linear-gradient(transparent, var(--black) 30%, var(--black) 70%, transparent);
+  mask: linear-gradient(transparent, var(--black) 30%, var(--black) 70%, transparent);
+}
+
+/* Wooden Clamp Peg */
+.hang-peg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-style: preserve-3d;
+  transform-origin: 50% 42%;
+  visibility: hidden;
+  pointer-events: none;
+  --pd: calc(var(--pw, 10px) * 0.4);
+  --pgap: calc(var(--pw, 10px) * 0.04);
+  --wd: color-mix(in srgb, var(--peg-wood) 70%, var(--peg-wood-dark));
+  --wm: color-mix(in srgb, var(--peg-wood) 86%, var(--peg-wood-mid));
+  --wl: color-mix(in srgb, var(--peg-wood) 78%, var(--white));
+}
+
+.hang-peg i,
+.hang-jaw {
+  position: absolute;
+  display: block;
+}
+
+.hang-peg i {
+  backface-visibility: hidden;
+  opacity: var(--po, 1);
+}
+
+.hang-jaw {
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: 50% 42%;
+}
+
+.hang-jf {
+  transform: translateZ(calc(var(--pd) / 2 + var(--pgap))) rotateX(calc(var(--jaw, 0) * 1deg));
+}
+
+.hang-jb {
+  transform: rotateY(180deg) translateZ(calc(var(--pd) / 2 + var(--pgap))) rotateX(calc(var(--jaw, 0) * 1deg));
+}
+
+.hang-fo {
+  inset: 0;
+  transform: translateZ(calc(var(--pd) / 2));
+  border-radius: 34% 34% 22% 22% / 5% 5% 3% 3%;
+  background:
+    linear-gradient(90deg, transparent 44%, var(--peg-metal-mid) 44%, var(--peg-metal-light) 50%, var(--peg-metal-ring) 56%, transparent 56%) 0 8% / 100% 36% no-repeat,
+    radial-gradient(circle at 50% 50%, var(--peg-metal-highlight) 0 32%, var(--peg-metal-outer) 40%, transparent 44%) 50% 44% / 80% 11% no-repeat,
+    repeating-linear-gradient(90deg, rgba(84, 54, 20, 0.07) 0 1px, transparent 1px 2.6px),
+    linear-gradient(90deg, var(--wd) 0, var(--wm) 14%, var(--wl) 46%, var(--peg-wood) 68%, var(--wd) 100%);
+  box-shadow: inset 0 -1px 1px rgba(60, 38, 12, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.hang-fl,
+.hang-fr {
+  top: 0;
+  bottom: 0;
+  left: calc(50% - var(--pd) / 2);
+  width: var(--pd);
+  background:
+    repeating-linear-gradient(0deg, rgba(84, 54, 20, 0.08) 0 1px, transparent 1px 3px),
+    linear-gradient(90deg, color-mix(in srgb, var(--wd) 72%, var(--black)), color-mix(in srgb, var(--wm) 88%, var(--black)));
+}
+
+.hang-fl {
+  transform: rotateY(-90deg) translateZ(calc(var(--pw) / 2));
+  clip-path: polygon(18% 0, 100% 0, 100% 88%, 78% 100%, 0 100%, 0 53%, 30% 51%, 44% 44%, 30% 37%, 8% 35%);
+}
+
+.hang-fr {
+  transform: rotateY(90deg) translateZ(calc(var(--pw) / 2));
+  clip-path: polygon(0 0, 82% 0, 92% 35%, 70% 37%, 56% 44%, 70% 51%, 100% 53%, 100% 100%, 22% 100%, 0 88%);
+}
+
+.hang-ft {
+  left: 0;
+  right: 0;
+  top: calc(50% - var(--pd) / 2);
+  height: var(--pd);
+  transform: rotateX(90deg) translateZ(calc(var(--ph) / 2)) scaleY(0.82);
+  border-radius: 40%;
+  background: radial-gradient(ellipse at 50% 50%, var(--wm), var(--wd));
+}
+
+.hang-coil {
+  width: calc(var(--pd) * 1.35);
+  height: calc(var(--pd) * 1.35);
+  left: calc(50% - var(--pd) * 0.675);
+  top: calc(42% - var(--pd) * 0.675);
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 30%, var(--peg-metal-dark) 33%, var(--peg-metal-shine) 45%, var(--peg-metal-core) 55%, var(--peg-metal-shadow) 62%, transparent 65%);
+}
+
+.hang-cl {
+  transform: rotateY(-90deg) translateZ(calc(var(--pw) / 2 + 0.4px));
+}
+
+.hang-cr {
+  transform: rotateY(90deg) translateZ(calc(var(--pw) / 2 + 0.4px));
+}
+
+.hang-psh {
+  left: -6%;
+  top: 40%;
+  width: 128%;
+  height: 70%;
+  border-radius: 50%;
+  transform: translate3d(9%, 10%, 0.35px);
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.12) 55%, transparent);
+  opacity: calc(var(--po, 1) * var(--att, 1)) !important;
+}
+
+/* Fallback list for No-JS or WebGL/CSS 3D failure */
+.hang-fallback {
+  display: none;
+  padding: 120px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.no-3d .hang-scene,
+.no-3d .hang-hud {
+  display: none;
+}
+
+.no-3d .hang-fallback {
+  display: block;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1199px) {
+  .hang-counter {
+    right: 40px;
+  }
+}
+
+@media (max-width: 809px) {
+  .hang-intro {
+    top: min(110px, max(84px, 11vh));
+    left: 20px;
+    max-width: 88vw;
+  }
+  .hang-title {
+    font-size: min(84px, max(46px, 16vw));
+  }
+  .hang-meta {
+    margin-top: 14px;
+    max-width: 88vw;
+  }
+  .hang-counter {
+    top: 60px;
+    right: 20px;
+  }
+  .hang-stage.is-open .hang-title {
+    display: none;
+  }
+  .hang-stage.is-open .hang-rule {
+    display: none;
+  }
+  .hang-stage.is-open .hang-meta {
+    margin-top: 0;
+  }
+  .hang-stage.is-open .hang-intro {
+    top: auto;
+    bottom: 84px;
+    left: 20px;
+    right: 20px;
+    max-width: calc(100vw - 40px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hang-title,
+  .hang-meta {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .hang-plate {
+    transition: none !important;
+  }
+}

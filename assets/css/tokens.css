@@ -1,0 +1,68 @@
+:root {
+  /* Colors - Sole location for hex codes */
+  --stage: #FFFFFF;
+  --white: #FFFFFF;
+  --ink: #14130E;
+  --muted: #969696;
+  --muted-2: #6B6A63;
+  --line: #E4E4E4;
+  --paper-mat: #DEDBD3;
+  --paper-edge-top: #E2DAC2;
+  --paper-edge-side: #C8C0A7;
+  --wire: #3A3833;
+  --peg-wood: #D9C7A2;
+  --peg-wood-mid: #6B4A22;
+  --peg-wood-dark: #4A3218;
+  --black: #000000;
+  --peg-metal-dark: #5f5e59;
+  --peg-metal-mid: #7e7d78;
+  --peg-metal-light: #e2e1dc;
+  --peg-metal-shine: #e6e5e0;
+  --peg-metal-shadow: #56554f;
+  --peg-metal-core: #9a9993;
+  --peg-metal-highlight: #d9d8d3;
+  --peg-metal-ring: #6f6e69;
+  --peg-metal-outer: #77766f;
+  --veil: #ECEAE3;
+  --glass: rgba(255, 255, 255, 0.6);
+  --glass-strong: rgba(255, 255, 255, 0.72);
+  --glass-subtle: rgba(255, 255, 255, 0.7);
+
+  /* Shadows */
+  --shadow-print: 0 34px 90px -40px rgba(0, 0, 0, 0.741);
+  --shadow-nav: 0 18px 40px -18px rgba(20, 19, 14, 0.12);
+  --shadow-form: 0 40px 90px -40px rgba(20, 19, 14, 0.30), 0 1px 2px rgba(20, 19, 14, 0.04);
+
+  /* Typography */
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Radius */
+  --radius-pill: 999px;
+  --radius-form: 14px;
+  --radius-thumb: 8px;
+  --radius-plate: 0;
+
+  /* Motion Grammar: strictly two easings */
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-state: cubic-bezier(0.22, 0.8, 0.25, 1);
+
+  /* Durations */
+  --dur-fast: 0.25s;
+  --dur-state: 0.35s;
+  --dur-reveal: 0.7s;
+  --dur-spring: 1.0s;
+  --dur-plate: 1.4s;
+  --dur-opacity: 0.9s;
+  --dur-flip: 0.4s;
+
+  /* Z-index hierarchy */
+  --z-base: 0;
+  --z-plate: 10;
+  --z-hud: 20;
+  --z-overlay: 30;
+  --z-lightbox: 40;
+  --z-nav: 50;
+  --z-lang: 60;
+}

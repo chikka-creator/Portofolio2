@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id" data-lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work — Fakhri</title>
+  <meta name="description" content="Selected works and certifications.">
+  <link rel="canonical" href="https://fakhri.dev/work.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Work — Fakhri">
+  <meta property="og:description" content="Selected works and certifications.">
+  <meta property="og:image" content="assets/img/og/og-image.webp">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Font Preloads -->
+  <link rel="preload" href="assets/fonts/Anton.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Geist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/GeistMono.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/chrome.css">
+  <link rel="stylesheet" href="assets/css/work.css">
+</head>
+<body>
+  <!-- Shell Chrome Components -->
+  <a class="chrome-logo" href="index.html" aria-label="Home">
+    <span>FAKHRI</span>
+  </a>
+
+  <div class="chrome-status" role="status">
+    <span data-i18n="statusWork">Selected works</span>
+  </div>
+
+  <nav class="chrome-nav" aria-label="Main">
+    <a href="index.html" data-i18n="navMain">Main</a>
+    <a href="work.html" aria-current="page" data-i18n="navWork">Work</a>
+    <a href="gallery.html" data-i18n="navGallery">Gallery</a>
+    <a href="about.html" data-i18n="navAbout">About</a>
+    <a href="contact.html" data-i18n="navContact">Contact</a>
+  </nav>
+
+  <div class="chrome-lang" role="group" aria-label="Language">
+    <button type="button" data-lang="id" aria-pressed="true">ID</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section class="work-stage" aria-label="Selected Works">
+      <div class="work-intro page-intro">
+        <h1 class="work-title" data-i18n="workTitle">Work</h1>
+        <div class="work-meta">
+          <span class="work-rule"></span>
+          <p class="work-desc" data-i18n="workDesc">Jelajahi karya pilihan dan sertifikasi keahlian dalam rotasi interaktif 3D yang mengelilingi pusat gravitasi digital.</p>
+        </div>
+      </div>
+
+      <div class="work-table-container">
+        <table class="work-table">
+          <thead>
+            <tr>
+              <th data-i18n="workTableNo">No.</th>
+              <th data-i18n="workTableTitle">Title</th>
+              <th data-i18n="workTableSeries">Series</th>
+              <th data-i18n="workTablePlace">Place</th>
+              <th data-i18n="workTableYear">Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Hover Cursor Preview Plate -->
+      <div class="work-preview" id="work-preview" aria-hidden="true">
+        <img src="assets/img/projects/techinventory.webp" alt="" draggable="false">
+        <span class="work-preview-edge-top"></span>
+        <span class="work-preview-edge-side"></span>
+      </div>
+
+      <!-- Accessible Semantic List -->
+      <div class="sr-only">
+        <h2>Daftar Proyek Unggulan</h2>
+        <ul>
+          <li><a href="https://github.com/chikka-creator/TechInventory.git">TechInventory System — Web App, Surabaya 2025</a></li>
+          <li><a href="https://www.figma.com/design/rnLD3kSvpWiQDQYp0hYRto/Study-Case-Kel-8">Streaming App UI — Mobile UI, Surabaya 2025</a></li>
+          <li><a href="index.html">Portfolio v2 — Web, Surabaya 2026</a></li>
+        </ul>
+      </div>
+
+      <!-- Native Dialog Modal -->
+      <dialog class="work-overlay" id="work-overlay" aria-label="Project Detail">
+        <div class="work-overlay-card">
+          <button type="button" class="work-overlay-close" aria-label="Close">×</button>
+          <div class="work-overlay-media">
+            <img class="work-overlay-img" src="" alt="">
+          </div>
+          <h3 class="work-overlay-title"></h3>
+          <p class="work-overlay-meta"></p>
+          <p class="work-overlay-desc"></p>
+          <a class="work-overlay-link" href="" target="_blank" rel="noopener noreferrer">Buka Proyek →</a>
+        </div>
+      </dialog>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/chrome.js" defer></script>
+  <script src="assets/js/work.js" defer></script>
+</body>
+</html>

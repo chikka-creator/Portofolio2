@@ -1,0 +1,376 @@
+/* Gallery Light Table Styles */
+
+.gal-stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 680px;
+  overflow: hidden;
+  background-color: var(--stage);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gal-intro {
+  position: absolute;
+  top: min(162px, max(84px, 16vh));
+  left: min(78px, max(20px, 4.2vw));
+  max-width: min(44%, 620px);
+  z-index: var(--z-hud);
+  pointer-events: none;
+}
+
+.gal-title {
+  font-family: var(--font-display);
+  font-size: min(138px, max(46px, 9.5vw));
+  line-height: 0.84;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+
+.gal-meta {
+  margin-top: 39px;
+}
+
+.gal-rule {
+  display: block;
+  width: 44px;
+  height: 1px;
+  background-color: var(--line);
+  margin-bottom: 14px;
+}
+
+.gal-desc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--muted-2);
+  max-width: 340px;
+  margin: 0;
+}
+
+/* HUD elements */
+.gal-hud {
+  position: absolute;
+  top: 75px;
+  right: 60px;
+  z-index: var(--z-hud);
+}
+
+.gal-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Zoom HUD Controls */
+.gal-zoom {
+  position: fixed;
+  bottom: 26px;
+  right: 60px;
+  z-index: var(--z-hud);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  background-color: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-nav);
+}
+
+.gal-zoom button {
+  width: 36px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  transition: background-color var(--dur-fast) var(--ease-state);
+}
+
+.gal-zoom button:hover {
+  background-color: rgba(20, 19, 14, 0.08);
+}
+
+.gal-zoom-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 48px;
+  text-align: center;
+  color: var(--ink);
+}
+
+/* Filter Chip Bar */
+.gal-filters {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-hud);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 90vw;
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.gal-filter-chip {
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background-color: var(--glass);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) var(--ease-state), color var(--dur-fast) var(--ease-state);
+}
+
+.gal-filter-chip[aria-pressed="true"] {
+  background-color: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
+.gal-filter-chip:hover:not([aria-pressed="true"]) {
+  border-color: var(--ink);
+}
+
+/* Light Table Interactive Surface */
+.gal-table {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  z-index: var(--z-plate);
+  transform-style: preserve-3d;
+}
+
+.gal-table.is-dragging {
+  cursor: grabbing;
+}
+
+.gal-world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Individual Certificate Item on Light Table */
+.gal-item {
+  position: absolute;
+  width: 180px;
+  height: 138px;
+  background-color: var(--paper-mat);
+  box-shadow: var(--shadow-print);
+  cursor: pointer;
+  will-change: transform, opacity;
+  transform-origin: 50% 50%;
+  transition: opacity 0.3s var(--ease-state), transform var(--dur-fast) var(--ease-state), box-shadow var(--dur-fast) var(--ease-state);
+  border-radius: var(--radius-plate);
+  overflow: hidden;
+}
+
+.gal-item:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.gal-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gal-item-edge-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--paper-edge-top);
+  pointer-events: none;
+}
+
+.gal-item-edge-side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 4px;
+  background-color: var(--paper-edge-side);
+  pointer-events: none;
+}
+
+.gal-item.is-dimmed {
+  opacity: 0.2 !important;
+  pointer-events: none;
+  transform: scale(0.92) !important;
+}
+
+.gal-item.is-hovered {
+  box-shadow: 0 42px 100px -30px rgba(0, 0, 0, 0.85);
+  z-index: 100 !important;
+}
+
+/* Soft Bottom Gradient Fade */
+.gal-fade {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent, var(--stage));
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* Lightbox Dialog */
+.gal-lightbox {
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: 90vw;
+  width: 740px;
+  margin: auto;
+  z-index: var(--z-lightbox);
+}
+
+.gal-lightbox::backdrop {
+  background-color: rgba(20, 19, 14, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.gal-lightbox-card {
+  position: relative;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-form);
+  padding: 32px;
+  border-radius: var(--radius-form);
+}
+
+.gal-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background-color: var(--glass);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  transition: border-color var(--dur-state) var(--ease-state);
+}
+
+.gal-lightbox-close:hover {
+  border-color: var(--ink);
+}
+
+.gal-lightbox-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.3 / 1;
+  background-color: var(--paper-mat);
+  box-shadow: var(--shadow-print);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.gal-lightbox-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gal-lightbox-title {
+  font-family: var(--font-body);
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.gal-lightbox-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1199px) {
+  .gal-zoom {
+    right: 40px;
+  }
+  .gal-hud {
+    right: 40px;
+  }
+}
+
+@media (max-width: 809px) {
+  .gal-intro {
+    top: 90px;
+    left: 20px;
+    max-width: 88vw;
+  }
+  .gal-title {
+    font-size: min(84px, max(46px, 16vw));
+  }
+  .gal-meta {
+    margin-top: 20px;
+    max-width: 80vw;
+  }
+  .gal-filters {
+    top: 60px;
+    width: calc(100vw - 40px);
+    justify-content: flex-start;
+  }
+  .gal-hud {
+    top: 60px;
+    right: 20px;
+  }
+  .gal-zoom {
+    bottom: 74px;
+    right: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gal-item {
+    transition: none !important;
+  }
+}
