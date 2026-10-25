@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Work — Fakhri</title>
-  <meta name="description" content="Selected works and certifications.">
+  <meta name="description" content="Interactive 3D spiral card gallery and selected engineering works by Fakhri.">
   <link rel="canonical" href="https://fakhri.dev/work.html">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Work — Fakhri">
-  <meta property="og:description" content="Selected works and certifications.">
+  <meta property="og:description" content="Interactive 3D spiral card gallery and selected engineering works by Fakhri.">
   <meta property="og:image" content="assets/img/og/og-image.webp">
   <meta property="og:type" content="website">
 
@@ -25,18 +25,32 @@
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/chrome.css">
-  <link rel="stylesheet" href="assets/css/work.css">
+  <link rel="stylesheet" href="assets/css/work.css?v=15">
 </head>
-<body>
+<body class="work-body">
   <!-- Shell Chrome Components -->
   <a class="chrome-logo" href="index.html" aria-label="Home">
     <span>FAKHRI</span>
   </a>
 
   <div class="chrome-status" role="status">
-    <span data-i18n="statusWork">Selected works</span>
+    <span data-i18n="statusWork">Karya pilihan</span>
   </div>
 
+  <!-- Top View Toggle (Spiral & List) -->
+  <header class="top-view-toggle" role="region" aria-label="View Controls">
+    <div class="view-switch-cluster" role="tablist" aria-label="View mode">
+      <div class="view-pill-indicator is-spiral" id="view-pill-indicator" aria-hidden="true"></div>
+      <button type="button" class="view-link is-active" id="btn-view-spiral" role="tab" aria-selected="true" aria-controls="spiral-canvas">
+        <span class="view-link-text">spiral</span>
+      </button>
+      <button type="button" class="view-link" id="btn-view-list" role="tab" aria-selected="false" aria-controls="list-container">
+        <span class="view-link-text">list</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Nav -->
   <nav class="chrome-nav" aria-label="Main">
     <a href="index.html" data-i18n="navMain">Main</a>
     <a href="work.html" aria-current="page" data-i18n="navWork">Work</a>
@@ -45,76 +59,80 @@
     <a href="contact.html" data-i18n="navContact">Contact</a>
   </nav>
 
+  <!-- Language Switch -->
   <div class="chrome-lang" role="group" aria-label="Language">
     <button type="button" data-lang="id" aria-pressed="true">ID</button>
     <button type="button" data-lang="en" aria-pressed="false">EN</button>
   </div>
 
-  <!-- Main Content -->
-  <main>
-    <section class="work-stage" aria-label="Selected Works">
-      <div class="work-intro page-intro">
-        <h1 class="work-title" data-i18n="workTitle">Work</h1>
-        <div class="work-meta">
-          <span class="work-rule"></span>
-          <p class="work-desc" data-i18n="workDesc">Jelajahi karya pilihan dan sertifikasi keahlian dalam rotasi interaktif 3D yang mengelilingi pusat gravitasi digital.</p>
-        </div>
-      </div>
+  <!-- Main View Stage -->
+  <main class="work-viewport" aria-label="Selected Works">
+    <!-- 1. WebGL Spiral Canvas -->
+    <canvas id="spiral-canvas" class="webgl-canvas" aria-label="Interactive 3D Spiral Card Gallery. Scroll or drag to explore."></canvas>
 
-      <div class="work-table-container">
-        <table class="work-table">
-          <thead>
-            <tr>
-              <th data-i18n="workTableNo">No.</th>
-              <th data-i18n="workTableTitle">Title</th>
-              <th data-i18n="workTableSeries">Series</th>
-              <th data-i18n="workTablePlace">Place</th>
-              <th data-i18n="workTableYear">Year</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Populated by JS -->
-          </tbody>
-        </table>
+    <!-- 2. Floating Hover Tag / Badge (Cursor follower in 3D mode) -->
+    <div class="spiral-hover-tag" id="spiral-hover-tag" aria-hidden="true">
+      <div class="hover-tag-thumb-wrap">
+        <img class="hover-tag-thumb" src="" alt="" draggable="false">
       </div>
-
-      <!-- Hover Cursor Preview Plate -->
-      <div class="work-preview" id="work-preview" aria-hidden="true">
-        <img src="assets/img/projects/techinventory.webp" alt="" draggable="false">
-        <span class="work-preview-edge-top"></span>
-        <span class="work-preview-edge-side"></span>
-      </div>
-
-      <!-- Accessible Semantic List -->
-      <div class="sr-only">
-        <h2>Daftar Proyek Unggulan</h2>
-        <ul>
-          <li><a href="https://github.com/chikka-creator/TechInventory.git">TechInventory System — Web App, Surabaya 2025</a></li>
-          <li><a href="https://www.figma.com/design/rnLD3kSvpWiQDQYp0hYRto/Study-Case-Kel-8">Streaming App UI — Mobile UI, Surabaya 2025</a></li>
-          <li><a href="index.html">Portfolio v2 — Web, Surabaya 2026</a></li>
-        </ul>
-      </div>
-
-      <!-- Native Dialog Modal -->
-      <dialog class="work-overlay" id="work-overlay" aria-label="Project Detail">
-        <div class="work-overlay-card">
-          <button type="button" class="work-overlay-close" aria-label="Close">×</button>
-          <div class="work-overlay-media">
-            <img class="work-overlay-img" src="" alt="">
+      <div class="hover-tag-info">
+        <span class="spiral-hover-tag__title">Project Title</span>
+        <div class="badge-loop-track-wrapper">
+          <div class="badge-loop-track">
+            <span class="badge-loop-segment">✦ VIEW PROJECT ✦ VIEW PROJECT ✦</span>
+            <span class="badge-loop-segment" aria-hidden="true">✦ VIEW PROJECT ✦ VIEW PROJECT ✦</span>
           </div>
-          <h3 class="work-overlay-title"></h3>
-          <p class="work-overlay-meta"></p>
-          <p class="work-overlay-desc"></p>
-          <a class="work-overlay-link" href="" target="_blank" rel="noopener noreferrer">Buka Proyek →</a>
         </div>
-      </dialog>
+      </div>
+    </div>
+
+    <!-- 3. Typographic List View Container (Minimalist Editorial Mode) -->
+    <section class="list-container" id="list-container" aria-label="Typographic Project List" aria-hidden="true" style="display: none;">
+      <div class="list-centered-wrapper" id="list-centered-wrapper">
+        <!-- Dynamically rendered by JS -->
+      </div>
     </section>
+
+    <!-- Preview Follower Card (Cursor follower in List mode) -->
+    <div class="preview-follower" id="preview-follower" aria-hidden="true">
+      <div class="preview-follower__inner">
+        <img src="" alt="" draggable="false">
+      </div>
+    </div>
+
+    <!-- Accessible Semantic List (Screen readers & SEO) -->
+    <div class="sr-only">
+      <h1>Karya Pilihan &amp; Proyek Unggulan — Fakhri</h1>
+      <p>Jelajahi proyek web app, UI/UX, dan sertifikasi dalam galeri 3D spiral heliks interaktif atau daftar tipografi.</p>
+      <ul>
+        <li><a href="https://github.com/chikka-creator/TechInventory.git">TechInventory System — Web Application, Surabaya 2025</a></li>
+        <li><a href="https://www.figma.com/design/rnLD3kSvpWiQDQYp0hYRto/Study-Case-Kel-8">Streaming App UI — Mobile UI, Surabaya 2025</a></li>
+        <li><a href="index.html">Portfolio v2 — Web, Surabaya 2026</a></li>
+      </ul>
+    </div>
+
+    <!-- Native Dialog Modal (Project Detail) -->
+    <dialog class="work-overlay" id="work-overlay" aria-label="Project Detail">
+      <div class="work-overlay-card">
+        <button type="button" class="work-overlay-close" aria-label="Close">×</button>
+        <div class="work-overlay-media">
+          <img class="work-overlay-img" src="" alt="">
+        </div>
+        <h3 class="work-overlay-title"></h3>
+        <p class="work-overlay-meta"></p>
+        <p class="work-overlay-desc"></p>
+        <a class="work-overlay-link" href="" target="_blank" rel="noopener noreferrer">Buka Proyek →</a>
+      </div>
+    </dialog>
   </main>
 
   <!-- Scripts -->
-  <script src="assets/js/data.js" defer></script>
-  <script src="assets/js/i18n.js" defer></script>
-  <script src="assets/js/chrome.js" defer></script>
-  <script src="assets/js/work.js" defer></script>
+  <script src="assets/vendor/three.min.js"></script>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/js/data.js?v=15" defer></script>
+  <script src="assets/js/i18n.js?v=15" defer></script>
+  <script src="assets/js/chrome.js?v=15" defer></script>
+  <script src="assets/js/work-spiral.js?v=15" defer></script>
+  <script src="assets/js/work.js?v=15" defer></script>
 </body>
 </html>
