@@ -74,6 +74,8 @@
           year: proj.year || "2025",
           image: proj.img,
           url: proj.url,
+          btnLabelId: proj.btnLabelId,
+          btnLabelEn: proj.btnLabelEn,
           descId: proj.descId,
           descEn: proj.descEn,
           tint: "#f2efe9"
@@ -81,10 +83,9 @@
       });
     }
 
-    // Append ORBIT_PLATES items if available to create a rich 10-12 item catalog
+    // Append ORBIT_PLATES items if available to create a rich catalog
     if (typeof ORBIT_PLATES !== "undefined" && Array.isArray(ORBIT_PLATES)) {
       ORBIT_PLATES.forEach((plate) => {
-        // avoid duplicating techinventory or streaming-app-ui if already added
         if (cards.some((c) => c.title === plate.title)) return;
         cards.push({
           id: plate.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
@@ -94,6 +95,8 @@
           year: plate.year || "2025",
           image: plate.img,
           url: plate.url,
+          btnLabelId: plate.btnLabelId,
+          btnLabelEn: plate.btnLabelEn,
           descId: plate.descId,
           descEn: plate.descEn,
           tint: "#f2efe9"
@@ -458,12 +461,12 @@
         overlayLink.target = "_blank";
         overlayLink.rel = "noopener noreferrer";
         overlayLink.style.display = "inline-flex";
-        overlayLink.textContent = isId ? "Buka Proyek →" : "Open Project →";
+        overlayLink.textContent = isId ? (proj.btnLabelId || "Buka Proyek →") : (proj.btnLabelEn || "Open Project →");
       } else {
         overlayLink.href = "index.html";
         overlayLink.target = "_self";
         overlayLink.style.display = "inline-flex";
-        overlayLink.textContent = isId ? "Lihat di Beranda →" : "View on Home →";
+        overlayLink.textContent = isId ? (proj.btnLabelId || "Lihat di Beranda →") : (proj.btnLabelEn || "View on Home →");
       }
     }
 
@@ -483,7 +486,7 @@
       const isId = (typeof currentLang !== "undefined" ? currentLang : "id") === "id";
       if (overlayDesc) overlayDesc.textContent = isId ? activeProject.descId : activeProject.descEn;
       if (overlayLink) {
-        overlayLink.textContent = isId ? "Buka Proyek →" : "Open Project →";
+        overlayLink.textContent = isId ? (activeProject.btnLabelId || "Buka Proyek →") : (activeProject.btnLabelEn || "Open Project →");
       }
     }
   });

@@ -590,10 +590,11 @@
         });
       }
     } else {
-      const descText = isId
-        ? "Saya adalah seorang Front-End Developer dan UI/UX Designer. Berfokus pada penyederhanaan antarmuka yang kompleks menjadi solusi elegan yang berpusat pada pengguna."
-        : "I am a Front-End Developer and UI/UX Designer. Focused on simplifying complex interfaces into elegant, user-centered solutions.";
-      const cueText = isId ? "Gulir atau geser untuk menjelajah" : "Scroll or drag to explore";
+      const dict = typeof TRANSLATIONS !== "undefined" ? (TRANSLATIONS[isId ? "id" : "en"] || {}) : {};
+      const descText = dict.heroDesc || (isId
+        ? "Front-End Developer & UI/UX Designer yang berfokus membangun antarmuka web modern, interaktif, dan berorientasi performa tinggi. Berpengalaman merancang dan merekayasa produk digital untuk klien internasional."
+        : "Front-End Developer & UI/UX Designer crafting modern, highly performant, and interactive web experiences with international client delivery.");
+      const cueText = dict.heroCue || (isId ? "Gulir atau geser untuk menjelajah karya" : "Scroll or drag to explore works");
 
       swapEl.innerHTML = `
         <p class="hang-desc" id="hang-desc">${descText}</p>
